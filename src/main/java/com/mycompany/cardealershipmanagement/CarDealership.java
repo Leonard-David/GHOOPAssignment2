@@ -140,15 +140,16 @@ public class CarDealership {
         return cheapCar;
     }
     public double gasPoweredCarCostAverage(){
-        double sum = 00.00;
+        double compute = 00.00;
         int count = 0;
         for ( int i = 0; i < carAmount; i++ ){
             if(car[i].getCarType() == "Gas-Powered-Car"){
-                sum = sum + car[i].getCost();
+                compute = compute + car[i].getCost();
                 count++;
             }
         }
-        return sum/count;
+        compute = compute/count;
+        return compute;
    }
     public int carsSoldInASpecificYearNo(int specificYear){
         int count = 0;

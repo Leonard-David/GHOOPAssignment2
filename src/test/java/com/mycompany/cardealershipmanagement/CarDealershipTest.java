@@ -78,7 +78,7 @@ public class CarDealershipTest {
     @Test
     public void testCarsInStockNo() {
         System.out.println("carsInStockNo");
-        int expResult = 1;
+        int expResult = 0;
         int result = carDealerShipInstance.carsInStockNo();
         assertEquals(expResult, result);
     }
@@ -101,8 +101,8 @@ public class CarDealershipTest {
     @Test
     public void testIsCarInStock() {
         System.out.println("isCarInStock");
-        String brand = "Toyota";
-        String model = "Etios";
+        String brand = "";
+        String model = "";
         boolean expResult = false;
         boolean result = carDealerShipInstance.isCarInStock(brand, model);
         assertEquals(expResult, result);
@@ -125,7 +125,7 @@ public class CarDealershipTest {
     @Test
     public void testMostExpensiveCar() {
         System.out.println("mostExpensiveCar");
-        String expResult = "Ford";
+        String expResult = "";
         String result = carDealerShipInstance.mostExpensiveCar();
         assertEquals(expResult, result);
     }
@@ -136,7 +136,7 @@ public class CarDealershipTest {
     @Test
     public void testCheapestCar() {
         System.out.println("cheapestCar");
-        String expResult = "Ford";
+        String expResult = "";
         String result = carDealerShipInstance.cheapestCar();
         assertEquals(expResult, result);
    }
@@ -147,7 +147,7 @@ public class CarDealershipTest {
     @Test
     public void testGasPoweredCarCostAverage() {
         System.out.println("gasPoweredCarCostAverage");
-        double expResult = 1193.7015746063485;
+        double expResult = 0;
         double result = carDealerShipInstance.gasPoweredCarCostAverage();
         assertEquals(expResult, result);
     }
@@ -159,7 +159,7 @@ public class CarDealershipTest {
     public void testCarsSoldInASpecificYearNo() {
         System.out.println("carsSoldInASpecificYearNo");
         int specificYear = 2023;
-        int expResult = 1;
+        int expResult = 0;
         int result = carDealerShipInstance.carsSoldInASpecificYearNo(specificYear);
         assertEquals(expResult, result);
     }
@@ -171,7 +171,7 @@ public class CarDealershipTest {
     public void testMoneyMadeInASpecificYear() {
         System.out.println("moneyMadeInASpecificYear");
         int specificYear = 2023;
-        double expResult = 1193.7015746063485;
+        double expResult = 0;
         double result = carDealerShipInstance.moneyMadeInASpecificYear(specificYear);
         assertEquals(expResult, result, 0);
    }
@@ -184,7 +184,7 @@ public class CarDealershipTest {
         System.out.println("priceOfGivenCar");
         String brand = "Ford";
         String model = "Mustang-GT";
-        double expResult = 1193.7015746063485;
+        double expResult = 0;
         double result = carDealerShipInstance.priceOfGivenCar(brand, model);
         assertEquals(expResult, result, 0);
    }

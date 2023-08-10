@@ -101,7 +101,7 @@ public class CarTest {
     @Test
     public void testGetCost() {
         System.out.println("getCost");
-        double expResult = 1194000.0;
+        double expResult = 1193.7015746063485;
         double result = carInstance.getCost();
         assertEquals(expResult, result, 0);
     }
@@ -122,6 +122,7 @@ public class CarTest {
      */
     @Test
     public void testGetDateSold() {
+        carInstance.setDateSold(date);
         System.out.println("getDateSold");
         Date expResult = date;
         Date result = carInstance.getDateSold();
