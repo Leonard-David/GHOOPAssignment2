@@ -13,8 +13,9 @@ public class ReceiptTest {
     Receipt receiptInstance = null;
     
     public ReceiptTest() {
-        receiptInstance = new Receipt("Leoanrd M. David", 01010700607,"Ford", "1HGB41JXMN109186",date,1194000.0);
         date = new Date();
+        receiptInstance = new Receipt("Leoanrd M. David", 01010700607,"Ford", "1HGB41JXMN109186",date,1194000.0);
+       
     }
     
     /**

@@ -35,7 +35,7 @@ public class LicenseTest {
         String result = licenseInstance.getCode();
         assertEquals(expResult, result);
    }
-
+    
     /**
      * Test of getIssueDate method, of class License.
      */

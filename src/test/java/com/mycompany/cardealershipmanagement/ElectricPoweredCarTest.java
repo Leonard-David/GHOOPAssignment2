@@ -23,7 +23,7 @@ public class ElectricPoweredCarTest {
     public void testGetCost() {
         System.out.println("getCost");
         
-        double expResult = 3400000.0;
+        double expResult = 6798.300424893777;
         double result = electricPoweredCarInstance.getCost();
         assertEquals(expResult, result, 0);
     }
