@@ -24,9 +24,7 @@ public class CustomerTest {
         int expResult = 01010700607;
         int result = customerInstance.getIdNumber();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+   }
 
     /**
      * Test of getFirstName method, of class Customer.
@@ -37,8 +35,6 @@ public class CustomerTest {
         String expResult = "Leonard";
         String result = customerInstance.getFirstName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -50,8 +46,6 @@ public class CustomerTest {
         String expResult = "David";
         String result = customerInstance.getLastName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -63,18 +57,14 @@ public class CustomerTest {
         int expResult = 812883053;
         int result = customerInstance.getCellphoneNo();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+     }
     @Test
     public void testGetGender(){
         System.out.println("getGender");
         char expResult = 'M';
         char result = customerInstance.getGender();
          assertEquals(expResult, result);
-        //TODO review the generated test code and remove the default call to fail.
-        fail("The Test code is a prototype");
-    }
+     }
     /**
      * Test of getLicense method, of class Customer.
      */
@@ -84,8 +74,6 @@ public class CustomerTest {
         License expResult = licenseInstance;
         License result = customerInstance.getLicense();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

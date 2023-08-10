@@ -28,8 +28,6 @@ public class CarDealershipTest {
         String color = "Dark Matter Gray Metallic";
         double cost = 1194000.0;
         carDealerShipInstance.addNewCar(carCode, brand, model, engineType, mileage, carType, color, cost);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -50,8 +48,6 @@ public class CarDealershipTest {
         String lIssueDate = "01/02/2022";
         String lExpiryDate = "01/02/2026";
         carDealerShipInstance.purchaseACar(customerIdNumber, firstName, lastName, gender, cellphoneNo1, carIdNumber, lIdNumber, lCode, lIssueDate, lExpiryDate);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -64,9 +60,7 @@ public class CarDealershipTest {
         String expResult = "";
         String result = carDealerShipInstance.returnCustomerReceipt(customerIdNumber);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+     }
 
     /**
      * Test of removeCar method, of class CarDealership.
@@ -76,9 +70,7 @@ public class CarDealershipTest {
         System.out.println("removeCar");
         String carCode = "1HGB41JXMN109186";
         carDealerShipInstance.removeCar(carCode);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+   }
 
     /**
      * Test of carsInStockNo method, of class CarDealership.
@@ -89,8 +81,6 @@ public class CarDealershipTest {
         int expResult = 1;
         int result = carDealerShipInstance.carsInStockNo();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -103,8 +93,6 @@ public class CarDealershipTest {
         String expResult = "";
         String result = carDealerShipInstance.carsWithSpecificColor(color);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -118,8 +106,6 @@ public class CarDealershipTest {
         boolean expResult = false;
         boolean result = carDealerShipInstance.isCarInStock(brand, model);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -131,8 +117,6 @@ public class CarDealershipTest {
         String expResult = "";
         String result = carDealerShipInstance.cheapestElectricCar();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -144,8 +128,6 @@ public class CarDealershipTest {
         String expResult = "Ford";
         String result = carDealerShipInstance.mostExpensiveCar();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -157,9 +139,7 @@ public class CarDealershipTest {
         String expResult = "Ford";
         String result = carDealerShipInstance.cheapestCar();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+   }
 
     /**
      * Test of gasPoweredCarCostAverage method, of class CarDealership.
@@ -170,8 +150,6 @@ public class CarDealershipTest {
         double expResult = 0.0;
         double result = carDealerShipInstance.gasPoweredCarCostAverage();
         assertEquals(expResult, result, 0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -184,8 +162,6 @@ public class CarDealershipTest {
         int expResult = 1;
         int result = carDealerShipInstance.carsSoldInASpecificYearNo(specificYear);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -198,9 +174,7 @@ public class CarDealershipTest {
         double expResult = 1194000.0;
         double result = carDealerShipInstance.moneyMadeInASpecificYear(specificYear);
         assertEquals(expResult, result, 0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+   }
 
     /**
      * Test of priceOfGivenCar method, of class CarDealership.
@@ -213,8 +187,6 @@ public class CarDealershipTest {
         double expResult = 1194000.0;
         double result = carDealerShipInstance.priceOfGivenCar(brand, model);
         assertEquals(expResult, result, 0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+   }
     
 }

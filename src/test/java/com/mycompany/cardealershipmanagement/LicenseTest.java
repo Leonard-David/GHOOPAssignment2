@@ -23,9 +23,7 @@ public class LicenseTest {
         String expResult = "999999ABC";
         String result = licenseInstance.getIdNumber();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+   }
 
     /**
      * Test of getCode method, of class License.
@@ -36,9 +34,7 @@ public class LicenseTest {
         String expResult = "C1E";
         String result = licenseInstance.getCode();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+   }
 
     /**
      * Test of getIssueDate method, of class License.
@@ -49,8 +45,6 @@ public class LicenseTest {
         String expResult = "01/02/2022";
         String result = licenseInstance.getIssueDate();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -62,8 +56,6 @@ public class LicenseTest {
         String expResult = "01/02/2026";
         String result = licenseInstance.getExpiryDate();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

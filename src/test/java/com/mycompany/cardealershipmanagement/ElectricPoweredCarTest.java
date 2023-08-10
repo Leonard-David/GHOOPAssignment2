@@ -26,7 +26,5 @@ public class ElectricPoweredCarTest {
         double expResult = 3400000.0;
         double result = electricPoweredCarInstance.getCost();
         assertEquals(expResult, result, 0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 }

@@ -26,9 +26,7 @@ public class ReceiptTest {
         String expResult = "Leoanrd M. David";
         String result = receiptInstance.getFullName();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+     }
 
     /**
      * Test of getCarBrand method, of class Receipt.
@@ -39,8 +37,6 @@ public class ReceiptTest {
         String expResult = "Ford";
         String result = receiptInstance.getCarBrand();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -52,8 +48,6 @@ public class ReceiptTest {
         String expResult = "1HGB41JXMN109186";
         String result = receiptInstance.getCarCode();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -65,8 +59,6 @@ public class ReceiptTest {
         Date expResult = date;
         Date result = receiptInstance.getDatePurchased();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -78,8 +70,6 @@ public class ReceiptTest {
         double expResult = 1194000.0;
         double result = receiptInstance.getCost();
         assertEquals(expResult, result, 0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -91,8 +81,6 @@ public class ReceiptTest {
         int expResult = 01010700607;
         int result = receiptInstance.getIdNumber();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
     
 }

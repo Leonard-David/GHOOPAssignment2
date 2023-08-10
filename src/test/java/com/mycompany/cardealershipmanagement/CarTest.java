@@ -27,9 +27,7 @@ public class CarTest {
         String expResult = "1HGB41JXMN109186";
         String result = carInstance.getCarCode();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+   }
 
     /**
      * Test of getBrand method, of class Car.
@@ -40,8 +38,6 @@ public class CarTest {
         String expResult = "Ford";
         String result = carInstance.getBrand();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -53,9 +49,7 @@ public class CarTest {
         String expResult = "Mustang-GT";
         String result = carInstance.getModel();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+   }
 
     /**
      * Test of getEngineType method, of class Car.
@@ -66,8 +60,6 @@ public class CarTest {
         String expResult = "5038 cc (307 cu in) V8";
         String result = carInstance.getEngineType();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -79,8 +71,6 @@ public class CarTest {
         double expResult = 2000.50;
         double result = carInstance.getMileage();
         assertEquals(expResult, result, 0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -92,8 +82,6 @@ public class CarTest {
         String expResult = "Gas-Powered-Car";
         String result = carInstance.getCarType();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -105,9 +93,7 @@ public class CarTest {
         String expResult = "Dark Matter Gray Metallic";
         String result = carInstance.getColor();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+   }
 
     /**
      * Test of getCost method, of class Car.
@@ -118,8 +104,6 @@ public class CarTest {
         double expResult = 1194000.0;
         double result = carInstance.getCost();
         assertEquals(expResult, result, 0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -131,8 +115,6 @@ public class CarTest {
         Date expResult = date;
         Date result = carInstance.getdateBroughtIn();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -144,8 +126,6 @@ public class CarTest {
         Date expResult = date;
         Date result = carInstance.getDateSold();
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
     }
 
     /**
@@ -158,8 +138,6 @@ public class CarTest {
         Date expResult = date;
         Date result = carInstance.setDateSold(dateSold);
         assertEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+   }
     
 }
