@@ -10,9 +10,9 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CustomerTest {
      Customer customerInstance = null;
      License licenseInstance = null;
-    public CustomerTest() {
+    public CustomerTest(License license) {
         licenseInstance = new License("999999ABC","C1E","01/02/2022","01/02/2026");
-        // customerInstance = new Customer(01010700607, "Leonard","David", 'M',0812883053,license);
+        customerInstance = new Customer(01010700607, "Leonard","David", 'M',812883053,license);
     }
     
     /**
