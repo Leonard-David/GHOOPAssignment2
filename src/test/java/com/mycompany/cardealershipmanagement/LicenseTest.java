@@ -15,7 +15,7 @@ public class LicenseTest {
     }
     
     /**
-     * Test of getIdNumber method, of class License.
+     * Test of getIdNumber method, of class License..
      */
     @Test
     public void testGetIdNumber() {

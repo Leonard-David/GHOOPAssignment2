@@ -5,6 +5,7 @@ import java.util.Date;
  * @author Group H
  */
 public abstract class Car {
+    //creating private fields
     private String carCode;
     private String brand;
     private String model;
@@ -15,7 +16,7 @@ public abstract class Car {
     private Date dateBroughtIn;
     private Date dateSold;
     private String carType;
-    
+    // a parameterized constructor 
     public Car(String carCode, String brand, String model, String engineType, double mileage,String carType, String color, double cost, Date dateBroughtIn){
         this.carCode = carCode;
         this.brand = brand;
@@ -27,6 +28,7 @@ public abstract class Car {
         this.dateBroughtIn = dateBroughtIn;
         this.carType = carType;
     }
+    //methos that returm associated valuees
     public String getCarCode(){
         return carCode;
     }
@@ -55,6 +57,7 @@ public abstract class Car {
     public Date getDateSold(){
         return dateSold;
     }
+    // method to set borrow date
     public Date setDateSold(Date dateSold){
         return this.dateSold = dateSold;
     }  

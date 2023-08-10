@@ -19,7 +19,7 @@ public class ReceiptTest {
     }
     
     /**
-     * Test of getFullName method, of class Receipt.
+     * Test of getFullName method, of class Receipt..
      */
     @Test
     public void testGetFullName() {

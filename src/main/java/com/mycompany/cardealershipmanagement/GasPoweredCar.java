@@ -6,6 +6,7 @@ import java.util.Date;
  * @author Group H
  */
 public class GasPoweredCar extends Car{
+    // creating private attributes
     private double cost;
     private double mileage;
     public GasPoweredCar(String carCode, String brand, String model, String engineType,
@@ -15,7 +16,7 @@ public class GasPoweredCar extends Car{
         this.cost = cost;
         this.mileage = mileage;
     }
-    
+    // overriding an inheritted method
     @Override
     public double getCost(){
         this.cost = cost/mileage*2;

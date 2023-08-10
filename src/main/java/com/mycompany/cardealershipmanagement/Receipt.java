@@ -5,12 +5,14 @@ import java.util.Date;
  * @author Group H
  */
 public class Receipt {
+    //creating private fields 
     private String fullName;
     private int idNumber;
     private String carBrand;
     private String carCode;
     private Date datePurchased;
     private double cost;
+    //declaring a constructor 
     public Receipt(String fullName,int idNumber, String carBrand, String carCode, Date datePurchased, double cost){
         this.fullName = fullName;
         this.carBrand = carBrand;
@@ -19,6 +21,7 @@ public class Receipt {
         this.cost = cost;
         this.idNumber = idNumber;
     }
+     //methos that returm associated valuees
     public String getFullName(){
         return fullName;
     }
