@@ -149,7 +149,7 @@ public class CarDealership {
             }
         }
         return sum/count;
-    }
+   }
     public int carsSoldInASpecificYearNo(int specificYear){
         int count = 0;
         for ( int i = 0; i < carAmount; i++ ){
