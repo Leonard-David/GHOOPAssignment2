@@ -5,7 +5,7 @@ import java.util.Date;
  * @author Group H
  */
 public class Receipt {
-    //creating private fields 
+    //creating private fields..
     private String fullName;
     private int idNumber;
     private String carBrand;

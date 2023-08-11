@@ -10,7 +10,7 @@ public class License {
     private String code;
     private String issueDate;
     private String expiryDate;
-    // decalare a constructor
+    // decalare a constructor.
     public License(String idNumber, String code, String issueDate, String expiryDate){
         this.idNumber = idNumber;
         this.code = code;

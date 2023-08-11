@@ -19,7 +19,7 @@ public class CarTest {
     }
     
     /**
-     * Test of getCarCode method, of class Car.
+     * Test of getCarCode method, of class Car
      */
     @Test
     public void testGetCarCode() {

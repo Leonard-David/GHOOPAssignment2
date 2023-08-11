@@ -30,7 +30,7 @@ public class ReceiptTest {
      }
 
     /**
-     * Test of getCarBrand method, of class Receipt.
+     * Test of getCarBrand method, of class Receipt
      */
     @Test
     public void testGetCarBrand() {

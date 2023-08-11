@@ -16,7 +16,7 @@ public class GasPoweredCar extends Car{
         this.cost = cost;
         this.mileage = mileage;
     }
-    // overriding an inheritted method
+    // overriding an inheritted method..
     @Override
     public double getCost(){
         this.cost = cost/mileage*2;

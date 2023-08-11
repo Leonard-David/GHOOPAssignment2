@@ -16,7 +16,7 @@ public class CustomerTest {
     }
     
     /**
-     * Test of getIdNumber method, of class Customer..
+     * Test of getIdNumber method, of class Customer.
      */
     @Test
     public void testGetIdNumber() {
