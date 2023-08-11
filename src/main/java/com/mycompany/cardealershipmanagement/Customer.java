@@ -4,7 +4,7 @@ package com.mycompany.cardealershipmanagement;
  * @author Group H
  */
 public class Customer {
-    // -creating private attributes
+    // creating private attributes
     private int idNumber;
     private String firstName;
     private String lastName;

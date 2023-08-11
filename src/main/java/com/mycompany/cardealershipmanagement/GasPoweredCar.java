@@ -6,7 +6,7 @@ import java.util.Date;
  * @author Group H
  */
 public class GasPoweredCar extends Car{
-    // creating private attributes
+    //creating private attributes
     private double cost;
     private double mileage;
     public GasPoweredCar(String carCode, String brand, String model, String engineType,

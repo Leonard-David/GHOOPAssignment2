@@ -28,7 +28,7 @@ public abstract class Car {
         this.dateBroughtIn = dateBroughtIn;
         this.carType = carType;
     }
-    //-methos that returm associated valuees
+    //methos that returm associated valuees
     public String getCarCode(){
         return carCode;
     }

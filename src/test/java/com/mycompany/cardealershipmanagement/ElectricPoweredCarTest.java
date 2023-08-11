@@ -17,7 +17,7 @@ public class ElectricPoweredCarTest {
     }
     
     /**
-     * Test of getCost method, of class ElectricPoweredCar
+     * Test of getCost method, of class ElectricPoweredCar...
      */
     @Test
     public void testGetCost() {

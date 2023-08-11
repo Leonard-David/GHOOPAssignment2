@@ -7,6 +7,6 @@ package com.mycompany.cardealershipmanagement;
 public class CarDealershipManagement {
 
     public static void main(String[] args) {
-       
+       //
     }
 }
