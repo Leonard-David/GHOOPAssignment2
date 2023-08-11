@@ -55,7 +55,6 @@ public class CarDealershipTest {
      */
     @Test
     public void testReturnCustomerReceipt() {
-        System.out.println("returnCustomerReceipt");
         int customerIdNumber = 01010700607;
         String expResult = "";
         String result = carDealerShipInstance.returnCustomerReceipt(customerIdNumber);
