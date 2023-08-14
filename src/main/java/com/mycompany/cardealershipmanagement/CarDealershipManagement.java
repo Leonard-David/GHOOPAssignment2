@@ -16,16 +16,16 @@ public class CarDealershipManagement {
                               2. Sell car
                               3. Retrive customer receipt
                               4. Remove car
-                              5. Cars in stock amount
-                              6. Get cars with specified color
-                              7. Check if car in stock
+                              5. Car stock number
+                              6. car with specific color
+                              7. Car in stock available
                               8. Cheapest electric car
                               9. Expensive car
                               10. Cheapest car
                               11. Gas-Powered car cost average
-                              12. Number of cars sold in a given year 
-                              13. Money made in year amount
-                              14. Get car price
+                              12. Cars sold in a year 
+                              13. Money made in a year
+                              14. Car price
                               0. Exit program
                               """);
            int x = scan.nextInt();
@@ -71,12 +71,14 @@ public class CarDealershipManagement {
                    String lExpiryDate = scan.next();
                    System.out.println("Enter car ID No:");
                    String carIdNumber = scan.next();
-                   cds.sellACar( customerIdNumber, firstName, lastName, gender, cellphoneNo, carIdNumber, lIdNumber, lCode, lIssueDate, lExpiryDate);
+                   System.out.println("Enter receipt ID No:");
+                   String rcptId = scan.next();
+                   cds.sellACar( rcptId,customerIdNumber, firstName, lastName, gender, cellphoneNo, carIdNumber, lIdNumber, lCode, lIssueDate, lExpiryDate);
                    break;
                case 3:
                    System.out.println("Retrieving receipt\n\nEnter Customers Enter:");
-                   int  cutomerIdNumber = scan.nextInt();
-                   System.out.println(cds.returnCustomerReceipt( cutomerIdNumber));
+                   String receiptId = scan.next();
+                   System.out.println(cds.returnCustomerReceipt( receiptId));
                    break;
                case 4:
                    System.out.println("Retrieving receipt\n\nEnter Customers Enter:");
@@ -89,7 +91,7 @@ public class CarDealershipManagement {
                case 6:
                    System.out.println("To get cars with a type of color\n\nEnter color:");
                    String carColor = scan.next();
-                   System.out.println("Cars with a " + carColor +" color\n" + cds.carsWithSpecificColor( carColor));
+                   System.out.println("Cars with a " + carColor +" color\n" + cds.carWithSpecificColor( carColor));
                    break;
                case 7:
                    System.out.println("Cars in Stock\n\nEnter car brand:");

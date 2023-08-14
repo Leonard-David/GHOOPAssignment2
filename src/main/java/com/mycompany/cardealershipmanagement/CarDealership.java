@@ -34,7 +34,7 @@ public class CarDealership {
         }
         carAmount++;
     }
-    public void sellACar(int customerIdNumber, String firstName, String lastName, char gender, int cellphoneNo, 
+    public void sellACar(String receiptId, int customerIdNumber, String firstName, String lastName, char gender, int cellphoneNo, 
             String carIdNumber, String lIdNumber, String lCode, String lIssueDate, String lExpiryDate){
         License license;
         String fullName = firstName +" "+ lastName;
@@ -43,15 +43,15 @@ public class CarDealership {
                 license = new License(lIdNumber,lCode,lIssueDate,lExpiryDate);
                 car[i].setDateSold(date);
                 customer[customerAmount++] = new Customer(customerIdNumber, firstName, lastName, gender, cellphoneNo, license);
-                receipt[receiptAmount++] = new Receipt(fullName, customerIdNumber, car[i].getBrand(), carIdNumber, date, car[i].getCost());
+                receipt[receiptAmount++] = new Receipt(receiptId,fullName, customerIdNumber, car[i].getBrand(), carIdNumber, date, car[i].getCost());
                 removeCar( carIdNumber);
             }
         } 
     }
-    public String returnCustomerReceipt(int customerIdNumber){
+    public String returnCustomerReceipt(String receiptId){
         String toString = "";
         for(int i = 0; i < receiptAmount; i++){
-            if(customerIdNumber == receipt[i].getIdNumber()){
+            if(receiptId == receipt[i].getReceiptId()){
                 toString =  """
                                                   ------------|  Car Dealership Receipt |------------
                             ***************************************************************************************
@@ -87,7 +87,7 @@ public class CarDealership {
         }
         return count;
     }
-    public String carsWithSpecificColor(String color){
+    public String carWithSpecificColor(String color){
         String carName = "";
         for( int i = 0; i < carAmount ; i++){
             if(car[i].getColor().equals(color)){
