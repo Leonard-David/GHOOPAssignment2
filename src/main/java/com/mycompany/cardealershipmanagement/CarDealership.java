@@ -1,7 +1,6 @@
 package com.mycompany.cardealershipmanagement;
 
 import java.util.Date;
-import java.text.SimpleDateFormat;
 /**
  *
  * @author Group H
@@ -14,8 +13,6 @@ public class CarDealership {
     int carAmount;
     int customerAmount;
     int receiptAmount;
-    
-    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yy");
     Date date = new Date();
     
     public CarDealership(){
