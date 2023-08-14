@@ -14,7 +14,7 @@ public class ReceiptTest {
     
     public ReceiptTest() {
         date = new Date();
-        receiptInstance = new Receipt("Leoanrd M. David", 01010700607,"Ford", "1HGB41JXMN109186",date,1194000.0);
+        receiptInstance = new Receipt("01C12023","Leoanrd M. David", 01010700607,"Ford", "1HGB41JXMN109186",date,1194000.0);
        
     }
     
@@ -83,5 +83,16 @@ public class ReceiptTest {
         int result = receiptInstance.getIdNumber();
         assertEquals(expResult, result);
     }
+
+    /**
+     * Test of getReceiptId method, of class Receipt.
+     */
+    @Test
+    public void testGetReceiptId() {
+        System.out.println("getReceiptId");
+        String expResult = "01C12023";
+        String result = receiptInstance.getReceiptId();
+        assertEquals(expResult, result);
+   }
     
 }
