@@ -71,7 +71,7 @@ public class CarDealershipManagement {
                    String lExpiryDate = scan.next();
                    System.out.println("Enter car ID No:");
                    String carIdNumber = scan.next();
-                   cds.purchaseACar( customerIdNumber, firstName, lastName, gender, cellphoneNo, carIdNumber, lIdNumber, lCode, lIssueDate, lExpiryDate);
+                   cds.sellACar( customerIdNumber, firstName, lastName, gender, cellphoneNo, carIdNumber, lIdNumber, lCode, lIssueDate, lExpiryDate);
                    break;
                case 3:
                    System.out.println("Retrieving receipt\n\nEnter Customers Enter:");

@@ -34,7 +34,7 @@ public class CarDealership {
         }
         carAmount++;
     }
-    public void purchaseACar(int customerIdNumber, String firstName, String lastName, char gender, int cellphoneNo, 
+    public void sellACar(int customerIdNumber, String firstName, String lastName, char gender, int cellphoneNo, 
             String carIdNumber, String lIdNumber, String lCode, String lIssueDate, String lExpiryDate){
         License license;
         String fullName = firstName +" "+ lastName;
@@ -44,6 +44,7 @@ public class CarDealership {
                 car[i].setDateSold(date);
                 customer[customerAmount++] = new Customer(customerIdNumber, firstName, lastName, gender, cellphoneNo, license);
                 receipt[receiptAmount++] = new Receipt(fullName, customerIdNumber, car[i].getBrand(), carIdNumber, date, car[i].getCost());
+                removeCar( carIdNumber);
             }
         } 
     }
@@ -70,14 +71,14 @@ public class CarDealership {
         }
         return toString;
     }
-    public void  removeCar(String carCode){
+    public Car[] removeCar(String carCode){
+        int newCarAmount = 0;
         for( int i = 0; i < carAmount - 1; i++){
-            if(carCode.equals(car[i].getCarCode())){
-                car[i] = car[i +1];
+            if(!(carCode.equals(car[i].getCarCode()))){
+                car[newCarAmount++] = car[i];
             }
-            car[i-1] = null;
         }
-        carAmount--;
+        return car;
     }
     public int carsInStockNo(){
         int count = 0;
