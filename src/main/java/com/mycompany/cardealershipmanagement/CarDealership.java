@@ -109,7 +109,7 @@ public class CarDealership {
         String cheapElectricCar = "";
         double cheapestAmount = 0;
         for ( int i = 0; i < carAmount; i++ ){
-            if(car[0].getCost() > car[i].getCost() && "Electic-Powered-Car".equals(car[i].getCarType())){
+            if(car[0].getCost() > car[i].getCost() && car[i] instanceof ElectricPoweredCar){
                 cheapestAmount = car[i].getCost();
                 cheapElectricCar = car[i].getBrand();
             }
@@ -142,7 +142,7 @@ public class CarDealership {
         double compute = 00.00;
         int count = 0;
         for ( int i = 0; i < carAmount; i++ ){
-            if("Gas-Powered-Car".equals(car[i].getCarType())){
+            if(car[i] instanceof GasPoweredCar){
                 compute = compute + car[i].getCost();
                 count++;
             }
@@ -177,4 +177,5 @@ public class CarDealership {
         }
         return givenCarPrice;
     }
+    
 }
