@@ -107,9 +107,10 @@ public class CarDealership {
     }
     public String cheapestElectricCar(){
         String cheapElectricCar = "";
+        double cheapestAmount = 0;
         for ( int i = 0; i < carAmount; i++ ){
             if(car[0].getCost() > car[i].getCost() && "Electic-Powered-Car".equals(car[i].getCarType())){
-                car[i].getCost();
+                cheapestAmount = car[i].getCost();
                 cheapElectricCar = car[i].getBrand();
             }
         }
@@ -117,9 +118,10 @@ public class CarDealership {
     }
     public String mostExpensiveCar(){
         String expensiveCar = "";
+        double expAmount = 0;
         for ( int i = 0; i < carAmount; i++ ){
             if(car[0].getCost() < car[i].getCost()){
-                car[i].getCost();
+               expAmount = car[i].getCost();
                 expensiveCar = car[i].getBrand();
             }
         }
@@ -127,9 +129,10 @@ public class CarDealership {
     }
     public String cheapestCar(){
         String cheapCar = "";
+        double cheapestAmount = 0;
         for ( int i = 0; i < carAmount; i++ ){
             if(car[0].getCost() > car[i].getCost()){
-                car[i].getCost();
+                cheapestAmount = car[i].getCost();
                 cheapCar = car[i].getBrand();
             }
         }
