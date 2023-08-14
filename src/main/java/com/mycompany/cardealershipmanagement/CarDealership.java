@@ -101,7 +101,7 @@ public class CarDealership {
     public boolean isCarInStock(String brand, String model){
         boolean carIsInStock = false;
         for ( int i = 0; i < carAmount; i++ ){
-            if(brand == car[i].getBrand() && model == car[i].getModel()){
+            if(brand.equals(car[i].getBrand()) && model.equals(car[i].getModel())){
                 carIsInStock = true;
             }
         }
@@ -109,10 +109,9 @@ public class CarDealership {
     }
     public String cheapestElectricCar(){
         String cheapElectricCar = "";
-        double cheapAmount = 00.00;
         for ( int i = 0; i < carAmount; i++ ){
-            if(car[0].getCost() > car[i].getCost() && car[i].getCarType() == "Electic-Powered-Car"){
-                cheapAmount = car[i].getCost();
+            if(car[0].getCost() > car[i].getCost() && "Electic-Powered-Car".equals(car[i].getCarType())){
+                car[i].getCost();
                 cheapElectricCar = car[i].getBrand();
             }
         }
@@ -120,10 +119,9 @@ public class CarDealership {
     }
     public String mostExpensiveCar(){
         String expensiveCar = "";
-        double amount = 00.00;
         for ( int i = 0; i < carAmount; i++ ){
             if(car[0].getCost() < car[i].getCost()){
-                amount = car[i].getCost();
+                car[i].getCost();
                 expensiveCar = car[i].getBrand();
             }
         }
@@ -131,10 +129,9 @@ public class CarDealership {
     }
     public String cheapestCar(){
         String cheapCar = "";
-        double cheapAmount = 00.00;
         for ( int i = 0; i < carAmount; i++ ){
             if(car[0].getCost() > car[i].getCost()){
-                cheapAmount = car[i].getCost();
+                car[i].getCost();
                 cheapCar = car[i].getBrand();
             }
         }
@@ -144,7 +141,7 @@ public class CarDealership {
         double compute = 00.00;
         int count = 0;
         for ( int i = 0; i < carAmount; i++ ){
-            if(car[i].getCarType() == "Gas-Powered-Car"){
+            if("Gas-Powered-Car".equals(car[i].getCarType())){
                 compute = compute + car[i].getCost();
                 count++;
             }
@@ -173,7 +170,7 @@ public class CarDealership {
     public double priceOfGivenCar(String brand, String model){
         double givenCarPrice = 00.00;
         for ( int i = 0; i < carAmount; i++ ){
-            if(brand == car[i].getBrand() && model == car[i].getModel()){
+            if(brand.equals(car[i].getBrand()) && model.equals(car[i].getModel())){
                 givenCarPrice =car[i].getCost();
             }
         }
