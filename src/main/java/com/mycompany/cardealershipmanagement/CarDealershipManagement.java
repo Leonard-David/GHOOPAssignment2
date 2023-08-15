@@ -80,12 +80,12 @@ public class CarDealershipManagement {
                    cds.sellACar( rcptId,customerIdNumber, firstName, lastName, gender, cellphoneNo, carIdNumber, lIdNumber, lCode, lIssueDate, lExpiryDate,brnd,modl);
                    break;
                case 3:
-                   System.out.println("Retrieving receipt\n\nEnter Customers Enter:");
+                   System.out.println("Retrieving receipt\nEnter Customers Enter:");
                    String receiptId = scan.next();
                    System.out.println(cds.returnCustomerReceipt( receiptId));
                    break;
                case 4:
-                   System.out.println("Retrieving receipt\n\nEnter Customers Enter:");
+                   System.out.println("Retrieving receipt\nEnter Customers Enter:");
                    String  cIdNumber = scan.next();
                    cds.removeCar( cIdNumber);
                    break;
@@ -93,14 +93,14 @@ public class CarDealershipManagement {
                    System.out.println("There are " + cds.carsInStockNo()+" cars in stock.");
                    break;
                case 6:
-                   System.out.println("To get cars with a type of color\n\nEnter color:");
+                   System.out.println("To get cars with a type of color\nEnter color:");
                    String carColor = scan.next();
                    System.out.println("Cars with a " + carColor +" color\n" + cds.carWithSpecificColor( carColor));
                    break;
                case 7:
-                   System.out.println("Cars in Stock\n\nEnter car brand:");
+                   System.out.println("Cars in Stock\nEnter car brand:");
                    String cBrand = scan.next();
-                    System.out.println("\n\nEnter car model:");
+                    System.out.println("\nEnter car model:");
                    String cModel = scan.next();
                    System.out.println( cds.isCarInStock( cBrand, cModel));
                    break;
@@ -117,19 +117,19 @@ public class CarDealershipManagement {
                    System.out.println("The cost average of gas-powered cars is " + cds.gasPoweredCarCostAverage());
                    break;
                case 12:
-                   System.out.println("number of cars sold in a specific year:\n\nEnter year only:");
+                   System.out.println("number of cars sold in a specific year:\nEnter year only:");
                    int cSISY = scan.nextInt();
-                   System.out.println("The following cars were sold in"+ cSISY+"\n\n"+cds.carsSoldInASpecificYearNo(cSISY));
+                   System.out.println("The following cars were sold in"+ cSISY+"\n"+cds.carsSoldInASpecificYearNo(cSISY));
                    break;
                case 13:
-                  System.out.println("Money made in a specific year:\n\nEnter year only:");
+                  System.out.println("Money made in a specific year:\nEnter year only:");
                    int year = scan.nextInt();
                    System.out.println("Money made in "+ year+" was N$ "+cds.moneyMadeInASpecificYear(year));
                    break;  
                case 14:
-                   System.out.println("Cars in Stock\n\nEnter car brand:");
+                   System.out.println("Cars in Stock\nEnter car brand:");
                     String cB = scan.next();
-                    System.out.println("Cars in Stock\n\nEnter car brand:");
+                    System.out.println("Cars in Stock\nEnter car brand:");
                     String cM = scan.next();
                     System.out.println("The price of a " + cB + " is N$" +cds. priceOfGivenCar(cB, cM));
                    break;
