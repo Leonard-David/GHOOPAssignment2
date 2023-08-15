@@ -1,5 +1,6 @@
 package com.mycompany.cardealershipmanagement;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 /**
  *
@@ -151,18 +152,20 @@ public class CarDealership {
         return compute;
    }
     public int carsSoldInASpecificYearNo(int specificYear){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
         int count = 0;
         for ( int i = 0; i < carAmount; i++ ){
-            if(specificYear == car[i].getDateSold().getYear()){
+            if(sdf.format(specificYear).equals(sdf.format(car[i].getDateSold()))){
                 count++;
             }
         }
         return count;
     }
     public double moneyMadeInASpecificYear(int specificYear){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
         double sum = 0;
         for ( int i = 0; i < carAmount; i++ ){
-            if(specificYear == car[i].getDateSold().getYear()){
+            if(sdf.format(car[i].getDateSold()).equals(sdf.format(specificYear))){
                 sum = sum + car[i].getCost();
             }
         }
