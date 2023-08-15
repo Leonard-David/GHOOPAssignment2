@@ -84,11 +84,7 @@ public class CarDealership {
         return car;
     }
     public int carsInStockNo(){
-        int count = 0;
-        for( int i = 0; i < carAmount ; i++){
-            count++;
-        }
-        return count;
+        return carAmount;
     }
     public String carWithSpecificColor(String color){
         String carName = "";
