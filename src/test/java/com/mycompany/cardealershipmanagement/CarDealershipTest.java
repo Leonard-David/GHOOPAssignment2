@@ -4,6 +4,7 @@
  */
 package com.mycompany.cardealershipmanagement;
 
+import java.util.Date;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -12,8 +13,9 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author mpula
  */
 public class CarDealershipTest {
-    
+    CarDealership carDealershipInstance = null; 
     public CarDealershipTest() {
+       carDealershipInstance = new CarDealership();
     }
 
     /**
@@ -22,16 +24,18 @@ public class CarDealershipTest {
     @Test
     public void testAddNewCar() {
         System.out.println("addNewCar");
-        CarDealership instance = new CarDealership();
-        instance.addNewCar("1HGB41JXMN109186", "Ford", "Mustang-GT", "5038 cc (307 cu in) V8", 2000.50,
+        carDealershipInstance.addNewCar("1HGB41JXMN109186", "Ford", "Mustang-GT", "5038 cc (307 cu in) V8", 2000.50,
                 "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0);
-        instance.addNewCar("5YJSA1CN8D", "Tesla", "Roadstar", "5038 cc (307 cu in) V8", 2000.50,
+        
+        carDealershipInstance.addNewCar("5YJSA1CN8D", "Tesla", "Roadstar", "5038 cc (307 cu in) V8", 2000.50,
                 "Electric-Powered-Car","Red",3400000.0);
-        instance.addNewCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
+        
+        carDealershipInstance.addNewCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
                 "Gas-Powered-Car","Stratosphere",418377.14);
-        instance.addNewCar("1HGB41JXMN109186", "Audi", "E-tron-GT", "AC synchronous electric motors", 3500.50,
+        
+        carDealershipInstance.addNewCar("1HGB41JXMN109186", "Audi", "E-tron-GT", "AC synchronous electric motors", 3500.50,
                 "Electric-Powered-Car"," Ascari Blue metallic",2065712.16);
-        assertEquals(4, instance.carAmount);
+        assertEquals(4, carDealershipInstance.carAmount);
     }
 
     /**
@@ -40,21 +44,10 @@ public class CarDealershipTest {
     @Test
     public void testSellACar() {
         System.out.println("sellACar");
-        String receiptId = "";
-        int customerIdNumber = 0;
-        String firstName = "";
-        String lastName = "";
-        char gender = ' ';
-        int cellphoneNo = 0;
-        String carIdNumber = "";
-        String lIdNumber = "";
-        String lCode = "";
-        String lIssueDate = "";
-        String lExpiryDate = "";
-        String brand = "";
-        String model = "";
-        CarDealership instance = new CarDealership();
-        instance.sellACar(receiptId, customerIdNumber, firstName, lastName, gender, cellphoneNo, carIdNumber, lIdNumber, lCode, lIssueDate, lExpiryDate, brand, model);
+        carDealershipInstance.sellACar("01CstM2023", 01010700607, "Leonard", "David", 'M', 812883053, 
+                "1HGB41JXMN109186", "999999ABC", "C1E", "01/02/2022", "01/02/2026", "Ford", "Mustang-GT");
+        assertEquals(1, carDealershipInstance.customerAmount);
+        assertEquals(1, carDealershipInstance.receiptAmount);
     }
 
     /**
@@ -62,11 +55,27 @@ public class CarDealershipTest {
      */
     @Test
     public void testReturnCustomerReceipt() {
+        Date date = new Date();
         System.out.println("returnCustomerReceipt");
-        String receiptId = "";
-        CarDealership instance = new CarDealership();
-        String expResult = "";
-        String result = instance.returnCustomerReceipt(receiptId);
+        String receiptId ="01CstM2023";
+        String expResult = """
+                                               ------------|Car Dealership Receipt|------------
+                           _______________________________________________________________________________________
+                                                                Receipt ID: 01CstM2023
+                           Name: Leonard David
+                           ID NO: """ +01010700607+ "                                   Date: " + date +"\n"+
+                            """
+                            _______________________________________________________________________________________
+                            Car code                             Brand                             Price 
+                            _______________________________________________________________________________________
+                            """ + ""+ 
+                            "1HGB41JXMN109186"+"                  "+"Ford"+" "+"Mustang-GT"+"                        "+1194000.0+
+                            """
+                            
+                            \n                                                             VAT 0%    N$0.00 
+                            _______________________________________________________________________________________ 
+                                                                                         Total:    N$ """ + 1194000.0;
+        String result = carDealershipInstance.returnCustomerReceipt(receiptId);
         assertEquals(expResult, result);
    }
 
@@ -76,10 +85,9 @@ public class CarDealershipTest {
     @Test
     public void testRemoveCar() {
         System.out.println("removeCar");
-        String carCode = "";
-        CarDealership instance = new CarDealership();
+        String carCode = "1HGB41JXMN109186";
         Car[] expResult = null;
-        Car[] result = instance.removeCar(carCode);
+        Car[] result = carDealershipInstance.removeCar(carCode);
         assertArrayEquals(expResult, result);
     }
 
@@ -89,9 +97,8 @@ public class CarDealershipTest {
     @Test
     public void testCarsInStockNo() {
         System.out.println("carsInStockNo");
-        CarDealership instance = new CarDealership();
         int expResult = 0;
-        int result = instance.carsInStockNo();
+        int result = carDealershipInstance.carsInStockNo();
         assertEquals(expResult, result);
     }
 
@@ -102,9 +109,8 @@ public class CarDealershipTest {
     public void testCarWithSpecificColor() {
         System.out.println("carWithSpecificColor");
         String color = "";
-        CarDealership instance = new CarDealership();
         String expResult = "";
-        String result = instance.carWithSpecificColor(color);
+        String result = carDealershipInstance.carWithSpecificColor(color);
         assertEquals(expResult, result);
    }
 
@@ -116,9 +122,8 @@ public class CarDealershipTest {
         System.out.println("isCarInStock");
         String brand = "";
         String model = "";
-        CarDealership instance = new CarDealership();
         boolean expResult = false;
-        boolean result = instance.isCarInStock(brand, model);
+        boolean result = carDealershipInstance.isCarInStock(brand, model);
         assertEquals(expResult, result);
    }
 
@@ -128,9 +133,8 @@ public class CarDealershipTest {
     @Test
     public void testCheapestElectricCar() {
         System.out.println("cheapestElectricCar");
-        CarDealership instance = new CarDealership();
         ElectricPoweredCar expResult = null;
-        ElectricPoweredCar result = instance.cheapestElectricCar();
+        ElectricPoweredCar result = carDealershipInstance.cheapestElectricCar();
         assertEquals(expResult, result);
    }
 
@@ -140,9 +144,8 @@ public class CarDealershipTest {
     @Test
     public void testMostExpensiveCar() {
         System.out.println("mostExpensiveCar");
-        CarDealership instance = new CarDealership();
         String expResult = "";
-        String result = instance.mostExpensiveCar();
+        String result = carDealershipInstance.mostExpensiveCar();
         assertEquals(expResult, result);
     }
 
@@ -152,9 +155,8 @@ public class CarDealershipTest {
     @Test
     public void testCheapestCar() {
         System.out.println("cheapestCar");
-        CarDealership instance = new CarDealership();
         String expResult = "";
-        String result = instance.cheapestCar();
+        String result = carDealershipInstance.cheapestCar();
         assertEquals(expResult, result);
     }
 
@@ -164,9 +166,8 @@ public class CarDealershipTest {
     @Test
     public void testGasPoweredCarCostAverage() {
         System.out.println("gasPoweredCarCostAverage");
-        CarDealership instance = new CarDealership();
         double expResult = 0.0;
-        double result = instance.gasPoweredCarCostAverage();
+        double result = carDealershipInstance.gasPoweredCarCostAverage();
         assertEquals(expResult, result, 0);
         // TODO review the generated test code and remove the default call to fail.
         fail("The test case is a prototype.");
@@ -179,9 +180,8 @@ public class CarDealershipTest {
     public void testCarsSoldInASpecificYearNo() {
         System.out.println("carsSoldInASpecificYearNo");
         int specificYear = 0;
-        CarDealership instance = new CarDealership();
         int expResult = 0;
-        int result = instance.carsSoldInASpecificYearNo(specificYear);
+        int result = carDealershipInstance.carsSoldInASpecificYearNo(specificYear);
         assertEquals(expResult, result);
     }
 
@@ -192,9 +192,8 @@ public class CarDealershipTest {
     public void testMoneyMadeInASpecificYear() {
         System.out.println("moneyMadeInASpecificYear");
         int specificYear = 0;
-        CarDealership instance = new CarDealership();
         double expResult = 0.0;
-        double result = instance.moneyMadeInASpecificYear(specificYear);
+        double result = carDealershipInstance.moneyMadeInASpecificYear(specificYear);
         assertEquals(expResult, result, 0);
     }
 
@@ -206,9 +205,8 @@ public class CarDealershipTest {
         System.out.println("priceOfGivenCar");
         String brand = "";
         String model = "";
-        CarDealership instance = new CarDealership();
         double expResult = 0.0;
-        double result = instance.priceOfGivenCar(brand, model);
+        double result = carDealershipInstance.priceOfGivenCar(brand, model);
         assertEquals(expResult, result, 0);
     }
     

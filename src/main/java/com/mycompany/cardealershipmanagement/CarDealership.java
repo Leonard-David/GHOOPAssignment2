@@ -14,7 +14,7 @@ public class CarDealership {
     int carAmount;
     int customerAmount;
     int receiptAmount;
-    Date date = new Date();
+    
     
     public CarDealership(){
         car = new Car[100];
@@ -26,7 +26,7 @@ public class CarDealership {
     }
     public void addNewCar(String carCode, String brand, String model, String engineType, double mileage, 
             String carType, String color, double cost){
-        
+        Date date = new Date();
         if(carType.equals("Gas-Powered-Car")){
             car[carAmount] = new GasPoweredCar(carCode, brand, model, engineType, mileage, carType, color, cost, date);
         }
@@ -38,25 +38,27 @@ public class CarDealership {
     public void sellACar(String receiptId, int customerIdNumber, String firstName, String lastName, char gender, int cellphoneNo, 
             String carIdNumber, String lIdNumber, String lCode, String lIssueDate, String lExpiryDate, String brand, String model){
         License license;
+        Date date = new Date();
         String fullName = firstName +" "+ lastName;
         for (int i = 0; i < carAmount; i++){
-            if (carIdNumber == car[i].getCarCode()){
+            if (carIdNumber.equals(car[i].getCarCode())){
                 license = new License(lIdNumber,lCode,lIssueDate,lExpiryDate);
                 car[i].setDateSold(date);
-                customer[customerAmount++] = new Customer(customerIdNumber, firstName, lastName, gender, cellphoneNo, license);
-                receipt[receiptAmount++] = new Receipt(receiptId,fullName, customerIdNumber, brand, carIdNumber, date, car[i].getCost(), model);
+                customer[customerAmount] = new Customer(customerIdNumber, firstName, lastName, gender, cellphoneNo, license);
+                receipt[receiptAmount] = new Receipt(receiptId,fullName, customerIdNumber, brand, carIdNumber, date, car[i].getCost(), model);
+                customerAmount++;
+                receiptAmount++;
             }
         } 
     }
     public String returnCustomerReceipt(String receiptId){
         String toString = "";
         for(int i = 0; i < receiptAmount; i++){
-            if(receiptId == receipt[i].getReceiptId()){
+            if(receiptId.equals(receipt[i].getReceiptId())){
                 toString =  """
                                                 ------------|Car Dealership Receipt|------------
                             _______________________________________________________________________________________
-                            """ +
-                            "                                     Receipt ID: "+receipt[i].getReceiptId()+
+                                                                 Receipt ID: """+receipt[i].getReceiptId()+
                             "\nName: " + receipt[i].getFullName()+
                             "\nID NO: " + receipt[i].getIdNumber() + "                                   Date: " + receipt[i].getDatePurchased() +"\n"+
                             """
@@ -81,6 +83,7 @@ public class CarDealership {
                 car[newCarAmount++] = car[i];
             }
         }
+        
         return car;
     }
     public int carsInStockNo(){
