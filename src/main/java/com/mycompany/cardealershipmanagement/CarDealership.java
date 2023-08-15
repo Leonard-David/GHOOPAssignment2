@@ -104,13 +104,13 @@ public class CarDealership {
         }
         return carIsInStock;
     }
-    public String cheapestElectricCar(){
-        String cheapElectricCar = "";
-        double cheapestAmount = 0;
+    public ElectricPoweredCar cheapestElectricCar(){
+        ElectricPoweredCar cheapElectricCar = null;
+        double cheapestAmount = Double.POSITIVE_INFINITY;
         for ( int i = 0; i < carAmount; i++ ){
-            if(car[0].getCost() > car[i].getCost() && car[i] instanceof ElectricPoweredCar){
+            if( cheapestAmount > car[i].getCost() && car[i] instanceof ElectricPoweredCar){
                 cheapestAmount = car[i].getCost();
-                cheapElectricCar = car[i].getBrand();
+                cheapElectricCar = (ElectricPoweredCar) car[i];
             }
         }
         return cheapElectricCar;
