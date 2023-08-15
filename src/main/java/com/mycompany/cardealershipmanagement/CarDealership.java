@@ -36,7 +36,7 @@ public class CarDealership {
         carAmount++;
     }
     public void sellACar(String receiptId, int customerIdNumber, String firstName, String lastName, char gender, int cellphoneNo, 
-            String carIdNumber, String lIdNumber, String lCode, String lIssueDate, String lExpiryDate){
+            String carIdNumber, String lIdNumber, String lCode, String lIssueDate, String lExpiryDate, String brand, String model){
         License license;
         String fullName = firstName +" "+ lastName;
         for (int i = 0; i < carAmount; i++){
@@ -44,8 +44,7 @@ public class CarDealership {
                 license = new License(lIdNumber,lCode,lIssueDate,lExpiryDate);
                 car[i].setDateSold(date);
                 customer[customerAmount++] = new Customer(customerIdNumber, firstName, lastName, gender, cellphoneNo, license);
-                receipt[receiptAmount++] = new Receipt(receiptId,fullName, customerIdNumber, car[i].getBrand(), carIdNumber, date, car[i].getCost());
-                removeCar( carIdNumber);
+                receipt[receiptAmount++] = new Receipt(receiptId,fullName, customerIdNumber, brand, carIdNumber, date, car[i].getCost(), model);
             }
         } 
     }
@@ -54,20 +53,23 @@ public class CarDealership {
         for(int i = 0; i < receiptAmount; i++){
             if(receiptId == receipt[i].getReceiptId()){
                 toString =  """
-                                                  ------------|  Car Dealership Receipt |------------
-                            ***************************************************************************************
-                            Name: """ + receipt[i].getFullName() +
-                            "ID NO: " + receipt[i].getIdNumber() + "                                   Date:" + receipt[i].getDatePurchased() +
+                                                ------------|Car Dealership Receipt|------------
+                            _______________________________________________________________________________________
+                            """ +
+                            "                                     Receipt ID: "+receipt[i].getReceiptId()+
+                            "\nName: " + receipt[i].getFullName()+
+                            "\nID NO: " + receipt[i].getIdNumber() + "                                   Date: " + receipt[i].getDatePurchased() +"\n"+
                             """
+                            _______________________________________________________________________________________
                             Car code                             Brand                             Price 
-                            *************************************************************************************** 
-                            """ + "\n"+ 
-                            receipt[i].getCarCode()+"                "+receipt[i].getCarBrand()+"                "+ receipt[i].getCost()+
+                            _______________________________________________________________________________________
+                            """ + ""+ 
+                            receipt[i].getCarCode()+"                  "+receipt[i].getCarBrand()+" "+receipt[i].getModel()+"                        "+ receipt[i].getCost()+
                             """
-                                                                                        VAT 0%    N$0.00 
-                            *************************************************************************************** 
-                                                                                           
-                                                                                        Total:    N$ """ + receipt[i].getCost();
+                            
+                            \n                                                             VAT 0%    N$0.00 
+                            _______________________________________________________________________________________ 
+                                                                                         Total:    N$ """ + receipt[i].getCost();
             }
         }
         return toString;

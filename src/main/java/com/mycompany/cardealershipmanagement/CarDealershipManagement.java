@@ -69,11 +69,15 @@ public class CarDealershipManagement {
                    String lIssueDate = scan.next();
                    System.out.println("Enter license expiry date:");
                    String lExpiryDate = scan.next();
+                   System.out.println("Enter car Brand:");
+                   String brnd = scan.next();
+                   System.out.println("Enter car Model:");
+                   String modl = scan.next();
                    System.out.println("Enter car ID No:");
                    String carIdNumber = scan.next();
                    System.out.println("Enter receipt ID No:");
                    String rcptId = scan.next();
-                   cds.sellACar( rcptId,customerIdNumber, firstName, lastName, gender, cellphoneNo, carIdNumber, lIdNumber, lCode, lIssueDate, lExpiryDate);
+                   cds.sellACar( rcptId,customerIdNumber, firstName, lastName, gender, cellphoneNo, carIdNumber, lIdNumber, lCode, lIssueDate, lExpiryDate,brnd,modl);
                    break;
                case 3:
                    System.out.println("Retrieving receipt\n\nEnter Customers Enter:");

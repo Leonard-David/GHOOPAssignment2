@@ -13,8 +13,10 @@ public class Receipt {
     private Date datePurchased;
     private double cost;
     private String receiptId;
+    private String model;
     //declaring a constructor 
-    public Receipt(String receiptId,String fullName,int idNumber, String carBrand, String carCode, Date datePurchased, double cost){
+    public Receipt(String receiptId,String fullName,int idNumber, String carBrand, 
+            String carCode, Date datePurchased, double cost,String model){
         this.fullName = fullName;
         this.carBrand = carBrand;
         this.carCode = carCode;
@@ -22,6 +24,7 @@ public class Receipt {
         this.cost = cost;
         this.idNumber = idNumber;
         this.receiptId = receiptId;
+        this.model = model;
     }
      //methos that returm associated valuees
     public String getReceiptId(){
@@ -44,5 +47,8 @@ public class Receipt {
     }
     public int getIdNumber(){
         return idNumber;
+    }
+    public String getModel(){
+        return model;
     }
 }
