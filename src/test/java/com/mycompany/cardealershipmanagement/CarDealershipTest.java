@@ -22,17 +22,16 @@ public class CarDealershipTest {
     @Test
     public void testAddNewCar() {
         System.out.println("addNewCar");
-        String carCode = "";
-        String brand = "";
-        String model = "";
-        String engineType = "";
-        double mileage = 0.0;
-        String carType = "";
-        String color = "";
-        double cost = 0.0;
         CarDealership instance = new CarDealership();
-        instance.addNewCar(carCode, brand, model, engineType, mileage, carType, color, cost);
-        assertEquals(1, instance.carAmount);
+        instance.addNewCar("1HGB41JXMN109186", "Ford", "Mustang-GT", "5038 cc (307 cu in) V8", 2000.50,
+                "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0);
+        instance.addNewCar("5YJSA1CN8D", "Tesla", "Roadstar", "5038 cc (307 cu in) V8", 2000.50,
+                "Electric-Powered-Car","Red",3400000.0);
+        instance.addNewCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
+                "Gas-Powered-Car","Stratosphere",418377.14);
+        instance.addNewCar("1HGB41JXMN109186", "Audi", "E-tron-GT", "AC synchronous electric motors", 3500.50,
+                "Electric-Powered-Car"," Ascari Blue metallic",2065712.16);
+        assertEquals(4, instance.carAmount);
     }
 
     /**
