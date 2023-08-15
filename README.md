@@ -1,7 +1,4 @@
-<<<<<<< HEAD
-# GHAssignment12023
-Group H OOP Assignment 1
+
+# GHOOPAssignment2
+Group H OOP Assignment 2
 =======
-# GHAssignment12023
-Group H OOP Assignment 1
->>>>>>> a04266e42b744bf00617ee8f652bf174439feb4b
