@@ -1,6 +1,5 @@
 package com.mycompany.cardealershipmanagement;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.junit.jupiter.api.Test;
@@ -19,6 +18,20 @@ public class CarDealershipTest {
         date = new Date();
        carDealershipInstance = new CarDealership();
        car = new Car[2];
+       carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
+               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
+        carDealershipInstance.carAmount++;
+        carDealershipInstance.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
+                "Electric-Powered-Car","Red",3400000.0,date); 
+        carDealershipInstance.carAmount++;
+        carDealershipInstance.car[2] = new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
+                "ElecticPoweredCar", " Ascari Blue metallic",2065712.16,date);
+         carDealershipInstance.carAmount++;
+         carDealershipInstance.car[3] = new GasPoweredCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
+                "GasPoweredCar","Stratosphere",418377.14, date);
+         carDealershipInstance.receipt[0] = new Receipt("01CstM2023","Leoanrd David", "01010700607",
+                "Ford", "1HGB41JXMN109186",sdf.format(date),1194000.0, "Mustang-GT");
+          carDealershipInstance.receiptAmount++;
     }
 
     /**
@@ -81,9 +94,9 @@ public class CarDealershipTest {
     @Test
     public void testSellACarToNoCustomer() {
         System.out.println("selling a car");
-        //instance to sell a car. and a create objects for the Receipt and Customer class
-        assertEquals(0,carDealershipInstance.customerAmount );
-        assertEquals(0, carDealershipInstance.receiptAmount);
+         CarDealership cdsInstance = new CarDealership();
+        assertEquals(0,cdsInstance.customerAmount );
+        assertEquals(0, cdsInstance.receiptAmount);
     }
      
     /**
@@ -94,12 +107,6 @@ public class CarDealershipTest {
          System.out.println("Returning/retrieving customer's receipt, when its found");
          
         Date dte = new Date();
-        //Instance for the receipt class
-        String fullName = "Leoanrd David";
-        carDealershipInstance.receipt[0] = new Receipt("01CstM2023",fullName, "01010700607",
-                "Ford", "1HGB41JXMN109186",sdf.format(date),1194000.0, "Mustang-GT");
-          carDealershipInstance.receiptAmount++;
-       
         String receiptId ="01CstM2023";
         String expResult ="""
                                                 ------------|Car Dealership Receipt|------------
@@ -139,36 +146,12 @@ public class CarDealershipTest {
     @Test
     public void testRemoveCar() {
         System.out.println("Removing a car.");
-        // instance of Gas Powered Cars
-        carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
-               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
-        carDealershipInstance.carAmount++;
-        carDealershipInstance.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
-                "Electric-Powered-Car","Red",3400000.0,date); 
-        carDealershipInstance.carAmount++;
         String carCode = "1HGB41JXMN109186";
+        int expResult = 1;
+        carDealershipInstance.removeCar(carCode);
         //assertArrayEquals(expResult, result);
-        assertEquals(1, carDealershipInstance.carAmount);
+        assertEquals(expResult, carDealershipInstance.carAmount);
     }
-    /**
-     * Test of removeCar method, of class CarDealership. Determining inf array size reduced after removing a car
-     */
-    @Test
-    public void testRemoveCar2() {
-        System.out.println("Removing a car.");
-         //instance of Gas Powered Cars
-        carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
-               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
-        carDealershipInstance.carAmount++;
-        carDealershipInstance.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
-                "Electric-Powered-Car","Red",3400000.0,date); 
-        carDealershipInstance.carAmount++;
-        String carCode = "1HGB41JXMN109186";
-//         Car[] expResult = new Car[2];
-//        Car[] result = carDealershipInstance.removeCar(carCode);
-//        assertArrayEquals(expResult, result);
-    }
-
 
     /**
      * Test of carsInStockNo method, of class CarDealership.
@@ -176,15 +159,7 @@ public class CarDealershipTest {
     @Test
     public void testCarsInStockNo() {
         System.out.println("Cars in stock number");
-         // instance of Gas Powered Cars
-       carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
-               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
-       carDealershipInstance.carAmount++;
-       //Instance of Electric Cars
-        carDealershipInstance.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
-                "Electric-Powered-Car","Red",3400000.0,date); 
-        carDealershipInstance.carAmount++;
-        int expResult = 2;
+        int expResult = 3;
         int result = carDealershipInstance.carAmount;
         assertEquals(expResult, result);
     }
@@ -194,8 +169,9 @@ public class CarDealershipTest {
     @Test
     public void testCarsInStockNumber() {
         System.out.println("Cars in stock number. When there are no cars in stock.");
+        CarDealership cdsInstance = new CarDealership();
         int expResult = 0;
-        int result = carDealershipInstance.carsInStockNo();
+        int result = cdsInstance.carsInStockNo();
         assertEquals(expResult, result);
     }
 
@@ -205,12 +181,6 @@ public class CarDealershipTest {
     @Test
     public void testCarWithSpecificColor() {
         System.out.println("carWithSpecificColor");
-       carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
-               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
-       carDealershipInstance.carAmount++;
-      carDealershipInstance.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
-                "Electric-Powered-Car","Red",3400000.0,date);
-       carDealershipInstance.carAmount++;
         String color = "red";
         String expResult = "Tesla Roadstar";
         String result = carDealershipInstance.carWithSpecificColor(color);
@@ -222,12 +192,6 @@ public class CarDealershipTest {
     @Test
     public void testCarWithSpecificColorThatDoesNotExist() {
         System.out.println("carWithSpecificColor");
-        carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
-               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
-        carDealershipInstance.carAmount++;
-        carDealershipInstance.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
-                "Electric-Powered-Car","Red",3400000.0,date);
-        carDealershipInstance.carAmount++;
         String color = "green";
         String expResult = "Car with green colour not found.";
         String result = carDealershipInstance.carWithSpecificColor(color);
@@ -240,12 +204,6 @@ public class CarDealershipTest {
     @Test
     public void testIsCarInStock() {
         System.out.println("isCarInStock");
-        carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
-               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
-        carDealershipInstance.carAmount++;
-        carDealershipInstance.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
-                "Electric-Powered-Car","Red",3400000.0,date);
-        carDealershipInstance.carAmount++;
         String brand = "Ford";
         String model = "Mustang-GT";
         boolean expResult = true;
@@ -258,12 +216,6 @@ public class CarDealershipTest {
     @Test
     public void testIsCarInStock2() {
         System.out.println("isCarInStock");
-        carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
-               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
-        carDealershipInstance.carAmount++;
-        carDealershipInstance.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
-                "Electric-Powered-Car","Red",3400000.0,date);
-        carDealershipInstance.carAmount++;
         String brand = "Volkswagen";
         String model = "Golf MK7 GTI";
         boolean expResult = false;
@@ -277,13 +229,6 @@ public class CarDealershipTest {
     @Test
     public void testCheapestElectricCar() {
         System.out.println("cheapestElectricCar");
-        carDealershipInstance.car[0] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
-                "Electric-Powered-Car","Red",3400000.0,date); 
-        carDealershipInstance.carAmount++;
-        carDealershipInstance.car[1] = new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
-                "ElecticPoweredCar", " Ascari Blue metallic",2065712.16,date);
-         carDealershipInstance.carAmount++;
-       
         String expResult ="Audi E-tron-GT" ;
         String result = carDealershipInstance.cheapestElectricCar();
         assertEquals(expResult, result);
@@ -295,15 +240,6 @@ public class CarDealershipTest {
     @Test
     public void testMostExpensiveCar() {
         System.out.println("mostExpensiveCar");
-        carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
-               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
-        carDealershipInstance.carAmount++;
-        carDealershipInstance.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
-                "Electric-Powered-Car","Red",3400000.0,date); 
-        carDealershipInstance.carAmount++;
-        carDealershipInstance.car[2] = new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
-                "ElecticPoweredCar", " Ascari Blue metallic",2065712.16,date);
-         carDealershipInstance.carAmount++;
         String expResult = "Tesla Roadstar";
         String result = carDealershipInstance.mostExpensiveCar();
         assertEquals(expResult, result);
@@ -351,15 +287,6 @@ public class CarDealershipTest {
     @Test
     public void testMoneyMadeInASpecificYear() {
         System.out.println("moneyMadeInASpecificYear");
-        carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
-               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
-        carDealershipInstance.carAmount++;
-        carDealershipInstance.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
-                "Electric-Powered-Car","Red",3400000.0,date); 
-        carDealershipInstance.carAmount++;
-        carDealershipInstance.car[2] = new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
-                "ElecticPoweredCar", " Ascari Blue metallic",2065712.16,date);
-         carDealershipInstance.carAmount++;
         String specificYear = "2023";
         double expResult = 0.0;
         double result = carDealershipInstance.moneyMadeInASpecificYear(specificYear);
@@ -372,9 +299,6 @@ public class CarDealershipTest {
     @Test
     public void testPriceOfGivenCar() {
         System.out.println("priceOfGivenCar");
-         carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
-               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
-        carDealershipInstance.carAmount++;
         String brand = "Ford";
         String model = "Mustang-GT";
         double expResult = 1193.7015746063485;
