@@ -1,5 +1,6 @@
 package com.mycompany.cardealershipmanagement;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,12 +12,11 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ReceiptTest {
     Date date = null; 
     Receipt receiptInstance = null;
-    
+    SimpleDateFormat  sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
     public ReceiptTest() {
         date = new Date();
         receiptInstance = new Receipt("01CstM2023","Leoanrd M. David", "01010700607",
-                "Ford", "1HGB41JXMN109186",date,1194000.0, "Mustang-GT");
-       
+                "Ford", "1HGB41JXMN109186",sdf.format(date),1194000.0, "Mustang-GT");
     }
     
     /**
@@ -57,9 +57,10 @@ public class ReceiptTest {
      */
     @Test
     public void testGetDatePurchased() {
+        Date dte = new Date();
         System.out.println("getDatePurchased");
-        Date expResult = date;
-        Date result = receiptInstance.getDatePurchased();
+        String expResult = sdf.format(dte);
+        String result = receiptInstance.getDatePurchased();
         assertEquals(expResult, result);
     }
 
@@ -91,7 +92,7 @@ public class ReceiptTest {
     @Test
     public void testGetReceiptId() {
         System.out.println("getReceiptId");
-        String expResult = "01C12023";
+        String expResult = "01CstM2023";
         String result = receiptInstance.getReceiptId();
         assertEquals(expResult, result);
    }

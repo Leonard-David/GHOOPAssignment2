@@ -10,7 +10,7 @@ public class GasPoweredCar extends Car{
     private double cost;
     private double mileage;
     public GasPoweredCar(String carCode, String brand, String model, String engineType,
-            double mileage, String carType, String color, double cost, Date dateBroughtIn){
+            double mileage, String carType, String color, double cost, String dateBroughtIn){
         
         super(carCode, brand, model, engineType, mileage, carType, color, cost, dateBroughtIn);
         this.cost = cost;

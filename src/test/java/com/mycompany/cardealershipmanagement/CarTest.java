@@ -1,5 +1,6 @@
 package com.mycompany.cardealershipmanagement;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,11 +12,11 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CarTest {
     Date date = null;
     Car carInstance = null;
-    
+    SimpleDateFormat  sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
     public CarTest() {
         date = new Date();
         carInstance = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50
-                ,"Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
+                ,"Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,sdf.format(date));
     }
     
     /**
@@ -112,8 +113,8 @@ public class CarTest {
     @Test
     public void testGetdateBroughtIn() {
         System.out.println("getdateBroughtIn");
-        Date expResult = date;
-        Date result = carInstance.getdateBroughtIn();
+        String expResult = sdf.format(date);
+        String result = carInstance.getdateBroughtIn();
         assertEquals(expResult, result);
     }
 
@@ -122,10 +123,10 @@ public class CarTest {
      */
     @Test
     public void testGetDateSold() {
-        carInstance.setDateSold(date);
+        carInstance.setDateSold(sdf.format(date));
         System.out.println("getDateSold");
-        Date expResult = date;
-        Date result = carInstance.getDateSold();
+        String expResult = sdf.format(date);
+        String result = carInstance.getDateSold();
         assertEquals(expResult, result);
     }
 
@@ -135,9 +136,9 @@ public class CarTest {
     @Test
     public void testSetDateSold() {
         System.out.println("setDateSold");
-        Date dateSold = date;
-        Date expResult = date;
-        Date result = carInstance.setDateSold(dateSold);
+        String dateSold = sdf.format(date);
+        String expResult = sdf.format(date);
+        String result = carInstance.setDateSold(dateSold);
         assertEquals(expResult, result);
    }
     

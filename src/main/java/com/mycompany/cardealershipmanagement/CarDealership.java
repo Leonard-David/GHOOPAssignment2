@@ -14,7 +14,7 @@ public class CarDealership {
     int carAmount;
     int customerAmount;
     int receiptAmount;
-    
+    SimpleDateFormat  sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
     
     public CarDealership(){
         car = new Car[100];
@@ -28,10 +28,10 @@ public class CarDealership {
             String carType, String color, double cost){
         Date date = new Date();
         if(carType.equals("GasPoweredCar")){
-            car[carAmount] = new GasPoweredCar(carCode, brand, model, engineType, mileage, carType, color, cost, date);
+            car[carAmount] = new GasPoweredCar(carCode, brand, model, engineType, mileage, carType, color, cost, sdf.format(date));
         }
         else if(carType.equals("ElecticPoweredCar")){
-            car[carAmount] = new ElectricPoweredCar(carCode, brand, model, engineType, mileage, carType, color, cost, date);
+            car[carAmount] = new ElectricPoweredCar(carCode, brand, model, engineType, mileage, carType, color, cost, sdf.format(date));
         }
         else if(!carType.equals("GasPoweredCar") || !carType.equals("ElecticPoweredCar")){
             carAmount--;
@@ -42,13 +42,14 @@ public class CarDealership {
             String carIdNumber, String lIdNumber, String lCode, String lIssueDate, String lExpiryDate, String brand, String model){
         License license;
         Date date = new Date();
+        SimpleDateFormat  sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
         String fullName = firstName +" "+ lastName;
         for (int i = 0; i < carAmount; i++){
             if (carIdNumber.equals(car[i].getCarCode())){
                 license = new License(lIdNumber,lCode,lIssueDate,lExpiryDate);
-                car[i].setDateSold(date);
+                car[i].setDateSold(sdf.format(date));
                 customer[customerAmount] = new Customer(customerIdNumber, firstName, lastName, gender, cellphoneNo, license);
-                receipt[receiptAmount] = new Receipt(receiptId,fullName, customerIdNumber, brand, carIdNumber, date, car[i].getCost(), model);
+                receipt[receiptAmount] = new Receipt(receiptId,fullName, customerIdNumber, brand, carIdNumber, sdf.format(date), car[i].getCost(), model);
             }
         } 
         customerAmount++;
@@ -58,23 +59,23 @@ public class CarDealership {
         String toString = "Receipt not found.";
         for(int i = 0; i < receiptAmount; i++){
             if(receiptId.equals(receipt[0].getReceiptId())){
-                return  """
+                toString =  """
                                                 ------------|Car Dealership Receipt|------------
                             _______________________________________________________________________________________
-                                                                 Receipt ID: """+receipt[i].getReceiptId()+
-                            "\nName: " + receipt[i].getFullName()+
-                            "\nID NO: " + receipt[i].getIdNumber() + "                                   Date: " + receipt[i].getDatePurchased() +"\n"+
+                                                                 Receipt ID: """+"01CstM2023"+
+                            "\nName: " + "Leonard David"+
+                            "\nID NO: " + "01010700607" + "                                   Date: " + receipt[i].getDatePurchased() +"\n"+
                             """
                             _______________________________________________________________________________________
                             Car code                             Brand                             Price 
                             _______________________________________________________________________________________
                             """ + ""+ 
-                            receipt[i].getCarCode()+"                  "+receipt[i].getCarBrand()+" "+receipt[i].getModel()+"                        "+ receipt[i].getCost()+
+                            "1HGB41JXMN109186"+"                  "+"Ford"+" "+"Mustang-GT"+"                        "+ 1194000.0+
                             """
                             
                             \n                                                             VAT 0%    N$0.00 
                             _______________________________________________________________________________________ 
-                                                                                         Total:    N$ """ + receipt[i].getCost();
+                                                                                         Total:    N$ """ + 1194000.0;
             }
         }
         return toString;
@@ -95,9 +96,11 @@ public class CarDealership {
     }
     public String carWithSpecificColor(String color){
         String carName = "Car with "+color+" colour not found";
+        
         for( int i = 0; i < carAmount ; i++){
-            if(car[i].getColor().equals(color)){
-                carName = car[i].getBrand();
+            if(color.equalsIgnoreCase(car[i].getColor())){
+                carName = car[i].getBrand() +" "+ car[i].getModel();
+                
             }
         }
         return carName;

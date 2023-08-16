@@ -1,5 +1,6 @@
 package com.mycompany.cardealershipmanagement;
 
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,12 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CarDealershipTest {
     CarDealership carDealershipInstance = null; 
     Date date = null;
-    
+    SimpleDateFormat  sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
     public CarDealershipTest() {
         date = new Date();
        carDealershipInstance = new CarDealership();
-       
-      
     }
 
     /**
@@ -89,24 +88,27 @@ public class CarDealershipTest {
      */
     @Test
     public void testReturnCustomerReceipt() {
+         System.out.println("Returning/retrieving customer's receipt, when its found");
+         
         Date dte = new Date();
         //Instance for the receipt class
-        carDealershipInstance.receipt[0] = new Receipt("01CstM2023","Leoanrd M. David", "01010700607",
-                "Ford", "1HGB41JXMN109186",date,1194000.0, "Mustang-GT");
-        System.out.println("returning customer's Receipt");
+        carDealershipInstance.receipt[0] = new Receipt("01CstM2023","Leoanrd David", "01010700607",
+                "Ford", "1HGB41JXMN109186",sdf.format(date),1194000.0, "Mustang-GT");
+          carDealershipInstance.receiptAmount++;
+       
         String receiptId ="01CstM2023";
-        String expResult = """
-                                               ------------|Car Dealership Receipt|------------
-                           _______________________________________________________________________________________
-                                                                Receipt ID: 01CstM2023
-                           Name: Leonard David
-                           ID NO: """ +01010700607+ "                                   Date: " + dte +"\n"+
+        String expResult ="""
+                                                ------------|Car Dealership Receipt|------------
+                            _______________________________________________________________________________________
+                                                                 Receipt ID: """+"01CstM2023"+
+                            "\nName: " + "Leonard David"+
+                            "\nID NO: " + "01010700607" + "                                   Date: " + dte +"\n"+
                             """
                             _______________________________________________________________________________________
-                            Car code                              Brand                              Price 
+                            Car code                             Brand                             Price 
                             _______________________________________________________________________________________
                             """ + ""+ 
-                            "1HGB41JXMN109186"+"                  "+"Ford"+" "+"Mustang-GT"+"                        "+1194000.0+
+                            "1HGB41JXMN109186"+"                  "+"Ford"+" "+"Mustang-GT"+"                        "+ 1194000.0+
                             """
                             
                             \n                                                             VAT 0%    N$0.00 
@@ -121,7 +123,7 @@ public class CarDealershipTest {
     @Test
     public void testReturnCustomerReceiptNotFound() {
         Date dte = new Date();
-        System.out.println("returning customer's Receipt. When customers receipt is not found.");
+        System.out.println("Returning customer's Receipt. When customers receipt is not found.");
         String receiptId ="01CstM2023";
         String expResult = "Receipt not found.";
         String result = carDealershipInstance.returnCustomerReceipt(receiptId);
@@ -133,7 +135,7 @@ public class CarDealershipTest {
      */
     @Test
     public void testRemoveCar() {
-        System.out.println("removeCar");
+        System.out.println("Removing a car.");
         String carCode = "1HGB41JXMN109186";
         Car[] expResult = null;
         Car[] result = carDealershipInstance.removeCar(carCode);
@@ -148,11 +150,11 @@ public class CarDealershipTest {
         System.out.println("Cars in stock number");
          // instance of Gas Powered Cars
        carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
-               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
+               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,sdf.format(date));
        carDealershipInstance.carAmount++;
        //Instance of Electric Cars
         carDealershipInstance.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
-                "Electric-Powered-Car","Red",3400000.0,date); 
+                "Electric-Powered-Car","Red",3400000.0,sdf.format(date)); 
         carDealershipInstance.carAmount++;
         int expResult = 2;
         int result = carDealershipInstance.carAmount;
@@ -175,8 +177,31 @@ public class CarDealershipTest {
     @Test
     public void testCarWithSpecificColor() {
         System.out.println("carWithSpecificColor");
-        String color = "";
-        String expResult = "";
+       carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
+               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,sdf.format(date));
+       carDealershipInstance.carAmount++;
+      carDealershipInstance.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
+                "Electric-Powered-Car","Red",3400000.0,sdf.format(date));
+       carDealershipInstance.carAmount++;
+        String color = "red";
+        String expResult = "Tesla Roadstar";
+        String result = carDealershipInstance.carWithSpecificColor(color);
+        assertEquals(expResult, result);
+   }
+     /**
+     * Test of carWithSpecificColor method, of class CarDealership.When no car has the given color.
+     */
+    @Test
+    public void testCarWithSpecificColorThatDoesNotExist() {
+        System.out.println("carWithSpecificColor");
+       carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
+               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,sdf.format(date));
+       carDealershipInstance.carAmount++;
+      carDealershipInstance.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
+                "Electric-Powered-Car","Red",3400000.0,sdf.format(date));
+       carDealershipInstance.carAmount++;
+        String color = "green";
+        String expResult = "Tesla Roadstar";
         String result = carDealershipInstance.carWithSpecificColor(color);
         assertEquals(expResult, result);
    }

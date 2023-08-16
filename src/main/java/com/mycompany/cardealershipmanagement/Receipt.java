@@ -10,13 +10,13 @@ public class Receipt {
     private String idNumber;
     private String carBrand;
     private String carCode;
-    private Date datePurchased;
+    private String datePurchased;
     private double cost;
     private String receiptId;
     private String model;
     //declaring a constructor 
     public Receipt(String receiptId,String fullName,String idNumber, String carBrand, 
-            String carCode, Date datePurchased, double cost,String model){
+            String carCode, String datePurchased, double cost,String model){
         this.fullName = fullName;
         this.carBrand = carBrand;
         this.carCode = carCode;
@@ -39,7 +39,7 @@ public class Receipt {
     public String getCarCode(){
         return carCode;
     }
-    public Date getDatePurchased(){
+    public String getDatePurchased(){
         return datePurchased;
     }
     public double getCost(){
