@@ -15,7 +15,7 @@ public class GasPoweredCarTest {
      GasPoweredCar gasPoweredCarInstance = null;
     public GasPoweredCarTest() {
         gasPoweredCarInstance = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50
-                ,"Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,sdf.format(date));
+                ,"Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
     }
     
      /**

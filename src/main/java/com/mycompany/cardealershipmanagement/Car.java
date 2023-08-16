@@ -13,11 +13,11 @@ public abstract class Car {
     private double mileage;
     private String color;
     private double cost;
-    private String dateBroughtIn;
-    private String dateSold;
+    private Date dateBroughtIn;
+    private Date dateSold;
     private String carType;
     // a parameterized constructor 
-    public Car(String carCode, String brand, String model, String engineType, double mileage,String carType, String color, double cost, String dateBroughtIn){
+    public Car(String carCode, String brand, String model, String engineType, double mileage,String carType, String color, double cost, Date dateBroughtIn){
         this.carCode = carCode;
         this.brand = brand;
         this.model = model;
@@ -51,14 +51,14 @@ public abstract class Car {
         return color;
     }
     public abstract double getCost();
-    public String getdateBroughtIn(){
+    public Date getdateBroughtIn(){
         return dateBroughtIn;
     }
-    public String getDateSold(){
+    public Date getDateSold(){
         return dateSold;
     }
     // method to set borrow date
-    public String setDateSold(String dateSold){
+    public Date setDateSold(Date dateSold){
         return this.dateSold = dateSold;
     }  
 }

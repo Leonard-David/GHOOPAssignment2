@@ -118,12 +118,12 @@ public class CarDealershipManagement {
                    break;
                case 12:
                    System.out.println("number of cars sold in a specific year:\nEnter year only:");
-                   int cSISY = scan.nextInt();
+                   String cSISY = scan.next();
                    System.out.println("The following cars were sold in"+ cSISY+"\n"+cds.carsSoldInASpecificYearNo(cSISY));
                    break;
                case 13:
                   System.out.println("Money made in a specific year:\nEnter year only:");
-                   int year = scan.nextInt();
+                   String year = scan.next();
                    System.out.println("Money made in "+ year+" was N$ "+cds.moneyMadeInASpecificYear(year));
                    break;  
                case 14:

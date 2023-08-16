@@ -15,7 +15,7 @@ public class ElectricPoweredCarTest {
     ElectricPoweredCar electricPoweredCarInstance = null;
     public ElectricPoweredCarTest() {
         electricPoweredCarInstance = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50
-                ,"Electric-Powered-Car","Red",3400000.0,sdf.format(date));
+                ,"Electric-Powered-Car","Red",3400000.0,date);
     }
     
     /**

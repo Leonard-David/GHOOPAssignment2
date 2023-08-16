@@ -12,11 +12,10 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CarTest {
     Date date = null;
     Car carInstance = null;
-    SimpleDateFormat  sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
     public CarTest() {
         date = new Date();
         carInstance = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50
-                ,"Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,sdf.format(date));
+                ,"Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
     }
     
     /**
@@ -113,8 +112,8 @@ public class CarTest {
     @Test
     public void testGetdateBroughtIn() {
         System.out.println("getdateBroughtIn");
-        String expResult = sdf.format(date);
-        String result = carInstance.getdateBroughtIn();
+        Date expResult = date;
+        Date result = carInstance.getdateBroughtIn();
         assertEquals(expResult, result);
     }
 
@@ -123,10 +122,10 @@ public class CarTest {
      */
     @Test
     public void testGetDateSold() {
-        carInstance.setDateSold(sdf.format(date));
+        carInstance.setDateSold(date);
         System.out.println("getDateSold");
-        String expResult = sdf.format(date);
-        String result = carInstance.getDateSold();
+        Date expResult = date;
+        Date result = carInstance.getDateSold();
         assertEquals(expResult, result);
     }
 
@@ -136,9 +135,9 @@ public class CarTest {
     @Test
     public void testSetDateSold() {
         System.out.println("setDateSold");
-        String dateSold = sdf.format(date);
-        String expResult = sdf.format(date);
-        String result = carInstance.setDateSold(dateSold);
+        Date dateSold = date;
+        Date expResult = date;
+        Date result = carInstance.setDateSold(dateSold);
         assertEquals(expResult, result);
    }
     
