@@ -92,7 +92,8 @@ public class CarDealershipTest {
          
         Date dte = new Date();
         //Instance for the receipt class
-        carDealershipInstance.receipt[0] = new Receipt("01CstM2023","Leoanrd David", "01010700607",
+        String fullName = "Leoanrd David";
+        carDealershipInstance.receipt[0] = new Receipt("01CstM2023",fullName, "01010700607",
                 "Ford", "1HGB41JXMN109186",sdf.format(date),1194000.0, "Mustang-GT");
           carDealershipInstance.receiptAmount++;
        
@@ -102,7 +103,7 @@ public class CarDealershipTest {
                             _______________________________________________________________________________________
                                                                  Receipt ID: """+"01CstM2023"+
                             "\nName: " + "Leonard David"+
-                            "\nID NO: " + "01010700607" + "                                   Date: " + dte +"\n"+
+                            "\nID NO: " + "01010700607" + "                                   Date: " + sdf.format(dte) +"\n"+
                             """
                             _______________________________________________________________________________________
                             Car code                             Brand                             Price 
@@ -122,9 +123,8 @@ public class CarDealershipTest {
      */
     @Test
     public void testReturnCustomerReceiptNotFound() {
-        Date dte = new Date();
         System.out.println("Returning customer's Receipt. When customers receipt is not found.");
-        String receiptId ="01CstM2023";
+        String receiptId ="04CstM2023";
         String expResult = "Receipt not found.";
         String result = carDealershipInstance.returnCustomerReceipt(receiptId);
         assertEquals(expResult, result);

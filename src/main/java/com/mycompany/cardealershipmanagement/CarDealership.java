@@ -1,5 +1,6 @@
 package com.mycompany.cardealershipmanagement;
 
+
 import java.text.SimpleDateFormat;
 import java.util.Date;
 /**
@@ -62,20 +63,20 @@ public class CarDealership {
                 toString =  """
                                                 ------------|Car Dealership Receipt|------------
                             _______________________________________________________________________________________
-                                                                 Receipt ID: """+"01CstM2023"+
-                            "\nName: " + "Leonard David"+
-                            "\nID NO: " + "01010700607" + "                                   Date: " + receipt[i].getDatePurchased() +"\n"+
+                                                                 Receipt ID: """+receipt[i].getReceiptId()+
+                            "\nName: " +receipt[i].getFullName()+
+                            "\nID NO: " + receipt[i].getIdNumber() + "                                   Date: " + receipt[i].getDatePurchased() +"\n"+
                             """
                             _______________________________________________________________________________________
                             Car code                             Brand                             Price 
                             _______________________________________________________________________________________
                             """ + ""+ 
-                            "1HGB41JXMN109186"+"                  "+"Ford"+" "+"Mustang-GT"+"                        "+ 1194000.0+
+                            receipt[i].getCarCode()+"                  "+receipt[i].getCarBrand()+" "+receipt[i].getModel()+"                        "+ receipt[i].getCost()+
                             """
                             
                             \n                                                             VAT 0%    N$0.00 
                             _______________________________________________________________________________________ 
-                                                                                         Total:    N$ """ + 1194000.0;
+                                                                                         Total:    N$ """ + receipt[i].getCost();
             }
         }
         return toString;
@@ -160,20 +161,20 @@ public class CarDealership {
         return compute;
    }
     public int carsSoldInASpecificYearNo(int specificYear){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        SimpleDateFormat formator = new SimpleDateFormat("yyyy");
         int count = 0;
         for ( int i = 0; i < carAmount; i++ ){
-            if(sdf.format(specificYear).equals(sdf.format(car[i].getDateSold()))){
+            if(formator.format(specificYear).equals(formator.format(car[i].getDateSold()))){
                 count++;
             }
         }
         return count;
     }
     public double moneyMadeInASpecificYear(int specificYear){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
+        SimpleDateFormat formator = new SimpleDateFormat("yyyy");
         double sum = 00.0;
         for ( int i = 0; i < carAmount; i++ ){
-            if(sdf.format(car[i].getDateSold()).equals(sdf.format(specificYear))){
+            if(formator.format(specificYear).equals(formator.format(car[i].getDateSold()))){
                 sum = sum + car[i].getCost();
             }
         }
