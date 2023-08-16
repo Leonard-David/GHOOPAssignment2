@@ -18,7 +18,7 @@ public class CarDealership {
     SimpleDateFormat  sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
     
     public CarDealership(){
-        car = new Car[100];
+        car = new Car[2];
         customer = new Customer[30];
         receipt = new Receipt[100];
         carAmount = 0;
@@ -82,15 +82,16 @@ public class CarDealership {
         return toString;
     }
     public Car[] removeCar(String carCode){
+        Car[] newCarList = new Car[carAmount-1];
         int newCarAmount = 0;
-        for( int i = 0; i < carAmount - 1; i++){
+        for( int i = 0; i < carAmount; i++){
             if(!(carCode.equals(car[i].getCarCode()))){
-                car[newCarAmount++] = car[i];
-                carAmount--;
+                newCarList[newCarAmount] = car[i];
+                newCarAmount++;
             }
         }
-        
-        return car;
+         carAmount--;
+        return newCarList;
     }
     public int carsInStockNo(){
         return carAmount;

@@ -13,9 +13,11 @@ public class CarDealershipTest {
     CarDealership carDealershipInstance = null; 
     Date date = null;
     SimpleDateFormat  sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+    Car[] car = null;
     public CarDealershipTest() {
         date = new Date();
        carDealershipInstance = new CarDealership();
+       car = new Car[2];
     }
 
     /**
@@ -136,11 +138,36 @@ public class CarDealershipTest {
     @Test
     public void testRemoveCar() {
         System.out.println("Removing a car.");
+        // instance of Gas Powered Cars
+        carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
+               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,sdf.format(date));
+        carDealershipInstance.carAmount++;
+        carDealershipInstance.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
+                "Electric-Powered-Car","Red",3400000.0,sdf.format(date)); 
+        carDealershipInstance.carAmount++;
         String carCode = "1HGB41JXMN109186";
-        Car[] expResult = null;
+        //assertArrayEquals(expResult, result);
+        assertEquals(1, carDealershipInstance.carAmount);
+    }
+    /**
+     * Test of removeCar method, of class CarDealership. Determining inf array size reduced after removing a car
+     */
+    @Test
+    public void testRemoveCar2() {
+        System.out.println("Removing a car.");
+         //instance of Gas Powered Cars
+        carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
+               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,sdf.format(date));
+        carDealershipInstance.carAmount++;
+        carDealershipInstance.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
+                "Electric-Powered-Car","Red",3400000.0,sdf.format(date)); 
+        carDealershipInstance.carAmount++;
+        String carCode = "1HGB41JXMN109186";
+         Car[] expResult = new Car[2];
         Car[] result = carDealershipInstance.removeCar(carCode);
         assertArrayEquals(expResult, result);
     }
+
 
     /**
      * Test of carsInStockNo method, of class CarDealership.
