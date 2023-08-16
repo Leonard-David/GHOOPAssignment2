@@ -35,7 +35,7 @@ public class CarDealership {
         }
         carAmount++;
     }
-    public void sellACar(String receiptId, int customerIdNumber, String firstName, String lastName, char gender, int cellphoneNo, 
+    public void sellACar(String receiptId, String customerIdNumber, String firstName, String lastName, char gender, String cellphoneNo, 
             String carIdNumber, String lIdNumber, String lCode, String lIssueDate, String lExpiryDate, String brand, String model){
         License license;
         Date date = new Date();
@@ -45,11 +45,11 @@ public class CarDealership {
                 license = new License(lIdNumber,lCode,lIssueDate,lExpiryDate);
                 car[i].setDateSold(date);
                 customer[customerAmount] = new Customer(customerIdNumber, firstName, lastName, gender, cellphoneNo, license);
-                customerAmount++;
                 receipt[receiptAmount] = new Receipt(receiptId,fullName, customerIdNumber, brand, carIdNumber, date, car[i].getCost(), model);
-                receiptAmount++;
             }
         } 
+        customerAmount++;
+        receiptAmount++;
     }
     public String returnCustomerReceipt(String receiptId){
         String toString = "Receipt not found";

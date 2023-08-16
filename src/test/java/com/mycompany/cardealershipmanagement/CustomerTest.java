@@ -8,11 +8,11 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author mpula
  */
 public class CustomerTest {
-     Customer[] customerInstance = null;
+     Customer customerInstance;
      License licenseInstance = null;
     public CustomerTest() {
         licenseInstance = new License("999999ABC","C1E","01/02/2022","01/02/2026");
-        customerInstance[0] = new Customer(01010700607, "Leonard","David", 'M',812883053,licenseInstance);
+        customerInstance = new Customer("01010700607", "Leonard","David", 'M',"0812883053",licenseInstance);
     }
     
     /**
@@ -21,8 +21,8 @@ public class CustomerTest {
     @Test
     public void testGetIdNumber() {
         System.out.println("getIdNumber");
-        int expResult = 01010700607;
-        int result = customerInstance[0].getIdNumber();
+        String expResult = "01010700607";
+        String result = customerInstance.getIdNumber();
         assertEquals(expResult, result);
    }
 
@@ -33,7 +33,7 @@ public class CustomerTest {
     public void testGetFirstName() {
         System.out.println("getFirstName");
         String expResult = "Leonard";
-        String result = customerInstance[0].getFirstName();
+        String result = customerInstance.getFirstName();
         assertEquals(expResult, result);
     }
 
@@ -44,7 +44,7 @@ public class CustomerTest {
     public void testGetLastName() {
         System.out.println("getLastName");
         String expResult = "David";
-        String result = customerInstance[0].getLastName();
+        String result = customerInstance.getLastName();
         assertEquals(expResult, result);
     }
 
@@ -54,15 +54,15 @@ public class CustomerTest {
     @Test
     public void testGetCellphoneNo() {
         System.out.println("getCellphoneNo");
-        int expResult = 812883053;
-        int result = customerInstance[0].getCellphoneNo();
+        String expResult = "0812883053";
+        String result = customerInstance.getCellphoneNo();
         assertEquals(expResult, result);
      }
     @Test
     public void testGetGender(){
         System.out.println("getGender");
         char expResult = 'M';
-        char result = customerInstance[0].getGender();
+        char result = customerInstance.getGender();
          assertEquals(expResult, result);
      }
     /**
@@ -72,7 +72,7 @@ public class CustomerTest {
     public void testGetLicense() {
         System.out.println("getLicense");
         License expResult = licenseInstance;
-        License result = customerInstance[0].getLicense();
+        License result = customerInstance.getLicense();
         assertEquals(expResult, result);
     }
     

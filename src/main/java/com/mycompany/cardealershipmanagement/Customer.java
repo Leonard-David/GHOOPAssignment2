@@ -5,14 +5,14 @@ package com.mycompany.cardealershipmanagement;
  */
 public class Customer {
     // creating private attributes
-    private int idNumber;
+    private String idNumber;
     private String firstName;
     private String lastName;
     private char gender;
-    private int cellphoneNo;
+    private String cellphoneNo;
     private License license;
     // constructor with parameters for the custotmer class
-    public  Customer(int idNumber, String firstName, String lastName, char gender, int cellphoneNo, License license){
+    public  Customer(String idNumber, String firstName, String lastName, char gender, String cellphoneNo, License license){
         this.idNumber = idNumber;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -21,7 +21,7 @@ public class Customer {
         this.license = license;
     }
      //methos that returm associated valuees
-    public int getIdNumber(){
+    public String getIdNumber(){
         return idNumber;
     }
     public String getFirstName(){
@@ -33,7 +33,7 @@ public class Customer {
     public char getGender(){
         return gender;
     }
-    public int getCellphoneNo(){
+    public String getCellphoneNo(){
         return cellphoneNo;
     }
     public License getLicense(){

@@ -51,6 +51,9 @@ public class CarDealershipTest {
         assertEquals(1,carDealershipInstance.customerAmount );
         assertEquals(1, carDealershipInstance.receiptAmount);
     }
+    /**
+     * Test of sellACar method, of class CarDealership. When selling to more than one customer
+     */
     @Test
     public void testSellACarTo2people() {
         System.out.println("selling a car");
@@ -61,6 +64,16 @@ public class CarDealershipTest {
                 "1HGB41JXMN109186", "999999ABC", "B", "01/02/2023", "01/02/2027", "Tesla", "Roadstar");
         assertEquals(2,carDealershipInstance.customerAmount );
         assertEquals(2, carDealershipInstance.receiptAmount);
+    }
+     /**
+     * Test of sellACar method, of class CarDealership. When making a sell to an non-existing customer
+     */
+    @Test
+    public void testSellACarToNoCustomer() {
+        System.out.println("selling a car");
+        //instance to sell a car. and a create objects for the Receipt and Customer class
+        assertEquals(0,carDealershipInstance.customerAmount );
+        assertEquals(0, carDealershipInstance.receiptAmount);
     }
 
     /**

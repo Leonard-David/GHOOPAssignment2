@@ -52,7 +52,7 @@ public class CarDealershipManagement {
                    break;
                case 2:
                    System.out.println("Sell Car\n\nEnter customer ID number:");
-                   int customerIdNumber = scan.nextInt();
+                   String customerIdNumber = scan.next();
                    System.out.println("Customer's first name:");
                    String firstName = scan.next();
                    System.out.println("Enter last Name:");
@@ -60,7 +60,7 @@ public class CarDealershipManagement {
                    System.out.println("Enter gender (M/F):");
                    char gender = scan.next().charAt(0);
                    System.out.println("Enter customers cellphone number:");
-                   int cellphoneNo = scan.nextInt();
+                   String cellphoneNo = scan.next();
                    System.out.println("Enter license ID");
                    String lIdNumber = scan.next();
                    System.out.println("Enter license code (B/BE/C1/C1E/C/CE)");

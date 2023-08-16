@@ -7,7 +7,7 @@ import java.util.Date;
 public class Receipt {
     //creating private fields
     private String fullName;
-    private int idNumber;
+    private String idNumber;
     private String carBrand;
     private String carCode;
     private Date datePurchased;
@@ -15,7 +15,7 @@ public class Receipt {
     private String receiptId;
     private String model;
     //declaring a constructor 
-    public Receipt(String receiptId,String fullName,int idNumber, String carBrand, 
+    public Receipt(String receiptId,String fullName,String idNumber, String carBrand, 
             String carCode, Date datePurchased, double cost,String model){
         this.fullName = fullName;
         this.carBrand = carBrand;
@@ -45,7 +45,7 @@ public class Receipt {
     public double getCost(){
         return cost;
     }
-    public int getIdNumber(){
+    public String getIdNumber(){
         return idNumber;
     }
     public String getModel(){

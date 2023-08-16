@@ -14,7 +14,7 @@ public class ReceiptTest {
     
     public ReceiptTest() {
         date = new Date();
-        receiptInstance = new Receipt("01C12023","Leoanrd M. David", 01010700607,
+        receiptInstance = new Receipt("01C12023","Leoanrd M. David", "01010700607",
                 "Ford", "1HGB41JXMN109186",date,1194000.0, "Mustang-GT");
        
     }
@@ -80,8 +80,8 @@ public class ReceiptTest {
     @Test
     public void testGetIdNumber() {
         System.out.println("getIdNumber");
-        int expResult = 01010700607;
-        int result = receiptInstance.getIdNumber();
+        String expResult = "01010700607";
+        String result = receiptInstance.getIdNumber();
         assertEquals(expResult, result);
     }
 
