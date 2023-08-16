@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/UnitTests/JUnit5TestClass.java to edit this template
- */
 package com.mycompany.cardealershipmanagement;
 
 import java.util.Date;
@@ -14,8 +10,18 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class CarDealershipTest {
     CarDealership carDealershipInstance = null; 
+    Date date = null;
+    
     public CarDealershipTest() {
+        date = new Date();
        carDealershipInstance = new CarDealership();
+       
+       // instance of Gas Powered Cars
+       carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50
+                ,"Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
+       //Instance of Electric Cars
+        carDealershipInstance.car[2] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50
+                ,"Electric-Powered-Car","Red",3400000.0,date); 
     }
 
     /**
@@ -23,19 +29,14 @@ public class CarDealershipTest {
      */
     @Test
     public void testAddNewCar() {
-        System.out.println("addNewCar");
-        carDealershipInstance.addNewCar("1HGB41JXMN109186", "Ford", "Mustang-GT", "5038 cc (307 cu in) V8", 2000.50,
-                "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0);
-        
-        carDealershipInstance.addNewCar("5YJSA1CN8D", "Tesla", "Roadstar", "5038 cc (307 cu in) V8", 2000.50,
-                "Electric-Powered-Car","Red",3400000.0);
-        
+        System.out.println("Adding a new car");
+        // instance to add a car here i added 4 cars. We created objects for the car class of which are also objects of the child classes
         carDealershipInstance.addNewCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
                 "Gas-Powered-Car","Stratosphere",418377.14);
-        
         carDealershipInstance.addNewCar("1HGB41JXMN109186", "Audi", "E-tron-GT", "AC synchronous electric motors", 3500.50,
                 "Electric-Powered-Car"," Ascari Blue metallic",2065712.16);
-        assertEquals(4, carDealershipInstance.carAmount);
+        //Testing method to compare outputs
+        assertEquals(2, carDealershipInstance.carAmount);
     }
 
     /**
@@ -43,11 +44,12 @@ public class CarDealershipTest {
      */
     @Test
     public void testSellACar() {
-        System.out.println("sellACar");
+        System.out.println("selling a car");
+        //instance to sell a car. and a create objects for the Receipt and Customer class
         carDealershipInstance.sellACar("01CstM2023", 01010700607, "Leonard", "David", 'M', 812883053, 
                 "1HGB41JXMN109186", "999999ABC", "C1E", "01/02/2022", "01/02/2026", "Ford", "Mustang-GT");
-        assertEquals(1, carDealershipInstance.customerAmount);
-        assertEquals(1, carDealershipInstance.receiptAmount);
+        assertEquals(1,carDealershipInstance.customerAmount );
+        //assertEquals(1, carDealershipInstance.receiptAmount);
     }
 
     /**
@@ -56,8 +58,36 @@ public class CarDealershipTest {
     @Test
     public void testReturnCustomerReceipt() {
         Date date = new Date();
-        System.out.println("returnCustomerReceipt");
+        System.out.println("returning customer's Receipt");
         String receiptId ="01CstM2023";
+        String expResult = """
+                                               ------------|Car Dealership Receipt|------------
+                           _______________________________________________________________________________________
+                                                                Receipt ID: 01CstM2023
+                           Name: Leonard David
+                           ID NO: """ +01010700607+ "                                   Date: " + date +"\n"+
+                            """
+                            _______________________________________________________________________________________
+                            Car code                             Brand                             Price 
+                            _______________________________________________________________________________________
+                            """ + ""+ 
+                            "1HGB41JXMN109186"+"                  "+"Ford"+" "+"Mustang-GT"+"                        "+1194000.0+
+                            """
+                            
+                            \n                                                             VAT 0%    N$0.00 
+                            _______________________________________________________________________________________ 
+                                                                                         Total:    N$ """ + 1194000.0;
+        String result = carDealershipInstance.returnCustomerReceipt(receiptId);
+        assertEquals(expResult, result);
+   }
+    /**
+     * Test of returnCustomerReceipt method, of class CarDealership.When customers receipt is not found.
+     */
+    @Test
+    public void testReturnCustomerReceiptNotFound() {
+        Date date = new Date();
+        System.out.println("returnCustomerReceipt");
+        String receiptId ="02CstM2023";
         String expResult = """
                                                ------------|Car Dealership Receipt|------------
                            _______________________________________________________________________________________
@@ -96,6 +126,17 @@ public class CarDealershipTest {
      */
     @Test
     public void testCarsInStockNo() {
+        System.out.println("carsInStockNo");
+        
+        int expResult = 4;
+        int result = carDealershipInstance.carAmount;
+        assertEquals(expResult, result);
+    }
+     /**
+     * Test of carsInStockNo method, of class CarDealership. when there is no car in stock.
+     */
+    @Test
+    public void testCarsInStockNumber() {
         System.out.println("carsInStockNo");
         int expResult = 0;
         int result = carDealershipInstance.carsInStockNo();

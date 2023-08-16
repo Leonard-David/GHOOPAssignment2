@@ -45,14 +45,14 @@ public class CarDealership {
                 license = new License(lIdNumber,lCode,lIssueDate,lExpiryDate);
                 car[i].setDateSold(date);
                 customer[customerAmount] = new Customer(customerIdNumber, firstName, lastName, gender, cellphoneNo, license);
-                receipt[receiptAmount] = new Receipt(receiptId,fullName, customerIdNumber, brand, carIdNumber, date, car[i].getCost(), model);
                 customerAmount++;
+                receipt[receiptAmount] = new Receipt(receiptId,fullName, customerIdNumber, brand, carIdNumber, date, car[i].getCost(), model);
                 receiptAmount++;
             }
         } 
     }
     public String returnCustomerReceipt(String receiptId){
-        String toString = "";
+        String toString = "Receipt not found";
         for(int i = 0; i < receiptAmount; i++){
             if(receiptId.equals(receipt[i].getReceiptId())){
                 toString =  """
@@ -81,6 +81,7 @@ public class CarDealership {
         for( int i = 0; i < carAmount - 1; i++){
             if(!(carCode.equals(car[i].getCarCode()))){
                 car[newCarAmount++] = car[i];
+                carAmount--;
             }
         }
         
@@ -90,7 +91,7 @@ public class CarDealership {
         return carAmount;
     }
     public String carWithSpecificColor(String color){
-        String carName = "";
+        String carName = "Car with "+color+" colour not found";
         for( int i = 0; i < carAmount ; i++){
             if(car[i].getColor().equals(color)){
                 carName = car[i].getBrand();
@@ -119,7 +120,7 @@ public class CarDealership {
         return cheapElectricCar;
     }
     public String mostExpensiveCar(){
-        String expensiveCar = "";
+        String expensiveCar = "No expensive car found.";
         double expAmount = 0;
         for ( int i = 0; i < carAmount; i++ ){
             if(car[0].getCost() < car[i].getCost()){
@@ -130,7 +131,7 @@ public class CarDealership {
         return expensiveCar;
     }
     public String cheapestCar(){
-        String cheapCar = "";
+        String cheapCar = "No cheap car found.";
         double cheapestAmount = 0;
         for ( int i = 0; i < carAmount; i++ ){
             if(car[0].getCost() > car[i].getCost()){
@@ -164,7 +165,7 @@ public class CarDealership {
     }
     public double moneyMadeInASpecificYear(int specificYear){
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy");
-        double sum = 0;
+        double sum = 00.0;
         for ( int i = 0; i < carAmount; i++ ){
             if(sdf.format(car[i].getDateSold()).equals(sdf.format(specificYear))){
                 sum = sum + car[i].getCost();
@@ -181,5 +182,4 @@ public class CarDealership {
         }
         return givenCarPrice;
     }
-    
 }
