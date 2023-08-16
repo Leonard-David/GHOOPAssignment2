@@ -46,10 +46,21 @@ public class CarDealershipTest {
     public void testSellACar() {
         System.out.println("selling a car");
         //instance to sell a car. and a create objects for the Receipt and Customer class
-        carDealershipInstance.sellACar("01CstM2023", 01010700607, "Leonard", "David", 'M', 812883053, 
+        carDealershipInstance.sellACar("01CstM2023","01010700607", "Leonard", "David", 'M', "0812883053", 
                 "1HGB41JXMN109186", "999999ABC", "C1E", "01/02/2022", "01/02/2026", "Ford", "Mustang-GT");
         assertEquals(1,carDealershipInstance.customerAmount );
-        //assertEquals(1, carDealershipInstance.receiptAmount);
+        assertEquals(1, carDealershipInstance.receiptAmount);
+    }
+    @Test
+    public void testSellACarTo2people() {
+        System.out.println("selling a car");
+        //instance to sell a car. and a create objects for the Receipt and Customer class
+        carDealershipInstance.sellACar("01CstM2023", "01010700607", "Leonard", "David", 'M', "0812883053", 
+                "1HGB41JXMN109186", "999999ABC", "C1E", "01/02/2022", "01/02/2026", "Ford", "Mustang-GT");
+         carDealershipInstance.sellACar("02CstM2023", "00060500709", "Hellen", "Davidson", 'F', "0812656589", 
+                "1HGB41JXMN109186", "999999ABC", "B", "01/02/2023", "01/02/2027", "Tesla", "Roadstar");
+        assertEquals(2,carDealershipInstance.customerAmount );
+        assertEquals(2, carDealershipInstance.receiptAmount);
     }
 
     /**
