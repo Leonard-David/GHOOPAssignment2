@@ -16,28 +16,36 @@ public class CarDealershipTest {
         date = new Date();
        carDealershipInstance = new CarDealership();
        
-       // instance of Gas Powered Cars
-       carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50
-                ,"Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
-       //Instance of Electric Cars
-        carDealershipInstance.car[2] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50
-                ,"Electric-Powered-Car","Red",3400000.0,date); 
+      
     }
 
     /**
-     * Test of addNewCar method, of class CarDealership.
+     * Test of addNewCar method, of class CarDealership. When Adding Two cars.
      */
     @Test
     public void testAddNewCar() {
-        System.out.println("Adding a new car");
+        System.out.println("Adding a new car"); 
         // instance to add a car here i added 4 cars. We created objects for the car class of which are also objects of the child classes
         carDealershipInstance.addNewCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
-                "Gas-Powered-Car","Stratosphere",418377.14);
+                "GasPoweredCar","Stratosphere",418377.14);
         carDealershipInstance.addNewCar("1HGB41JXMN109186", "Audi", "E-tron-GT", "AC synchronous electric motors", 3500.50,
-                "Electric-Powered-Car"," Ascari Blue metallic",2065712.16);
+                "ElecticPoweredCar"," Ascari Blue metallic",2065712.16);
         //Testing method to compare outputs
         assertEquals(2, carDealershipInstance.carAmount);
     }
+    /**
+     * Test of addNewCar method, of class CarDealership. When adding a non existing or non related vehicle
+     */
+    @Test
+    public void testAddNewCarNonExistingCar() {
+        System.out.println("Adding a new car");
+        // instance to add a car here i added 4 cars. We created objects for the car class of which are also objects of the child classes
+        carDealershipInstance.addNewCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
+                "GasPoweredMotorcycle","Stratosphere",418377.14);
+        //Testing method to compare outputs
+        assertEquals(0, carDealershipInstance.carAmount);
+    }
+
 
     /**
      * Test of sellACar method, of class CarDealership.
@@ -75,13 +83,16 @@ public class CarDealershipTest {
         assertEquals(0,carDealershipInstance.customerAmount );
         assertEquals(0, carDealershipInstance.receiptAmount);
     }
-
+     
     /**
      * Test of returnCustomerReceipt method, of class CarDealership.
      */
     @Test
     public void testReturnCustomerReceipt() {
-        Date date = new Date();
+        Date dte = new Date();
+        //Instance for the receipt class
+        carDealershipInstance.receipt[0] = new Receipt("01CstM2023","Leoanrd M. David", "01010700607",
+                "Ford", "1HGB41JXMN109186",date,1194000.0, "Mustang-GT");
         System.out.println("returning customer's Receipt");
         String receiptId ="01CstM2023";
         String expResult = """
@@ -89,10 +100,10 @@ public class CarDealershipTest {
                            _______________________________________________________________________________________
                                                                 Receipt ID: 01CstM2023
                            Name: Leonard David
-                           ID NO: """ +01010700607+ "                                   Date: " + date +"\n"+
+                           ID NO: """ +01010700607+ "                                   Date: " + dte +"\n"+
                             """
                             _______________________________________________________________________________________
-                            Car code                             Brand                             Price 
+                            Car code                              Brand                              Price 
                             _______________________________________________________________________________________
                             """ + ""+ 
                             "1HGB41JXMN109186"+"                  "+"Ford"+" "+"Mustang-GT"+"                        "+1194000.0+
@@ -109,26 +120,10 @@ public class CarDealershipTest {
      */
     @Test
     public void testReturnCustomerReceiptNotFound() {
-        Date date = new Date();
-        System.out.println("returnCustomerReceipt");
-        String receiptId ="02CstM2023";
-        String expResult = """
-                                               ------------|Car Dealership Receipt|------------
-                           _______________________________________________________________________________________
-                                                                Receipt ID: 01CstM2023
-                           Name: Leonard David
-                           ID NO: """ +01010700607+ "                                   Date: " + date +"\n"+
-                            """
-                            _______________________________________________________________________________________
-                            Car code                             Brand                             Price 
-                            _______________________________________________________________________________________
-                            """ + ""+ 
-                            "1HGB41JXMN109186"+"                  "+"Ford"+" "+"Mustang-GT"+"                        "+1194000.0+
-                            """
-                            
-                            \n                                                             VAT 0%    N$0.00 
-                            _______________________________________________________________________________________ 
-                                                                                         Total:    N$ """ + 1194000.0;
+        Date dte = new Date();
+        System.out.println("returning customer's Receipt. When customers receipt is not found.");
+        String receiptId ="01CstM2023";
+        String expResult = "Receipt not found.";
         String result = carDealershipInstance.returnCustomerReceipt(receiptId);
         assertEquals(expResult, result);
    }
@@ -150,9 +145,16 @@ public class CarDealershipTest {
      */
     @Test
     public void testCarsInStockNo() {
-        System.out.println("carsInStockNo");
-        
-        int expResult = 4;
+        System.out.println("Cars in stock number");
+         // instance of Gas Powered Cars
+       carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
+               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
+       carDealershipInstance.carAmount++;
+       //Instance of Electric Cars
+        carDealershipInstance.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
+                "Electric-Powered-Car","Red",3400000.0,date); 
+        carDealershipInstance.carAmount++;
+        int expResult = 2;
         int result = carDealershipInstance.carAmount;
         assertEquals(expResult, result);
     }
@@ -161,7 +163,7 @@ public class CarDealershipTest {
      */
     @Test
     public void testCarsInStockNumber() {
-        System.out.println("carsInStockNo");
+        System.out.println("Cars in stock number. When there are no cars in stock.");
         int expResult = 0;
         int result = carDealershipInstance.carsInStockNo();
         assertEquals(expResult, result);

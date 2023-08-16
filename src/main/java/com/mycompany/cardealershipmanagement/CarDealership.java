@@ -27,11 +27,14 @@ public class CarDealership {
     public void addNewCar(String carCode, String brand, String model, String engineType, double mileage, 
             String carType, String color, double cost){
         Date date = new Date();
-        if(carType.equals("Gas-Powered-Car")){
+        if(carType.equals("GasPoweredCar")){
             car[carAmount] = new GasPoweredCar(carCode, brand, model, engineType, mileage, carType, color, cost, date);
         }
-        else if(carType.equals("Electic-Powered-Car")){
+        else if(carType.equals("ElecticPoweredCar")){
             car[carAmount] = new ElectricPoweredCar(carCode, brand, model, engineType, mileage, carType, color, cost, date);
+        }
+        else if(!carType.equals("GasPoweredCar") || !carType.equals("ElecticPoweredCar")){
+            carAmount--;
         }
         carAmount++;
     }
@@ -52,10 +55,10 @@ public class CarDealership {
         receiptAmount++;
     }
     public String returnCustomerReceipt(String receiptId){
-        String toString = "Receipt not found";
+        String toString = "Receipt not found.";
         for(int i = 0; i < receiptAmount; i++){
-            if(receiptId.equals(receipt[i].getReceiptId())){
-                toString =  """
+            if(receiptId.equals(receipt[0].getReceiptId())){
+                return  """
                                                 ------------|Car Dealership Receipt|------------
                             _______________________________________________________________________________________
                                                                  Receipt ID: """+receipt[i].getReceiptId()+

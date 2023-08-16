@@ -32,7 +32,7 @@ public class CarDealershipManagement {
            
            switch(x){
                case 1:
-                   System.out.println("Add Car\nEnter car type (Gas-Powered-Car or Electric-Powered-Car)");
+                   System.out.println("Add Car\nEnter car type (GasPoweredCar or ElectricPoweredCar)");
                    String carType = scan.next();
                    System.out.println("Enter code:");
                    String carCode = scan.next();
