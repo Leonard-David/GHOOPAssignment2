@@ -41,26 +41,28 @@ public class CarDealershipTest {
      */
     @Test
     public void testAddNewCar() {
+        CarDealership cds = new CarDealership();
         System.out.println("Adding a new car"); 
         // instance to add a car here i added 4 cars. We created objects for the car class of which are also objects of the child classes
-        carDealershipInstance.addNewCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
+        cds.addNewCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
                 "GasPoweredCar","Stratosphere",418377.14);
-        carDealershipInstance.addNewCar("1HGB41JXMN109186", "Audi", "E-tron-GT", "AC synchronous electric motors", 3500.50,
+        cds.addNewCar("1HGB41JXMN109186", "Audi", "E-tron-GT", "AC synchronous electric motors", 3500.50,
                 "ElecticPoweredCar"," Ascari Blue metallic",2065712.16);
         //Testing method to compare outputs
-        assertEquals(2, carDealershipInstance.carAmount);
+        assertEquals(2, cds.carAmount);
     }
     /**
      * Test of addNewCar method, of class CarDealership. When adding a non existing or non related vehicle
      */
     @Test
     public void testAddNewCarNonExistingCar() {
+        CarDealership cds = new CarDealership();
         System.out.println("Adding a new car");
         // instance to add a car here i added 4 cars. We created objects for the car class of which are also objects of the child classes
-        carDealershipInstance.addNewCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
+        cds.addNewCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
                 "GasPoweredMotorcycle","Stratosphere",418377.14);
         //Testing method to compare outputs
-        assertEquals(0, carDealershipInstance.carAmount);
+        assertEquals(0, cds.carAmount);
     }
 
 
@@ -69,26 +71,29 @@ public class CarDealershipTest {
      */
     @Test
     public void testSellACar() {
+        CarDealership cds = new CarDealership();
         System.out.println("selling a car");
         //instance to sell a car. and a create objects for the Receipt and Customer class
-        carDealershipInstance.sellACar("01CstM2023","01010700607", "Leonard", "David", 'M', "0812883053", 
+        cds.sellACar("01CstM2023","01010700607", "Leonard", "David", 'M', "0812883053", 
                 "1HGB41JXMN109186", "999999ABC", "C1E", "01/02/2022", "01/02/2026", "Ford", "Mustang-GT");
-        assertEquals(1,carDealershipInstance.customerAmount );
-        assertEquals(1, carDealershipInstance.receiptAmount);
+        cds.car[0].setDateSold(date);
+        assertEquals(1,cds.customerAmount );
+        assertEquals(1, cds.receiptAmount);
     }
     /**
      * Test of sellACar method, of class CarDealership. When selling to more than one customer
      */
     @Test
     public void testSellACarTo2people() {
+        CarDealership cds = new CarDealership();
         System.out.println("selling a car");
         //instance to sell a car. and a create objects for the Receipt and Customer class
-        carDealershipInstance.sellACar("01CstM2023", "01010700607", "Leonard", "David", 'M', "0812883053", 
+        cds.sellACar("01CstM2023", "01010700607", "Leonard", "David", 'M', "0812883053", 
                 "1HGB41JXMN109186", "999999ABC", "C1E", "01/02/2022", "01/02/2026", "Ford", "Mustang-GT");
-        carDealershipInstance.sellACar("02CstM2023", "00060500709", "Hellen", "Davidson", 'F', "0812656589", 
+        cds.sellACar("02CstM2023", "00060500709", "Hellen", "Davidson", 'F', "0812656589", 
                 "1HGB41JXMN109186", "999999ABC", "B", "01/02/2023", "01/02/2027", "Tesla", "Roadstar");
-        assertEquals(2,carDealershipInstance.customerAmount );
-        assertEquals(2, carDealershipInstance.receiptAmount);
+        assertEquals(2,cds.customerAmount );
+        assertEquals(2, cds.receiptAmount);
     }
      /**
      * Test of sellACar method, of class CarDealership. When making a sell to an non-existing customer
@@ -115,7 +120,7 @@ public class CarDealershipTest {
                             _______________________________________________________________________________________
                                                                  Receipt ID: """+"01CstM2023"+
                             "\nName: " + carDealershipInstance.receipt[0].getFullName()+
-                            "\nID NO: " + "01010700607" + "                                   Date: " + sdf.format(dte) +"\n"+
+                            "\nID NO: " + "01010700607" + "                                   Date: " + dte +"\n"+
                             """
                             _______________________________________________________________________________________
                             Car code                             Brand                             Price 
@@ -161,7 +166,7 @@ public class CarDealershipTest {
     @Test
     public void testCarsInStockNo() {
         System.out.println("Cars in stock number");
-        int expResult = 3;
+        int expResult = 4;
         int result = carDealershipInstance.carAmount;
         assertEquals(expResult, result);
     }
@@ -278,8 +283,11 @@ public class CarDealershipTest {
     @Test
     public void testCarsSoldInASpecificYearNo() throws ParseException{
         System.out.println("carsSoldInASpecificYearNo");
+        carDealershipInstance.car[0].setDateSold(date);
+        carDealershipInstance.car[1].setDateSold(date);
+        carDealershipInstance.car[2].setDateSold(date);
         int specificYear = 2023;
-        int expResult = 0;
+        int expResult = 4;
         int result = carDealershipInstance.carSoldInASpecificYearNo(specificYear);
         assertEquals(expResult, result);
     }
@@ -291,6 +299,9 @@ public class CarDealershipTest {
     @Test
     public void testMoneyMadeInASpecificYear()throws ParseException {
         System.out.println("Money made in a specific year.");
+        carDealershipInstance.car[0].setDateSold(date);
+        carDealershipInstance.car[1].setDateSold(date);
+        carDealershipInstance.car[2].setDateSold(date);
         int specificYear = 2023;
         double expResult = 0.0;
         double result = carDealershipInstance.moneyMadeInASpecificYear(specificYear);
