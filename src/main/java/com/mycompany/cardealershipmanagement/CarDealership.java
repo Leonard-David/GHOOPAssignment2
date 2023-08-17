@@ -47,13 +47,16 @@ public class CarDealership {
         
         License license;
         Date date = new Date();
-        String fullName = firstName +" "+ lastName;
+        
+        String fName = firstName +" "+ lastName;
+        
         for (int i = 0; i < carAmount; i++){
             if (carIdNumber.equals(car[i].getCarCode())){
                 license = new License(lIdNumber,lCode,lIssueDate,lExpiryDate);
                 car[i].setDateSold(date);
                 customer[customerAmount] = new Customer(customerIdNumber, firstName, lastName, gender, cellphoneNo, license);
-                receipt[receiptAmount] = new Receipt(receiptId,fullName, customerIdNumber, brand, carIdNumber, sdf.format(date), car[i].getCost(), model);
+                receipt[receiptAmount] = new Receipt( receiptId, customerIdNumber, fName, brand, carIdNumber,
+                        sdf.format(date), car[i].getCost(), model);
             }
         } 
         customerAmount++;

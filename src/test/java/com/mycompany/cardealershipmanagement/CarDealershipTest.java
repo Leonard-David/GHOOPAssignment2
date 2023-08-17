@@ -16,9 +16,9 @@ public class CarDealershipTest {
     Car[] car = null;
     public CarDealershipTest() {
         date = new Date();
-       carDealershipInstance = new CarDealership();
-       car = new Car[2];
-       carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
+        carDealershipInstance = new CarDealership();
+        car = new Car[2];
+        carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
                "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
         carDealershipInstance.carAmount++;
         carDealershipInstance.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
@@ -26,12 +26,12 @@ public class CarDealershipTest {
         carDealershipInstance.carAmount++;
         carDealershipInstance.car[2] = new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
                 "ElecticPoweredCar", " Ascari Blue metallic",2065712.16,date);
-         carDealershipInstance.carAmount++;
-         carDealershipInstance.car[3] = new GasPoweredCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
+        carDealershipInstance.carAmount++;
+        carDealershipInstance.car[3] = new GasPoweredCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
                 "GasPoweredCar","Stratosphere",418377.14, date);
-         carDealershipInstance.receipt[0] = new Receipt("01CstM2023","Leoanrd David", "01010700607",
+        carDealershipInstance.receipt[0] = new Receipt("01CstM2023", "01010700607","Leoanrd David",
                 "Ford", "1HGB41JXMN109186",sdf.format(date),1194000.0, "Mustang-GT");
-          carDealershipInstance.receiptAmount++;
+        carDealershipInstance.receiptAmount++;
     }
 
     /**
@@ -112,7 +112,7 @@ public class CarDealershipTest {
                                                 ------------|Car Dealership Receipt|------------
                             _______________________________________________________________________________________
                                                                  Receipt ID: """+"01CstM2023"+
-                            "\nName: " + "Leonard David"+
+                            "\nName: " + carDealershipInstance.receipt[0].getFullName()+
                             "\nID NO: " + "01010700607" + "                                   Date: " + sdf.format(dte) +"\n"+
                             """
                             _______________________________________________________________________________________

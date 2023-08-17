@@ -15,7 +15,7 @@ public class Receipt {
     private String receiptId;
     private String model;
     //declaring a constructor 
-    public Receipt(String receiptId,String fullName,String idNumber, String carBrand, 
+    public Receipt(String receiptId,String idNumber, String fullName, String carBrand, 
             String carCode, String datePurchased, double cost,String model){
         this.fullName = fullName;
         this.carBrand = carBrand;
@@ -57,7 +57,7 @@ public class Receipt {
                                                 ------------|Car Dealership Receipt|------------
                             _______________________________________________________________________________________
                                                                  Receipt ID: """+receiptId+
-                            "\nName: " +fullName+
+                             "\nName: " + fullName+
                             "\nID NO: " + idNumber + "                                   Date: " + datePurchased +"\n"+
                             """
                             _______________________________________________________________________________________

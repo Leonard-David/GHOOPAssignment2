@@ -15,7 +15,7 @@ public class ReceiptTest {
     SimpleDateFormat  sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
     public ReceiptTest() {
         date = new Date();
-        receiptInstance = new Receipt("01CstM2023","Leoanrd M. David", "01010700607",
+        receiptInstance = new Receipt("01CstM2023", "01010700607","Leoanrd David",
                 "Ford", "1HGB41JXMN109186",sdf.format(date),1194000.0, "Mustang-GT");
     }
     
@@ -102,6 +102,45 @@ public class ReceiptTest {
        String expResult = "Mustang-GT";
        String result = receiptInstance.getModel();
        assertEquals(expResult, result);
+   }
+
+    /**
+     * Test of getModel method, of class Receipt.
+     */
+    @Test
+    public void testGetModel() {
+        System.out.println("getModel");
+        String expResult = "Mustang-GT";
+        String result = receiptInstance.getModel();
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of toString method, of class Receipt.
+     */
+    @Test
+    public void testToString() {
+        Date dte = new Date();
+        System.out.println("toString");
+        String expResult =  """
+                                                ------------|Car Dealership Receipt|------------
+                            _______________________________________________________________________________________
+                                                                 Receipt ID: """+"01CstM2023"+
+                            "\nName: " + receiptInstance.getFullName()+
+                            "\nID NO: " + "01010700607" + "                                   Date: " + sdf.format(dte) +"\n"+
+                            """
+                            _______________________________________________________________________________________
+                            Car code                             Brand                             Price 
+                            _______________________________________________________________________________________
+                            """ + ""+ 
+                            "1HGB41JXMN109186"+"                  "+"Ford"+" "+"Mustang-GT"+"                        "+ 1194000.0+
+                            """
+                            
+                            \n                                                             VAT 0%    N$0.00 
+                            _______________________________________________________________________________________ 
+                                                                                         Total:    N$ """ + 1194000.0; 
+        String result = receiptInstance.toString();
+        assertEquals(expResult, result);
    }
     
 }
