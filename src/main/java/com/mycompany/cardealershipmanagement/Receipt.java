@@ -51,4 +51,24 @@ public class Receipt {
     public String getModel(){
         return model;
     }
+    @Override
+    public String toString(){
+        return """
+                                                ------------|Car Dealership Receipt|------------
+                            _______________________________________________________________________________________
+                                                                 Receipt ID: """+receiptId+
+                            "\nName: " +fullName+
+                            "\nID NO: " + idNumber + "                                   Date: " + datePurchased +"\n"+
+                            """
+                            _______________________________________________________________________________________
+                            Car code                             Brand                             Price 
+                            _______________________________________________________________________________________
+                            """ + ""+ 
+                            carCode+"                  "+carBrand+" "+model+"                        "+ Double.toString(cost)+
+                            """
+                            
+                            \n                                                             VAT 0%    N$0.00 
+                            _______________________________________________________________________________________ 
+                                                                                         Total:    N$ """ + Double.toString(cost);
+    }
 }

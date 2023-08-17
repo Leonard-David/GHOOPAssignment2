@@ -63,23 +63,7 @@ public class CarDealership {
         String toString = "Receipt not found.";
         for(int i = 0; i < receiptAmount; i++){
             if(receiptId.equals(receipt[0].getReceiptId())){
-                toString =  """
-                                                ------------|Car Dealership Receipt|------------
-                            _______________________________________________________________________________________
-                                                                 Receipt ID: """+receipt[i].getReceiptId()+
-                            "\nName: " +receipt[i].getFullName()+
-                            "\nID NO: " + receipt[i].getIdNumber() + "                                   Date: " + receipt[i].getDatePurchased() +"\n"+
-                            """
-                            _______________________________________________________________________________________
-                            Car code                             Brand                             Price 
-                            _______________________________________________________________________________________
-                            """ + ""+ 
-                            receipt[i].getCarCode()+"                  "+receipt[i].getCarBrand()+" "+receipt[i].getModel()+"                        "+ receipt[i].getCost()+
-                            """
-                            
-                            \n                                                             VAT 0%    N$0.00 
-                            _______________________________________________________________________________________ 
-                                                                                         Total:    N$ """ + receipt[i].getCost();
+                toString =  receipt[i].toString();
             }
         }
         return toString;
