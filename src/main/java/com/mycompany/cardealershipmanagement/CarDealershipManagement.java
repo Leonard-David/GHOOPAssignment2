@@ -1,5 +1,6 @@
 package com.mycompany.cardealershipmanagement;
 
+import java.text.ParseException;
 import java.util.Scanner;
 /**
  *
@@ -7,7 +8,7 @@ import java.util.Scanner;
  */
 public class CarDealershipManagement {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ParseException {
        CarDealership cds = new CarDealership();
         Scanner scan = new Scanner(System.in);
        while(true){
@@ -118,12 +119,12 @@ public class CarDealershipManagement {
                    break;
                case 12:
                    System.out.println("number of cars sold in a specific year:\nEnter year only:");
-                   String cSISY = scan.next();
-                   System.out.println("The following cars were sold in"+ cSISY+"\n"+cds.carsSoldInASpecificYearNo(cSISY));
+                   int cSISY = scan.nextInt();
+                   System.out.println("The following is the number of cars that were sold in"+ cSISY+"\n"+cds.carSoldInASpecificYearNo(cSISY)+" were sold in "+cSISY);
                    break;
                case 13:
                   System.out.println("Money made in a specific year:\nEnter year only:");
-                   String year = scan.next();
+                   int year = scan.nextInt();
                    System.out.println("Money made in "+ year+" was N$ "+cds.moneyMadeInASpecificYear(year));
                    break;  
                case 14:

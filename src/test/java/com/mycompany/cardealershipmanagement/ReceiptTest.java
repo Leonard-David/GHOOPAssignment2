@@ -1,6 +1,5 @@
 package com.mycompany.cardealershipmanagement;
 
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,11 +11,10 @@ import static org.junit.jupiter.api.Assertions.*;
 public class ReceiptTest {
     Date date = null; 
     Receipt receiptInstance = null;
-    SimpleDateFormat  sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
     public ReceiptTest() {
         date = new Date();
         receiptInstance = new Receipt("01CstM2023", "01010700607","Leoanrd David",
-                "Ford", "1HGB41JXMN109186",sdf.format(date),1194000.0, "Mustang-GT");
+                "Ford", "1HGB41JXMN109186",date,1194000.0, "Mustang-GT");
     }
     
     /**
@@ -25,7 +23,7 @@ public class ReceiptTest {
     @Test
     public void testGetFullName() {
         System.out.println("getFullName");
-        String expResult = "Leoanrd M. David";
+        String expResult = "Leoanrd David";
         String result = receiptInstance.getFullName();
         assertEquals(expResult, result);
      }
@@ -59,8 +57,8 @@ public class ReceiptTest {
     public void testGetDatePurchased() {
         Date dte = new Date();
         System.out.println("getDatePurchased");
-        String expResult = sdf.format(dte);
-        String result = receiptInstance.getDatePurchased();
+        Date expResult = date;
+        Date result = receiptInstance.getDatePurchased();
         assertEquals(expResult, result);
     }
 
@@ -127,7 +125,7 @@ public class ReceiptTest {
                             _______________________________________________________________________________________
                                                                  Receipt ID: """+"01CstM2023"+
                             "\nName: " + receiptInstance.getFullName()+
-                            "\nID NO: " + "01010700607" + "                                   Date: " + sdf.format(dte) +"\n"+
+                            "\nID NO: " + "01010700607" + "                                   Date: " + dte +"\n"+
                             """
                             _______________________________________________________________________________________
                             Car code                             Brand                             Price 

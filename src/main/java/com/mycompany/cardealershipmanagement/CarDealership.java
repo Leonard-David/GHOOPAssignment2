@@ -42,8 +42,6 @@ public class CarDealership {
     }
     public void sellACar(String receiptId, String customerIdNumber, String firstName, String lastName, char gender, String cellphoneNo, 
             String carIdNumber, String lIdNumber, String lCode, String lIssueDate, String lExpiryDate, String brand, String model){
-       
-        SimpleDateFormat  sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
         
         License license;
         Date date = new Date();
@@ -56,7 +54,7 @@ public class CarDealership {
                 car[i].setDateSold(date);
                 customer[customerAmount] = new Customer(customerIdNumber, firstName, lastName, gender, cellphoneNo, license);
                 receipt[receiptAmount] = new Receipt( receiptId, customerIdNumber, fName, brand, carIdNumber,
-                        sdf.format(date), car[i].getCost(), model);
+                        date, car[i].getCost(), model);
             }
         } 
         customerAmount++;
@@ -160,23 +158,27 @@ public class CarDealership {
         compute = compute/count;
         return compute;
    }
-    public int carsSoldInASpecificYearNo(String specificYear){
+    public int carSoldInASpecificYearNo(int specificYear)throws ParseException {
         SimpleDateFormat sdtf = new SimpleDateFormat("y");
-        String givenYear = sdtf.format(specificYear);
+        String givenYear = sdtf.format(sdtf.parse(Integer.toString(specificYear)));
+        String dateSold;
         int count = 0;
         for ( int i = 0; i < carAmount; i++ ){
-            if(givenYear.equals(sdtf.format(car[i].getDateSold()))){
+            dateSold  = sdtf.format(car[i].getDateSold());
+            if(givenYear.equals(dateSold)){
                 count++;
             }
         }
         return count;
     }
-    public double moneyMadeInASpecificYear(String specificYear){
+    public double moneyMadeInASpecificYear(int specificYear)throws ParseException{
         SimpleDateFormat sdtf = new SimpleDateFormat("y");
-        String givenYear = sdtf.format(specificYear);
+        String givenYear = sdtf.format(sdtf.parse(Integer.toString(specificYear)));
+        String dateSold;
         double sum = 00.0;
         for ( int i = 0; i < carAmount; i++ ){
-            if(givenYear.equals(sdtf.format(car[i].getDateSold()))){
+            dateSold  = sdtf.format(car[i].getDateSold());
+            if(givenYear.equals(dateSold)){
                 sum = sum + car[i].getCost();
             }
         }

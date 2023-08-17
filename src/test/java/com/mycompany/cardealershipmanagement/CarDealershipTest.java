@@ -1,5 +1,6 @@
 package com.mycompany.cardealershipmanagement;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.junit.jupiter.api.Test;
@@ -29,8 +30,9 @@ public class CarDealershipTest {
         carDealershipInstance.carAmount++;
         carDealershipInstance.car[3] = new GasPoweredCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
                 "GasPoweredCar","Stratosphere",418377.14, date);
+        carDealershipInstance.carAmount++;
         carDealershipInstance.receipt[0] = new Receipt("01CstM2023", "01010700607","Leoanrd David",
-                "Ford", "1HGB41JXMN109186",sdf.format(date),1194000.0, "Mustang-GT");
+                "Ford", "1HGB41JXMN109186", date,1194000.0, "Mustang-GT");
         carDealershipInstance.receiptAmount++;
     }
 
@@ -271,23 +273,25 @@ public class CarDealershipTest {
 
     /**
      * Test of carsSoldInASpecificYearNo method, of class CarDealership.
+     * @throws java.text.ParseException
      */
     @Test
-    public void testCarsSoldInASpecificYearNo() {
+    public void testCarsSoldInASpecificYearNo() throws ParseException{
         System.out.println("carsSoldInASpecificYearNo");
-        String specificYear = "2023";
+        int specificYear = 2023;
         int expResult = 0;
-        int result = carDealershipInstance.carsSoldInASpecificYearNo(specificYear);
+        int result = carDealershipInstance.carSoldInASpecificYearNo(specificYear);
         assertEquals(expResult, result);
     }
 
     /**
      * Test of moneyMadeInASpecificYear method, of class CarDealership.
+     * @throws java.text.ParseException
      */
     @Test
-    public void testMoneyMadeInASpecificYear() {
-        System.out.println("moneyMadeInASpecificYear");
-        String specificYear = "2023";
+    public void testMoneyMadeInASpecificYear()throws ParseException {
+        System.out.println("Money made in a specific year.");
+        int specificYear = 2023;
         double expResult = 0.0;
         double result = carDealershipInstance.moneyMadeInASpecificYear(specificYear);
         assertEquals(expResult, result, 0);
@@ -298,7 +302,7 @@ public class CarDealershipTest {
      */
     @Test
     public void testPriceOfGivenCar() {
-        System.out.println("priceOfGivenCar");
+        System.out.println("Price of a given car.");
         String brand = "Ford";
         String model = "Mustang-GT";
         double expResult = 1193.7015746063485;
