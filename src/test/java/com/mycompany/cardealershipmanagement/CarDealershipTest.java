@@ -283,9 +283,9 @@ public class CarDealershipTest {
     @Test
     public void testCarsSoldInASpecificYearNo() throws ParseException{
         System.out.println("carsSoldInASpecificYearNo");
-        carDealershipInstance.car[0].setDateSold(date);
-        carDealershipInstance.car[1].setDateSold(date);
-        carDealershipInstance.car[2].setDateSold(date);
+//        carDealershipInstance.car[0].setDateSold(date);
+//        carDealershipInstance.car[1].setDateSold(date);
+//        carDealershipInstance.car[2].setDateSold(date);
         int specificYear = 2023;
         int expResult = 4;
         int result = carDealershipInstance.carSoldInASpecificYearNo(specificYear);
@@ -299,9 +299,12 @@ public class CarDealershipTest {
     @Test
     public void testMoneyMadeInASpecificYear()throws ParseException {
         System.out.println("Money made in a specific year.");
-        carDealershipInstance.car[0].setDateSold(date);
-        carDealershipInstance.car[1].setDateSold(date);
-        carDealershipInstance.car[2].setDateSold(date);
+//        carDealershipInstance.car[0].setDateSold(date);
+//        carDealershipInstance.carAmount++;
+//        carDealershipInstance.car[1].setDateSold(date);
+//         carDealershipInstance.carAmount++;
+//        carDealershipInstance.car[2].setDateSold(date);
+//         carDealershipInstance.carAmount++;
         int specificYear = 2023;
         double expResult = 0.0;
         double result = carDealershipInstance.moneyMadeInASpecificYear(specificYear);
