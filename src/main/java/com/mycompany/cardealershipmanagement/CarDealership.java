@@ -147,16 +147,16 @@ public class CarDealership {
         return cheapCar;
     }
     public double gasPoweredCarCostAverage(){
-        double compute = 00.00;
+        double costAverage = 00.00;
         int count = 0;
         for ( int i = 0; i < carAmount; i++ ){
             if(car[i] instanceof GasPoweredCar){
-                compute = compute + car[i].getCost();
+                costAverage = costAverage + car[i].getCost();
                 count++;
             }
         }
-        compute = compute/count;
-        return compute;
+        costAverage = costAverage/count;
+        return costAverage;
    }
     public int carSoldInASpecificYearNo(int specificYear)throws ParseException {
         SimpleDateFormat sdtf = new SimpleDateFormat("y");

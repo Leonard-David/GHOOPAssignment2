@@ -1,5 +1,6 @@
 package com.mycompany.cardealershipmanagement;
 
+import java.text.NumberFormat;
 import java.text.ParseException;
 import java.util.Scanner;
 /**
@@ -11,6 +12,7 @@ public class CarDealershipManagement {
     public static void main(String[] args) throws ParseException {
        CarDealership cds = new CarDealership();
         Scanner scan = new Scanner(System.in);
+        NumberFormat toCurrency = NumberFormat.getCurrencyInstance();
        while(true){
            System.out.println("""
                               1. Add Car
@@ -115,7 +117,7 @@ public class CarDealershipManagement {
                    System.out.println("The cheapest car is a " + cds.cheapestCar());
                    break;
                case 11:
-                   System.out.println("The cost average of gas-powered cars is " + cds.gasPoweredCarCostAverage());
+                   System.out.println("The cost average of gas-powered cars is " + toCurrency.format( cds.gasPoweredCarCostAverage()));
                    break;
                case 12:
                    System.out.println("number of cars sold in a specific year:\nEnter year only:");
@@ -125,14 +127,14 @@ public class CarDealershipManagement {
                case 13:
                   System.out.println("Money made in a specific year:\nEnter year only:");
                    int year = scan.nextInt();
-                   System.out.println("Money made in "+ year+" was N$ "+cds.moneyMadeInASpecificYear(year));
+                   System.out.println("Money made in "+ year+" was N$ "+toCurrency.format(cds.moneyMadeInASpecificYear(year)));
                    break;  
                case 14:
                    System.out.println("Cars in Stock\nEnter car brand:");
                     String cB = scan.next();
                     System.out.println("Cars in Stock\nEnter car brand:");
                     String cM = scan.next();
-                    System.out.println("The price of a " + cB + " is N$" +cds. priceOfGivenCar(cB, cM));
+                    System.out.println("The price of a " + cB + " is N$" +toCurrency.format(cds.priceOfGivenCar(cB, cM)));
                    break;
                default: System.exit(0);
            }
