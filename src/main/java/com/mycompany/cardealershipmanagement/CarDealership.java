@@ -3,7 +3,6 @@ package com.mycompany.cardealershipmanagement;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Arrays;
 import java.util.Date;
 /**
  *
@@ -69,6 +68,7 @@ public class CarDealership {
         }
         return toString;
     }
+    
     public Car[] removeCar(String carCode){
         Car[] newCarList = new Car[carAmount-1];
         int newCarAmount = 0;
@@ -81,13 +81,6 @@ public class CarDealership {
         }
          carAmount--;
         return newCarList;
-//            if(carCode.equals(car[i].getCarCode()))
-//            {
-//                int index = Arrays.asList(car).indexOf(car[i].getCarCode());
-//                for(int x = index; x < carAmount; x++){
-//                    car[x] = car[x+1];
-//                }
-//            }
     }
     public int carsInStockNo(){
         return carAmount;
@@ -114,16 +107,16 @@ public class CarDealership {
     }
     public String cheapestElectricCar(){
         String cheapElectricCar = "Chepest electric car not found.";
-        ElectricPoweredCar[] epc = new ElectricPoweredCar[2];
         double cheapestAmount = 35000000.00;
         for ( int i = 0; i < carAmount; i++ ){
-            if( cheapestAmount > car[i].getCost() && car[i] instanceof ElectricPoweredCar){
+            if(car[i] instanceof ElectricPoweredCar && cheapestAmount > car[i].getCost()){
                 cheapestAmount = car[i].getCost();
-                cheapElectricCar = epc[i].getBrand()+" "+ epc[i].getModel();
+                cheapElectricCar =  car[i].getBrand()+" "+ car[i].getModel();
             }
         }
         return cheapElectricCar;
     }
+    
     public String mostExpensiveCar(){
         String expensiveCar = "Expensive car not found.";
         double expAmount = 15000.00;

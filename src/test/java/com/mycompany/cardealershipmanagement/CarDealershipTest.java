@@ -69,7 +69,6 @@ public class CarDealershipTest {
      */
     @Test
     public void testSellACar() {
-         Date date = new Date();
         CarDealership cds = new CarDealership();
         System.out.println("selling a car");
         //instance to sell a car. and a create objects for the Receipt and Customer class
@@ -157,7 +156,7 @@ public class CarDealershipTest {
         //assertArrayEquals(expResult, result);
         assertEquals(expResult, carDealershipInstance.carAmount);
     }
-
+    
     /**
      * Test of carsInStockNo method, of class CarDealership.
      */
@@ -227,27 +226,17 @@ public class CarDealershipTest {
         boolean result = carDealershipInstance.isCarInStock(brand, model);
         assertEquals(expResult, result);
    }
-
-    /**
+ /**
      * Test of cheapestElectricCar method, of class CarDealership.
      */
     @Test
     public void testCheapestElectricCar() {
         System.out.println("cheapestElectricCar");
-        Date date = new Date();
-        CarDealership cds = new CarDealership();
-        ElectricPoweredCar[] epc = new ElectricPoweredCar[2];
-        epc[0] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
-                "Electric-Powered-Car","Red",3400000.0,date); 
-        cds.carAmount++;
-        epc[1] = new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
-                "ElecticPoweredCar", " Ascari Blue metallic",2065712.0,date);
-        cds.carAmount++;
-        String expResult ="Audi E-tron-GT" ;
-        String result = cds.cheapestElectricCar();
+        String expResult = "Audi E-tron-GT";
+        String result = carDealershipInstance.cheapestElectricCar();
         assertEquals(expResult, result);
-   }
-
+    }
+    
     /**
      * Test of mostExpensiveCar method, of class CarDealership.
      */
@@ -265,8 +254,19 @@ public class CarDealershipTest {
     @Test
     public void testCheapestCar() {
         System.out.println("cheapestCar");
-        String expResult = "";
+        String expResult = "Toyota Supra-MK4";
         String result = carDealershipInstance.cheapestCar();
+        assertEquals(expResult, result);
+    }
+    /**
+     * Test of cheapestCar method, of class CarDealership When there is no car in stock
+     */
+    @Test
+    public void testCheapestCar2() {
+        System.out.println("cheapestCar");
+        CarDealership cds = new CarDealership();
+        String expResult = "Cheap car not found.";
+        String result = cds.cheapestCar();
         assertEquals(expResult, result);
     }
 
@@ -385,5 +385,4 @@ public class CarDealershipTest {
         String result = toCurrency.format(carDealershipInstance.priceOfGivenCar(brand, model));
         assertEquals(expResult, result);
     }
-    
 }
