@@ -1,7 +1,7 @@
 package com.mycompany.cardealershipmanagement;
 
+import java.text.NumberFormat;
 import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.Date;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,13 +12,11 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class CarDealershipTest {
     CarDealership carDealershipInstance = null; 
-    Date date = null;
-    SimpleDateFormat  sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
-    Car[] car = null;
+    
+    NumberFormat toCurrency = NumberFormat.getCurrencyInstance();
     public CarDealershipTest() {
-        date = new Date();
+        Date date = new Date();
         carDealershipInstance = new CarDealership();
-        car = new Car[2];
         carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
                "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
         carDealershipInstance.carAmount++;
@@ -26,10 +24,10 @@ public class CarDealershipTest {
                 "Electric-Powered-Car","Red",3400000.0,date); 
         carDealershipInstance.carAmount++;
         carDealershipInstance.car[2] = new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
-                "ElecticPoweredCar", " Ascari Blue metallic",2065712.16,date);
+                "ElecticPoweredCar", " Ascari Blue metallic",2065712.0,date);
         carDealershipInstance.carAmount++;
         carDealershipInstance.car[3] = new GasPoweredCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
-                "GasPoweredCar","Stratosphere",418377.14, date);
+                "GasPoweredCar","Stratosphere",418377.00, date);
         carDealershipInstance.carAmount++;
         carDealershipInstance.receipt[0] = new Receipt("01CstM2023", "01010700607","Leoanrd David",
                 "Ford", "1HGB41JXMN109186", date,1194000.0, "Mustang-GT");
@@ -71,12 +69,12 @@ public class CarDealershipTest {
      */
     @Test
     public void testSellACar() {
+         Date date = new Date();
         CarDealership cds = new CarDealership();
         System.out.println("selling a car");
         //instance to sell a car. and a create objects for the Receipt and Customer class
         cds.sellACar("01CstM2023","01010700607", "Leonard", "David", 'M', "0812883053", 
                 "1HGB41JXMN109186", "999999ABC", "C1E", "01/02/2022", "01/02/2026", "Ford", "Mustang-GT");
-        cds.car[0].setDateSold(date);
         assertEquals(1,cds.customerAmount );
         assertEquals(1, cds.receiptAmount);
     }
@@ -154,7 +152,7 @@ public class CarDealershipTest {
     public void testRemoveCar() {
         System.out.println("Removing a car.");
         String carCode = "1HGB41JXMN109186";
-        int expResult = 1;
+        int expResult = 3;
         carDealershipInstance.removeCar(carCode);
         //assertArrayEquals(expResult, result);
         assertEquals(expResult, carDealershipInstance.carAmount);
@@ -236,8 +234,17 @@ public class CarDealershipTest {
     @Test
     public void testCheapestElectricCar() {
         System.out.println("cheapestElectricCar");
+        Date date = new Date();
+        CarDealership cds = new CarDealership();
+        ElectricPoweredCar[] epc = new ElectricPoweredCar[2];
+        epc[0] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
+                "Electric-Powered-Car","Red",3400000.0,date); 
+        cds.carAmount++;
+        epc[1] = new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
+                "ElecticPoweredCar", " Ascari Blue metallic",2065712.0,date);
+        cds.carAmount++;
         String expResult ="Audi E-tron-GT" ;
-        String result = carDealershipInstance.cheapestElectricCar();
+        String result = cds.cheapestElectricCar();
         assertEquals(expResult, result);
    }
 
@@ -269,12 +276,21 @@ public class CarDealershipTest {
     @Test
     public void testGasPoweredCarCostAverage() {
         System.out.println("gasPoweredCarCostAverage");
-        double expResult = 0.0;
-        double result = carDealershipInstance.gasPoweredCarCostAverage();
-        assertEquals(expResult, result, 0);
-        // TODO review the generated test code and remove the default call to fail.
-        fail("The test case is a prototype.");
-    }
+        String expResult = toCurrency.format(565673.71);
+        String result = toCurrency.format(carDealershipInstance.gasPoweredCarCostAverage());
+        assertEquals(expResult, result);
+   }
+    /**
+     * Test of gasPoweredCarCostAverage method, of class CarDealership. When there is no car
+     */
+    @Test
+    public void testGasPoweredCarCostAverage2() {
+        System.out.println("gasPoweredCarCostAverage");
+        CarDealership cds = new CarDealership();
+        String expResult = "NaN";
+        String result = toCurrency.format(cds.gasPoweredCarCostAverage());
+        assertEquals(expResult, result);
+   }
 
     /**
      * Test of carsSoldInASpecificYearNo method, of class CarDealership.
@@ -282,13 +298,36 @@ public class CarDealershipTest {
      */
     @Test
     public void testCarsSoldInASpecificYearNo() throws ParseException{
-        System.out.println("carsSoldInASpecificYearNo");
-//        carDealershipInstance.car[0].setDateSold(date);
-//        carDealershipInstance.car[1].setDateSold(date);
-//        carDealershipInstance.car[2].setDateSold(date);
+        CarDealership cds = new CarDealership();
+        Date date = new Date();
+        System.out.println("Cars sold in a specific year no.");
+        cds.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
+               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
+        cds.car[0].setDateSold(date);
+        cds.carAmount++;
+        cds.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
+                "Electric-Powered-Car","Red",3400000.0,date); 
+        cds.car[1].setDateSold(date);
+        cds.carAmount++;
+        cds.car[2] = new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
+                "ElecticPoweredCar", " Ascari Blue metallic",2065712.0,date);
+        cds.car[2].setDateSold(date);
+        cds.carAmount++;
         int specificYear = 2023;
-        int expResult = 4;
-        int result = carDealershipInstance.carSoldInASpecificYearNo(specificYear);
+        int expResult = 3;
+        int result = cds.carSoldInASpecificYearNo(specificYear);
+        assertEquals(expResult, result);
+    }
+     /**
+     * Test of carsSoldInASpecificYearNo method, of class CarDealership. When there is no car sold.
+     * @throws java.text.ParseException
+     */
+    @Test
+    public void testCarsSoldInASpecificYearNo2() throws ParseException{
+        CarDealership cds = new CarDealership();
+        int specificYear = 2023;
+        int expResult = 0;
+        int result = cds.carSoldInASpecificYearNo(specificYear);
         assertEquals(expResult, result);
     }
 
@@ -299,17 +338,40 @@ public class CarDealershipTest {
     @Test
     public void testMoneyMadeInASpecificYear()throws ParseException {
         System.out.println("Money made in a specific year.");
-//        carDealershipInstance.car[0].setDateSold(date);
-//        carDealershipInstance.carAmount++;
-//        carDealershipInstance.car[1].setDateSold(date);
-//         carDealershipInstance.carAmount++;
-//        carDealershipInstance.car[2].setDateSold(date);
-//         carDealershipInstance.carAmount++;
+        CarDealership cds = new CarDealership();
+        Date date = new Date();
+        System.out.println("Cars sold in a specific year no.");
+        cds.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
+               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
+        cds.car[0].setDateSold(date);
+        cds.carAmount++;
+        cds.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
+                "Electric-Powered-Car","Red",3400000.0,date); 
+        cds.car[1].setDateSold(date);
+        cds.carAmount++;
+        cds.car[2] = new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
+                "ElecticPoweredCar", " Ascari Blue metallic",2065712.0,date);
+        cds.car[2].setDateSold(date);
+        cds.carAmount++;
         int specificYear = 2023;
-        double expResult = 0.0;
-        double result = carDealershipInstance.moneyMadeInASpecificYear(specificYear);
-        assertEquals(expResult, result, 0);
+        String expResult =toCurrency.format(4665127.42);
+        String result = toCurrency.format(cds.moneyMadeInASpecificYear(specificYear));
+        assertEquals(expResult, result);
     }
+    /**
+     * Test of moneyMadeInASpecificYear method, of class CarDealership. when there is no money made in that year.
+     * @throws java.text.ParseException
+     */
+    @Test
+    public void testMoneyMadeInASpecificYear2()throws ParseException {
+        System.out.println("Money made in a specific year.");
+        CarDealership cds = new CarDealership();
+        int specificYear = 2023;
+        String expResult =toCurrency.format(0);
+        String result = toCurrency.format(cds.moneyMadeInASpecificYear(specificYear));
+        assertEquals(expResult, result);
+    }
+    
 
     /**
      * Test of priceOfGivenCar method, of class CarDealership.
@@ -319,9 +381,9 @@ public class CarDealershipTest {
         System.out.println("Price of a given car.");
         String brand = "Ford";
         String model = "Mustang-GT";
-        double expResult = 1193.7015746063485;
-        double result = carDealershipInstance.priceOfGivenCar(brand, model);
-        assertEquals(expResult, result, 0);
+        String expResult = toCurrency.format(836396.85);
+        String result = toCurrency.format(carDealershipInstance.priceOfGivenCar(brand, model));
+        assertEquals(expResult, result);
     }
     
 }

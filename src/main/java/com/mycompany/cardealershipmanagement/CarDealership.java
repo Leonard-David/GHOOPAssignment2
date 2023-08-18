@@ -69,25 +69,25 @@ public class CarDealership {
         }
         return toString;
     }
-    public /*Car[]*/ void removeCar(String carCode){
-//        Car[] newCarList = new Car[carAmount-1];
-//        int newCarAmount = 0;
+    public Car[] removeCar(String carCode){
+        Car[] newCarList = new Car[carAmount-1];
+        int newCarAmount = 0;
         for( int i = 0; i < carAmount; i++){
-            if(carCode.equals(car[i].getCarCode()))
-            {
-                int index = Arrays.asList(car).indexOf(car[i].getCarCode());
-                for(int x = index; x < carAmount; x++){
-                    car[x] = car[x+1];
-                }
-            }
             
-//            if(!(carCode.equals(car[i].getCarCode()))){
-//                newCarList[newCarAmount] = car[i];
-//                newCarAmount++;
-//            }
+            if(!(carCode.equals(car[i].getCarCode()))){
+                newCarList[newCarAmount] = car[i];
+                newCarAmount++;
+            }
         }
          carAmount--;
-//        return newCarList;
+        return newCarList;
+//            if(carCode.equals(car[i].getCarCode()))
+//            {
+//                int index = Arrays.asList(car).indexOf(car[i].getCarCode());
+//                for(int x = index; x < carAmount; x++){
+//                    car[x] = car[x+1];
+//                }
+//            }
     }
     public int carsInStockNo(){
         return carAmount;
