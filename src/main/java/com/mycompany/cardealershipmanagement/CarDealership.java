@@ -70,7 +70,7 @@ public class CarDealership {
     }
     
     public void removeCar(String carCode){
-        int index = indexOf(car, carCode);
+        int index = indexOf(carCode);
         for( int i = index; i < carAmount; i++){
             car[i] = car[i + 1];
         }
@@ -180,13 +180,11 @@ public class CarDealership {
         }
         return givenCarPrice;
     }
-     public int indexOf(Car[] c, String value){
+     public int indexOf(String value){
        int index = 0;
        for(int i = 0; i < carAmount; i++){
-           if (value.equals(c[i].getCarCode())){
+           if (value.equals(car[i].getCarCode())){
                index = i;
-           } else {
-               return -1;
            }
        }
        return index;

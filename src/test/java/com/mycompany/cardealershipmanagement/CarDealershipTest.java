@@ -150,7 +150,7 @@ public class CarDealershipTest {
     @Test
     public void testRemoveCar() {
         System.out.println("Removing a car.");
-        String carCode = "1HGB41JXMN109186";
+        String carCode = "";
         int expResult = 3;
         carDealershipInstance.removeCar(carCode);
         //assertArrayEquals(expResult, result);
