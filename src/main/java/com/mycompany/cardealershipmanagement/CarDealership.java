@@ -69,18 +69,12 @@ public class CarDealership {
         return toString;
     }
     
-    public Car[] removeCar(String carCode){
-        Car[] newCarList = new Car[carAmount-1];
-        int newCarAmount = 0;
-        for( int i = 0; i < carAmount; i++){
-            
-            if(!(carCode.equals(car[i].getCarCode()))){
-                newCarList[newCarAmount] = car[i];
-                newCarAmount++;
-            }
+    public void removeCar(String carCode){
+        int index = indexOf(car, carCode);
+        for( int i = index; i < carAmount; i++){
+            car[i] = car[i + 1];
         }
          carAmount--;
-        return newCarList;
     }
     public int carsInStockNo(){
         return carAmount;
@@ -186,4 +180,15 @@ public class CarDealership {
         }
         return givenCarPrice;
     }
+     public int indexOf(Car[] c, String value){
+       int index = 0;
+       for(int i = 0; i < carAmount; i++){
+           if (value.equals(c[i].getCarCode())){
+               index = i;
+           } else {
+               return -1;
+           }
+       }
+       return index;
+   }
 }
