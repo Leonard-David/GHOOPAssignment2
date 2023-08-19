@@ -6,6 +6,7 @@ import java.util.Date;
  */
 public abstract class Car {
     //creating private fields
+    private String carType;
     private String carCode;
     private String brand;
     private String model;
@@ -15,9 +16,9 @@ public abstract class Car {
     private double cost;
     private Date dateBroughtIn;
     private Date dateSold;
-    private String carType;
+    
     // a parameterized constructor 
-    public Car(String carCode, String brand, String model, String engineType, double mileage,String carType, String color, double cost, Date dateBroughtIn){
+    public Car(String carCode, String brand, String model, String engineType, double mileage, String carType, String color, double cost, Date dateBroughtIn){
         this.carCode = carCode;
         this.brand = brand;
         this.model = model;

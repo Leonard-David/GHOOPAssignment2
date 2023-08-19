@@ -6,14 +6,16 @@ import java.util.Date;
  */
 public class Receipt {
     //creating private fields
-    private String fullName;
+    private String receiptId;
     private String idNumber;
+    private String fullName;
     private String carBrand;
+    private String model;
     private String carCode;
     private Date datePurchased;
     private double cost;
-    private String receiptId;
-    private String model;
+    
+    
     //declaring a constructor 
     public Receipt(String receiptId,String idNumber, String fullName, String carBrand, 
             String carCode, Date datePurchased, double cost,String model){

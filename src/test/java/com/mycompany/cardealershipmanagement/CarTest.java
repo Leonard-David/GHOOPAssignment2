@@ -14,8 +14,8 @@ public class CarTest {
     Car carInstance = null;
     public CarTest() {
         date = new Date();
-        carInstance = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50
-                ,"Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
+        carInstance = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
+                "Petrol","Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
     }
     
     /**
@@ -140,5 +140,4 @@ public class CarTest {
         Date result = carInstance.setDateSold(dateSold);
         assertEquals(expResult, result);
    }
-    
 }

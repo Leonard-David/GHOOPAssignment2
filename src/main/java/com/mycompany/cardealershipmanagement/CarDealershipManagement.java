@@ -47,11 +47,16 @@ public class CarDealershipManagement {
                    String engineType = scan.next();
                    System.out.println("Enter mileage:");
                    double mileage = scan.nextDouble();
+                   String fuelType = "";
+                   if(carType == "GasPoweredCar"){
+                       System.out.println("Enter fuel type:");
+                       fuelType = scan.next();
+                   }
                    System.out.println("Enter color:");
                    String color = scan.next();
                    System.out.println("Ener cost:");
                    double cost = scan.nextDouble();
-                   cds.addNewCar(carCode, brand, model, engineType, mileage, carType, color, cost);
+                   cds.addNewCar(carCode, brand, model, engineType, mileage,fuelType,carType, color, cost);
                    break;
                case 2:
                    System.out.println("Sell Car\n\nEnter customer ID number:");

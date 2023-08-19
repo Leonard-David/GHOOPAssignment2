@@ -25,11 +25,11 @@ public class CarDealership {
         customerAmount = 0;
         receiptAmount = 0;
     }
-    public void addNewCar(String carCode, String brand, String model, String engineType, double mileage, 
+    public void addNewCar(String carCode, String brand, String model, String engineType, double mileage, String fuelType,
             String carType, String color, double cost){
         Date date = new Date();
         if(carType.equals("GasPoweredCar")){
-            car[carAmount] = new GasPoweredCar(carCode, brand, model, engineType, mileage, carType, color, cost, date);
+            car[carAmount] = new GasPoweredCar(carCode, brand, model, engineType, mileage,fuelType, carType, color, cost, date);
         }
         else if(carType.equals("ElecticPoweredCar")){
             car[carAmount] = new ElectricPoweredCar(carCode, brand, model, engineType, mileage, carType, color, cost, date);

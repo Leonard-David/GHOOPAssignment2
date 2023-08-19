@@ -17,7 +17,7 @@ public class CarDealershipTest {
     public CarDealershipTest() {
         Date date = new Date();
         carDealershipInstance = new CarDealership();
-        carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
+        carDealershipInstance.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,"Petrol",
                "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
         carDealershipInstance.carAmount++;
         carDealershipInstance.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
@@ -27,7 +27,7 @@ public class CarDealershipTest {
                 "ElecticPoweredCar", " Ascari Blue metallic",2065712.0,date);
         carDealershipInstance.carAmount++;
         carDealershipInstance.car[3] = new GasPoweredCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
-                "GasPoweredCar","Stratosphere",418377.00, date);
+                "Petrol", "GasPoweredCar","Stratosphere",418377.00, date);
         carDealershipInstance.carAmount++;
         carDealershipInstance.receipt[0] = new Receipt("01CstM2023", "01010700607","Leoanrd David",
                 "Ford", "1HGB41JXMN109186", date,1194000.0, "Mustang-GT");
@@ -43,9 +43,9 @@ public class CarDealershipTest {
         System.out.println("Adding a new car"); 
         // instance to add a car here i added 4 cars. We created objects for the car class of which are also objects of the child classes
         cds.addNewCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
-                "GasPoweredCar","Stratosphere",418377.14);
+                "Petrol", "GasPoweredCar","Stratosphere",418377.14);
         cds.addNewCar("1HGB41JXMN109186", "Audi", "E-tron-GT", "AC synchronous electric motors", 3500.50,
-                "ElecticPoweredCar"," Ascari Blue metallic",2065712.16);
+                "Petrol","ElecticPoweredCar"," Ascari Blue metallic",2065712.16);
         //Testing method to compare outputs
         assertEquals(2, cds.carAmount);
     }
@@ -58,7 +58,7 @@ public class CarDealershipTest {
         System.out.println("Adding a new car");
         // instance to add a car here i added 4 cars. We created objects for the car class of which are also objects of the child classes
         cds.addNewCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
-                "GasPoweredMotorcycle","Stratosphere",418377.14);
+                "Petrol","GasPoweredMotorcycle","Stratosphere",418377.14);
         //Testing method to compare outputs
         assertEquals(0, cds.carAmount);
     }
@@ -276,7 +276,7 @@ public class CarDealershipTest {
     @Test
     public void testGasPoweredCarCostAverage() {
         System.out.println("gasPoweredCarCostAverage");
-        String expResult = toCurrency.format(565673.71);
+        String expResult = toCurrency.format(803987.50);
         String result = toCurrency.format(carDealershipInstance.gasPoweredCarCostAverage());
         assertEquals(expResult, result);
    }
@@ -301,7 +301,7 @@ public class CarDealershipTest {
         CarDealership cds = new CarDealership();
         Date date = new Date();
         System.out.println("Cars sold in a specific year no.");
-        cds.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
+        cds.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,"Petrol",
                "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
         cds.car[0].setDateSold(date);
         cds.carAmount++;
@@ -341,7 +341,7 @@ public class CarDealershipTest {
         CarDealership cds = new CarDealership();
         Date date = new Date();
         System.out.println("Cars sold in a specific year no.");
-        cds.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
+        cds.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,"Petrol",
                "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
         cds.car[0].setDateSold(date);
         cds.carAmount++;
@@ -354,7 +354,7 @@ public class CarDealershipTest {
         cds.car[2].setDateSold(date);
         cds.carAmount++;
         int specificYear = 2023;
-        String expResult =toCurrency.format(4665127.42);
+        String expResult =toCurrency.format(6639707.00);
         String result = toCurrency.format(cds.moneyMadeInASpecificYear(specificYear));
         assertEquals(expResult, result);
     }
@@ -362,17 +362,29 @@ public class CarDealershipTest {
      * Test of moneyMadeInASpecificYear method, of class CarDealership. when there is no money made in that year.
      * @throws java.text.ParseException
      */
-    @Test
-    public void testMoneyMadeInASpecificYear2()throws ParseException {
+     public void testMoneyMadeInASpecificYear2()throws ParseException {
         System.out.println("Money made in a specific year.");
         CarDealership cds = new CarDealership();
-        int specificYear = 2023;
-        String expResult =toCurrency.format(0);
+        Date date = new Date();
+        System.out.println("Cars sold in a specific year no.");
+        cds.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,"Petrol",
+               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
+        cds.car[0].setDateSold(date);
+        cds.carAmount++;
+        cds.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
+                "Electric-Powered-Car","Red",3400000.0,date); 
+        cds.car[1].setDateSold(date);
+        cds.carAmount++;
+        cds.car[2] = new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
+                "ElecticPoweredCar", " Ascari Blue metallic",2065712.0,date);
+        cds.car[2].setDateSold(date);
+        cds.carAmount++;
+        int specificYear = 2022;
+        String expResult =toCurrency.format(6643708.00);
         String result = toCurrency.format(cds.moneyMadeInASpecificYear(specificYear));
         assertEquals(expResult, result);
     }
-    
-
+     
     /**
      * Test of priceOfGivenCar method, of class CarDealership.
      */
@@ -381,7 +393,7 @@ public class CarDealershipTest {
         System.out.println("Price of a given car.");
         String brand = "Ford";
         String model = "Mustang-GT";
-        String expResult = toCurrency.format(836396.85);
+        String expResult = toCurrency.format(1189999.00);
         String result = toCurrency.format(carDealershipInstance.priceOfGivenCar(brand, model));
         assertEquals(expResult, result);
     }

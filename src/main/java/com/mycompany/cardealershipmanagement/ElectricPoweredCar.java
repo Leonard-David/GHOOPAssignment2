@@ -18,7 +18,7 @@ public class ElectricPoweredCar extends Car {
      //overriding an inheritted method
     @Override
     public double getCost(){
-        this.cost = (cost/mileage)+(cost*0.7);
+        this.cost = cost-(mileage*4);
         return cost;
     }
 }

@@ -1,6 +1,6 @@
 package com.mycompany.cardealershipmanagement;
 
-import java.text.SimpleDateFormat;
+import java.text.NumberFormat;
 import java.util.Date;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class ElectricPoweredCarTest {
     Date  date = new Date();
-    SimpleDateFormat  sdf = new SimpleDateFormat("dd/MM/yyyy hh:mm");
+    NumberFormat toCurrency = NumberFormat.getCurrencyInstance();
     ElectricPoweredCar electricPoweredCarInstance = null;
     public ElectricPoweredCarTest() {
         electricPoweredCarInstance = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50
@@ -25,8 +25,8 @@ public class ElectricPoweredCarTest {
     public void testGetCost() {
         System.out.println("getCost");
         
-        double expResult = 6798.300424893777;
-        double result = electricPoweredCarInstance.getCost();
-        assertEquals(expResult, result, 0);
+        String expResult = toCurrency.format(3391998.00);
+        String result = toCurrency.format(electricPoweredCarInstance.getCost());
+        assertEquals(expResult, result);
     }
 }
