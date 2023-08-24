@@ -103,7 +103,7 @@ public class CarDealership {
         String cheapElectricCar = "Chepest electric car not found.";
         double cheapestAmount = 35000000.00;
         for ( int i = 0; i < carAmount; i++ ){
-            if(car[i] instanceof ElectricPoweredCar && cheapestAmount > car[i].getCost()){
+            if(car[i] instanceof ElectricPoweredCar && ((ElectricPoweredCar)car[i]).getCost() < cheapestAmount){
                 cheapestAmount = car[i].getCost();
                 cheapElectricCar =  car[i].getBrand()+" "+ car[i].getModel();
             }
