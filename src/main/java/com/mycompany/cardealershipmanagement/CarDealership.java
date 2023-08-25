@@ -76,6 +76,15 @@ public class CarDealership {
         }
          carAmount--;
     }
+     public int indexOf(String value){
+       int index = 0;
+       for(int i = 0; i < carAmount; i++){
+           if (value.equals(car[i].getCarCode())){
+               index = i;
+           }
+       }
+       return index;
+   }    ```
     public int carsInStockNo(){
         return carAmount;
     }
@@ -180,13 +189,4 @@ public class CarDealership {
         }
         return givenCarPrice;
     }
-     public int indexOf(String value){
-       int index = 0;
-       for(int i = 0; i < carAmount; i++){
-           if (value.equals(car[i].getCarCode())){
-               index = i;
-           }
-       }
-       return index;
-   }
 }
