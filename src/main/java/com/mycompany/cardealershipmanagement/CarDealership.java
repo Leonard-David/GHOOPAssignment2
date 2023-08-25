@@ -84,7 +84,7 @@ public class CarDealership {
            }
        }
        return index;
-   }    ```
+   } 
     public int carsInStockNo(){
         return carAmount;
     }
