@@ -156,6 +156,19 @@ public class CarDealershipTest {
         //assertArrayEquals(expResult, result);
         assertEquals(expResult, carDealershipInstance.carAmount);
     }
+    /**
+     * Test of removeCar method, of class CarDealership.
+     */
+    @Test
+    public void testRemoveCar2() {
+        System.out.println("Removing a car. When there there is no car.");
+        CarDealership cdsInstance = new CarDealership();
+        String carCode = "5YJSA1CN8D";
+        int expResult = 0;
+        cdsInstance.removeCar(carCode);
+        //assertArrayEquals(expResult, result);
+        assertEquals(expResult, cdsInstance.carAmount+1);
+    }
      /**
      * Test of indexOf method, of class CarDealership.
      */
@@ -164,6 +177,17 @@ public class CarDealershipTest {
         String value = "5YJSA1CN8D";
         int expResult = 1;
         int result = carDealershipInstance.indexOf(value);
+        assertEquals(expResult, result);
+    }
+     /**
+     * Test of indexOf method, of class CarDealership when there is no value in the array
+     */
+    @Test
+    public void testIndexOf2(){
+        CarDealership cdsInstance = new CarDealership();
+        String value = "5YJSA1CN8D";
+        int expResult = 0;
+        int result = cdsInstance.indexOf(value);
         assertEquals(expResult, result);
     }
     

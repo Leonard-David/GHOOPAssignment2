@@ -86,6 +86,7 @@ public class CarDealershipManagement {
                    System.out.println("Enter receipt ID No:");
                    String rcptId = scan.next();
                    cds.sellACar( rcptId,customerIdNumber, firstName, lastName, gender, cellphoneNo, carIdNumber, lIdNumber, lCode, lIssueDate, lExpiryDate,brnd,modl);
+                   System.out.println(cds.returnCustomerReceipt(rcptId));
                    break;
                case 3:
                    System.out.println("Retrieving receipt\nEnter Customers Enter:");
@@ -113,13 +114,13 @@ public class CarDealershipManagement {
                    System.out.println( cds.isCarInStock( cBrand, cModel));
                    break;
                case 8:
-                   System.out.println("The cheapest electric-powered car is a " + cds.cheapestElectricCar());
+                   System.out.println("The cheapest electric-powered car is a " + cds.cheapestElectricCar().getBrand() +" "+cds.cheapestElectricCar().getModel());
                    break;
                case 9:
-                   System.out.println("The most expensive car is a " +cds.mostExpensiveCar());
+                   System.out.println("The most expensive car is a " +cds.mostExpensiveCar().getBrand() +" "+cds.mostExpensiveCar().getModel());
                    break;
                case 10:
-                   System.out.println("The cheapest car is a " + cds.cheapestCar());
+                   System.out.println("The cheapest car is a " + cds.cheapestCar().getBrand() +" "+cds.cheapestCar().getModel());
                    break;
                case 11:
                    System.out.println("The cost average of gas-powered cars is " + toCurrency.format( cds.gasPoweredCarCostAverage()));
@@ -127,7 +128,7 @@ public class CarDealershipManagement {
                case 12:
                    System.out.println("number of cars sold in a specific year:\nEnter year only:");
                    int cSISY = scan.nextInt();
-                   System.out.println("The following is the number of cars that were sold in"+ cSISY+"\n"+cds.carSoldInASpecificYearNo(cSISY)+" were sold in "+cSISY);
+                   System.out.println("The following is the number of cars that were sold in "+ cSISY+"\n"+cds.carSoldInASpecificYearNo(cSISY)+" were sold in "+cSISY);
                    break;
                case 13:
                   System.out.println("Money made in a specific year:\nEnter year only:");
