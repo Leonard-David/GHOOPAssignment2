@@ -150,11 +150,21 @@ public class CarDealershipTest {
     @Test
     public void testRemoveCar() {
         System.out.println("Removing a car.");
-        String carCode = "";
+        String carCode = "5YJSA1CN8D";
         int expResult = 3;
         carDealershipInstance.removeCar(carCode);
         //assertArrayEquals(expResult, result);
         assertEquals(expResult, carDealershipInstance.carAmount);
+    }
+     /**
+     * Test of indexOf method, of class CarDealership.
+     */
+    @Test
+    public void testIndexOf(){
+        String value = "5YJSA1CN8D";
+        int expResult = 1;
+        int result = carDealershipInstance.indexOf(value);
+        assertEquals(expResult, result);
     }
     
     /**
@@ -247,7 +257,19 @@ public class CarDealershipTest {
         String result = carDealershipInstance.mostExpensiveCar().getBrand()+" "+carDealershipInstance.mostExpensiveCar().getModel();
         assertEquals(expResult, result);
     }
-
+    
+     /**
+     * Test of mostExpensiveCar method, of class CarDealership. When there is no car in stock
+     */
+    @Test
+    public void testMostExpensiveCar2() {
+        System.out.println("cheapestCar");
+        CarDealership cds = new CarDealership();
+        Car expResult = null;
+        Car result = cds.mostExpensiveCar();
+        assertEquals(expResult, result);
+    }
+    
     /**
      * Test of cheapestCar method, of class CarDealership.
      */
@@ -255,7 +277,7 @@ public class CarDealershipTest {
     public void testCheapestCar() {
         System.out.println("Cheapest Car");
         String expResult = "Toyota Supra-MK4";
-        String result = carDealershipInstance.mostExpensiveCar().getBrand()+" "+carDealershipInstance.mostExpensiveCar().getModel();
+        String result = carDealershipInstance.cheapestCar().getBrand()+" "+carDealershipInstance.cheapestCar().getModel();
         assertEquals(expResult, result);
     }
     /**
@@ -265,8 +287,8 @@ public class CarDealershipTest {
     public void testCheapestCar2() {
         System.out.println("cheapestCar");
         CarDealership cds = new CarDealership();
-        String expResult = "Cheap car not found.";
-        String result = cds.mostExpensiveCar().getBrand()+" "+cds.mostExpensiveCar().getModel();
+        Car expResult = null;
+        Car result = cds.cheapestCar();
         assertEquals(expResult, result);
     }
 
