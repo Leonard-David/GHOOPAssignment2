@@ -127,14 +127,14 @@ public class CarDealership {
         for ( int i = 0; i < carAmount; i++ ){
             if(expAmount < car[i].getCost()){
                expAmount = car[i].getCost();
-                expensiveCar = car[i];
+               expensiveCar = car[i];
             }
         }
         return expensiveCar;
     }
     public Car cheapestCar(){
         Car cheapCar = null;
-        double cheapestAmount = 30000000.00;
+        double cheapestAmount = 40000000.00;
         for ( int i = 0; i < carAmount; i++ ){
             if(cheapestAmount > car[i].getCost()){
                 cheapestAmount = car[i].getCost();
