@@ -59,11 +59,11 @@ public class CarDealership {
         customerAmount++;
         receiptAmount++;
     }
-    public String returnCustomerReceipt(String receiptId){
-        String toString = "Receipt not found.";
+    public Receipt returnCustomerReceipt(String receiptId){
+        Receipt toString = null;
         for(int i = 0; i < receiptAmount; i++){
             if(receiptId.equals(receipt[i].getReceiptId())){
-                toString =  receipt[i].toString();
+                toString =  receipt[i];
             }
         }
         return toString;

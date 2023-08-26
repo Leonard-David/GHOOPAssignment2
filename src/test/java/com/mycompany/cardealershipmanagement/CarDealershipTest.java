@@ -129,7 +129,7 @@ public class CarDealershipTest {
                             \n                                                             VAT 0%    N$0.00 
                             _______________________________________________________________________________________ 
                                                                                          Total:    N$ """ + 1194000.0;
-        String result = carDealershipInstance.returnCustomerReceipt(receiptId);
+        String result = carDealershipInstance.returnCustomerReceipt(receiptId).toString();
         assertEquals(expResult, result);
    }
     /**
@@ -139,8 +139,8 @@ public class CarDealershipTest {
     public void testReturnCustomerReceiptNotFound() {
         System.out.println("Returning customer's Receipt. When customers receipt is not found.");
         String receiptId ="04CstM2023";
-        String expResult = "Receipt not found.";
-        String result = carDealershipInstance.returnCustomerReceipt(receiptId);
+        Receipt expResult = null;
+        Receipt result = carDealershipInstance.returnCustomerReceipt(receiptId);
         assertEquals(expResult, result);
    }
 
@@ -201,7 +201,7 @@ public class CarDealershipTest {
         assertEquals(expResult, result);
    }
      /**
-     * Test of carWithSpecificColor method, of class CarDealership.When no car has the given color.
+     * Test of carWithSpecificColor method, of class CarDealership. When no car has the given color.
      */
     @Test
     public void testCarWithSpecificColorThatDoesNotExist() {
