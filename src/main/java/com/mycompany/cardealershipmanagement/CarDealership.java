@@ -68,8 +68,8 @@ public class CarDealership {
         }
         return toString;
     }
-    
-    public void removeCar(String carCode){
+    //***********************************************************************
+    public void removeCar(String carCode){                                 
         int index = indexOf(carCode);
         for( int i = index; i < carAmount; i++){
             car[i] = car[i + 1];
@@ -84,7 +84,8 @@ public class CarDealership {
            }
        }
        return index;
-   } 
+   }
+     //***********************************************************************
     public int carsInStockNo(){
         return carAmount;
     }
@@ -108,36 +109,36 @@ public class CarDealership {
         }
         return carIsInStock;
     }
-    public String cheapestElectricCar(){
-        String cheapElectricCar = "Chepest electric car not found.";
+    public ElectricPoweredCar cheapestElectricCar(){
+        ElectricPoweredCar cheapElectricCar = null;
         double cheapestAmount = 35000000.00;
         for ( int i = 0; i < carAmount; i++ ){
             if(car[i] instanceof ElectricPoweredCar && ((ElectricPoweredCar)car[i]).getCost() < cheapestAmount){
                 cheapestAmount = car[i].getCost();
-                cheapElectricCar =  car[i].getBrand()+" "+ car[i].getModel();
+                cheapElectricCar = (ElectricPoweredCar) car[i];
             }
         }
         return cheapElectricCar;
     }
     
-    public String mostExpensiveCar(){
-        String expensiveCar = "Expensive car not found.";
+    public Car mostExpensiveCar(){
+        Car expensiveCar = null;
         double expAmount = 15000.00;
         for ( int i = 0; i < carAmount; i++ ){
             if(expAmount < car[i].getCost()){
                expAmount = car[i].getCost();
-                expensiveCar = car[i].getBrand()+" "+ car[i].getModel();
+                expensiveCar = car[i];
             }
         }
         return expensiveCar;
     }
-    public String cheapestCar(){
-        String cheapCar = "Cheap car not found.";
+    public Car cheapestCar(){
+        Car cheapCar = null;
         double cheapestAmount = 30000000.00;
         for ( int i = 0; i < carAmount; i++ ){
             if(cheapestAmount > car[i].getCost()){
                 cheapestAmount = car[i].getCost();
-                cheapCar = car[i].getBrand()+" "+ car[i].getModel();
+                cheapCar = car[i];
             }
         }
         return cheapCar;

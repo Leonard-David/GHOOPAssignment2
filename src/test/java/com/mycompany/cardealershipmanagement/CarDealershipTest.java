@@ -231,9 +231,9 @@ public class CarDealershipTest {
      */
     @Test
     public void testCheapestElectricCar() {
-        System.out.println("cheapestElectricCar");
+        System.out.println("Cheapest electric Car");
         String expResult = "Audi E-tron-GT";
-        String result = carDealershipInstance.cheapestElectricCar();
+        String result = carDealershipInstance.cheapestElectricCar().getBrand() +" "+carDealershipInstance.cheapestElectricCar().getModel();
         assertEquals(expResult, result);
     }
     
@@ -242,9 +242,9 @@ public class CarDealershipTest {
      */
     @Test
     public void testMostExpensiveCar() {
-        System.out.println("mostExpensiveCar");
+        System.out.println("mostExpensive Car");
         String expResult = "Tesla Roadstar";
-        String result = carDealershipInstance.mostExpensiveCar();
+        String result = carDealershipInstance.mostExpensiveCar().getBrand()+" "+carDealershipInstance.mostExpensiveCar().getModel();
         assertEquals(expResult, result);
     }
 
@@ -253,9 +253,9 @@ public class CarDealershipTest {
      */
     @Test
     public void testCheapestCar() {
-        System.out.println("cheapestCar");
+        System.out.println("Cheapest Car");
         String expResult = "Toyota Supra-MK4";
-        String result = carDealershipInstance.cheapestCar();
+        String result = carDealershipInstance.mostExpensiveCar().getBrand()+" "+carDealershipInstance.mostExpensiveCar().getModel();
         assertEquals(expResult, result);
     }
     /**
@@ -266,7 +266,7 @@ public class CarDealershipTest {
         System.out.println("cheapestCar");
         CarDealership cds = new CarDealership();
         String expResult = "Cheap car not found.";
-        String result = cds.cheapestCar();
+        String result = cds.mostExpensiveCar().getBrand()+" "+cds.mostExpensiveCar().getModel();
         assertEquals(expResult, result);
     }
 
