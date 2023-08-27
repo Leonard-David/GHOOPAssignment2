@@ -45,7 +45,7 @@ public class CarDealership {
         
         String fName = firstName +" "+ lastName;
         
-        for (int i = 0; i <= car.size(); i++){
+        for (int i = 0; i < car.size(); i++){
             if (carIdNumber.equals(car.get(i).getCarCode())){
                 license = new License(lIdNumber,lCode,lIssueDate,lExpiryDate);
                 car.get(i).setDateSold(date);

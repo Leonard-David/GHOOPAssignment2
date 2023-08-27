@@ -2,6 +2,7 @@ package com.mycompany.cardealershipmanagement;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 /**
  *
@@ -31,8 +32,8 @@ public class CarDealershipManagement {
                               14. Car price
                               0. Exit program
                               """);
-           int x = scan.nextInt();
-           
+           try{
+               int x = scan.nextInt();
            switch(x){
                case 1:
                    System.out.println("Add Car\nEnter car type (GasPoweredCar or ElectricPoweredCar)");
@@ -48,7 +49,7 @@ public class CarDealershipManagement {
                    System.out.println("Enter mileage:");
                    double mileage = scan.nextDouble();
                    String fuelType = "";
-                   if(carType == "GasPoweredCar"){
+                   if("GasPoweredCar".equals(carType)){
                        System.out.println("Enter fuel type:");
                        fuelType = scan.next();
                    }
@@ -144,6 +145,11 @@ public class CarDealershipManagement {
                    break;
                default: System.exit(0);
            }
+           }
+           catch(InputMismatchException invalidValueEnterd){
+               System.out.println("Error! You have enteres an invalid value\n\nPlease try again");  
+           }
+           
         }
 
     }

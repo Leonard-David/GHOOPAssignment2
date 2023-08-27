@@ -2,7 +2,6 @@ package com.mycompany.cardealershipmanagement;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
-import java.util.ArrayList;
 import java.util.Date;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -18,19 +17,6 @@ public class CarDealershipTest {
     public CarDealershipTest() {
         Date date = new Date();
         carDealershipInstance = new CarDealership();
-        carDealershipInstance.car.set(0, new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,"Petrol",
-               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date));
-        carDealershipInstance.car.get(0).setDateSold(date);
-        carDealershipInstance.car.set(1, new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
-                "Electric-Powered-Car","Red",3400000.0,date)); 
-        carDealershipInstance.car.get(0).setDateSold(date);
-        carDealershipInstance.car.set(2, new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
-                "ElecticPoweredCar", " Ascari Blue metallic",2065712.0,date));
-        carDealershipInstance.car.get(2).setDateSold(date);
-        carDealershipInstance.car.set(3, new GasPoweredCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
-                "Petrol", "GasPoweredCar","Stratosphere",418377.00, date));
-        carDealershipInstance.receipt.set(0,new Receipt("01CstM2023", "01010700607","Leoanrd David",
-                "Ford", "1HGB41JXMN109186", date,1194000.0, "Mustang-GT"));
     }
 
     /**
