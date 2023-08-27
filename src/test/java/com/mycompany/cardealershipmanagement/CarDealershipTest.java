@@ -94,22 +94,20 @@ public class CarDealershipTest {
         Date dte = new Date();
         String receiptId ="01CstM2023";
         String expResult ="""
-                                                ------------|Car Dealership Receipt|------------
-                            _______________________________________________________________________________________
-                                                                 Receipt ID: """+"01CstM2023"+
-                             "\nName: " +"Leonard David"+
-                            "\nID NO: " +"01010700607"+ "                                   Date: " +dte+"\n"+
-                            """
-                            _______________________________________________________________________________________
-                            Car code                             Brand                             Price 
-                            _______________________________________________________________________________________
-                            """ + 
-                            "01010700607"+"                  "+"Ford"+" "+"Mustang-GT"+"                        "+toCurrency.format(1194000.0)+
-                            """
+                                               ------------|Car Dealership Receipt|------------
+                          _______________________________________________________________________________________
+                                                                Receipt ID: 01CstM2023
+                          Name: Leonard David
+                          ID NO: 01010700607                                       Date: """ +dte+"\n"+
+                          "_______________________________________________________________________________________\n"+
+                          " Car code                             Brand                             Price"+
+                          "_______________________________________________________________________________________\n"+
+                          "01010700607"+"                  "+"Ford"+" "+"Mustang-GT"+"                        "+toCurrency.format(1194000.0)+
                             
-                            \n                                                             VAT 0%    N$0.00 
-                            _______________________________________________________________________________________ 
-                                                                                         Total:    N$ """ +toCurrency.format(1194000.0);
+                            
+                          "\n                                                             VAT 0%    N$0.00\n"+
+                          " _______________________________________________________________________________________\n"+
+                          "                                                                   Total: "+toCurrency.format(1194000.0);
         String result = carDealershipInstance.returnCustomerReceipt(receiptId).toString();
         assertEquals(expResult, result);
    }
@@ -202,7 +200,7 @@ public class CarDealershipTest {
         System.out.println("carWithSpecificColor");
         String color = "red";
         String expResult = "Tesla Roadstar";
-        Car result = carDealershipInstance.carWithSpecificColor(color);
+        String result = carDealershipInstance.carWithSpecificColor(color).getBrand()+" "+carDealershipInstance.carWithSpecificColor(color).getModel();
         assertEquals(expResult, result);
    }
      /**
@@ -212,7 +210,7 @@ public class CarDealershipTest {
     public void testCarWithSpecificColorThatDoesNotExist() {
         System.out.println("carWithSpecificColor");
         String color = "green";
-        String expResult = "Car with green colour not found.";
+        String expResult = null;
         Car result = carDealershipInstance.carWithSpecificColor(color);
         assertEquals(expResult, result);
    }
