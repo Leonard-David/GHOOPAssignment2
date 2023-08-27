@@ -45,8 +45,8 @@ public class CarDealership {
         String fName = firstName +" "+ lastName;
         for (int i = 0; i < car.size(); i++){
             if (carIdNumber.equals(car.get(i).getCarCode())){
-                license = new License(lIdNumber,lCode,lIssueDate,lExpiryDate);
                 car.get(i).setDateSold(de);
+                license = new License(lIdNumber,lCode,lIssueDate,lExpiryDate);
                 customer.add(new Customer(customerIdNumber, firstName, lastName, gender, cellphoneNo, license));
                 receipt.add(new Receipt( receiptId, customerIdNumber, fName, brand, carIdNumber, de, car.get(i).getCost(), model)) ;
             }

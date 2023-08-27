@@ -26,7 +26,7 @@ public class CarDealershipTest {
         carDealershipInstance.car.add(3, new GasPoweredCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
                 "Petrol", "GasPoweredCar","Stratosphere",418377.00, date));
          carDealershipInstance.receipt.add(0,new Receipt("01CstM2023", "01010700607","Leoanrd David",
-                "Ford", "4KJDSN786DS512", date,1194000.0, "Mustang-GT"));
+                "Ford", "1HGB41JXMN109186", date,1194000.0, "Mustang-GT"));
     }
 
     /**
@@ -99,12 +99,12 @@ public class CarDealershipTest {
                                                ------------|Car Dealership Receipt|------------
                           _______________________________________________________________________________________
                                                                                Receipt ID: """+"01CstM2023"+
-                          "\nClient Name: "+"Leonard David"+
+                          "\nClient Name: "+carDealershipInstance.receipt.get(0).getFullName()+
                           "\nID NO: "+"01010700607"+"                                   "+"Date: "+dte+"\n"+
                           "_______________________________________________________________________________________\n"+
                           " Car code                     Brand            Model                      Price"+
                           "\n_______________________________________________________________________________________\n"+
-                          "1HGB41JXMN109186"+"              "+"Ford"+"            "+"Mustang"+"                  "+toCurrency.format(1194000.0)+
+                          "1HGB41JXMN109186"+"              "+"Ford"+"            "+"Mustang-GT"+"                  "+toCurrency.format(1194000.0)+
                           "\n\n                                                                   VAT 0% $0.00\n"+
                           "_______________________________________________________________________________________\n"+
                           "                                                                   Total: "+toCurrency.format(1194000.0);
