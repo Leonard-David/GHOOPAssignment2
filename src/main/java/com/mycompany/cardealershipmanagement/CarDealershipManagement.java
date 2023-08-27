@@ -38,59 +38,58 @@ public class CarDealershipManagement {
                case 2:
                    cds.sellACar("01CstM2023","01010700607", "Leonard", "David", 'M', "0812883053", "1HGB41JXMN109186", "999999ABC", "C1E", "01/02/2022", "01/02/2026", "Ford", "Mustang-GT");
                     System.out.println(cds.returnCustomerReceipt( "01CstM2023"));
-                    System.out.println("Car sold successfully.");
+                    System.out.println("Car sold successfully.\n");
                    break;
                case 3:
-                   System.out.println(cds.returnCustomerReceipt( "01CstM2023"));
+                   System.out.println(cds.returnCustomerReceipt( "01CstM2023")+"\n");
                    break;
                case 4:
                    cds.removeCar( "4KJDSN786DS512");
-                   System.out.println("Car removed successfully.");
+                   System.out.println("Car removed successfully.\n");
                    break;
                case 5:
-                   System.out.println("There are " + cds.carsInStockNo()+" cars in stock.");
+                   System.out.println("There are " + cds.carsInStockNo()+" cars in stock.\n");
                    break;
                case 6:
                    String carWithColor = cds.carWithSpecificColor( "Stratosphere").getBrand() +" "+cds.carWithSpecificColor( "Stratosphere").getModel();
-                   
-                   System.out.println("Cars with a Stratosphere color is a " + carWithColor);
+                   System.out.println("Cars with a Stratosphere color is a " + carWithColor+"\n");
                    break;
                case 7:
                     boolean isInStock = cds.isCarInStock( "Ford", "Mustang-GT");
                    if( isInStock == true){
-                      System.out.println("Car is in stock.");
+                      System.out.println("Car is in stock.\n");
                    }
                    else{
-                       System.out.println("Car is not in stock.");
+                       System.out.println("Car is not in stock.\n");
                    }
                    break;
                case 8:
                    String cheapestElectricCar =cds.cheapestElectricCar().getBrand() +" "+cds.cheapestElectricCar().getModel();
-                   System.out.println("The cheapest electric-powered car is a " + cheapestElectricCar);
+                   System.out.println("The cheapest electric-powered car is a " + cheapestElectricCar+"\n");
                    break;
                case 9:
                    String expensiveCar = cds.mostExpensiveCar().getBrand() +" "+cds.mostExpensiveCar().getModel();
-                   System.out.println("The most expensive car is a " + expensiveCar);
+                   System.out.println("The most expensive car is a " + expensiveCar+"\n");
                    break;
                case 10:
                    String cheapetCar =cds.cheapestCar().getBrand() +" "+cds.cheapestCar().getModel();
-                   System.out.println("The cheapest car is a " + cheapetCar);
+                   System.out.println("The cheapest car is a " + cheapetCar+"\n");
                    break;
                case 11:
                    String costAverage = toCurrency.format( cds.gasPoweredCarCostAverage());
-                   System.out.println("The cost average of gas-powered cars is " + costAverage );
+                   System.out.println("The cost average of gas-powered cars is " + costAverage+"\n");
                    break;
                case 12:
                    int number = cds.carSoldInASpecificYearNo(2023);
-                   System.out.println(number +" cars were sold");
+                   System.out.println(number +" car sold in the given year where" + number+"\n");
                    break;
                case 13:
                    String amount = toCurrency.format(cds.moneyMadeInASpecificYear(2023));
-                   System.out.println("Money made in that year was/is N$ "+ amount);
+                   System.out.println("Money made in that year was/is N$ "+ amount+"\n");
                    break;  
                case 14:
                     String price = toCurrency.format(cds.priceOfGivenCar("Toyota", "Supra-MK4"));
-                    System.out.println("The price of the car is N$ " +price);
+                    System.out.println("The price of the car is N$ " +price+"\n");
                    break;
                default: System.exit(0);
            }
