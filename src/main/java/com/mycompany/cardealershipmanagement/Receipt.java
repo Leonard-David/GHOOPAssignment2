@@ -60,8 +60,8 @@ public class Receipt {
         return """
                                                ------------|Car Dealership Receipt|------------
                           _______________________________________________________________________________________
-                                                          Receipt ID: """+receiptId+
-                          "\nName: "+fullName+
+                                                                               Receipt ID: """+receiptId+
+                          "\nClient Name: "+fullName+
                           "\nID NO: "+idNumber+"                                   "+"Date: "+datePurchased+"\n"+
                           "_______________________________________________________________________________________\n"+
                           " Car code                     Brand            Model                      Price"+

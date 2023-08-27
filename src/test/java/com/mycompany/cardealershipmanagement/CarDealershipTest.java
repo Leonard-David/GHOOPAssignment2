@@ -93,20 +93,20 @@ public class CarDealershipTest {
          
         Date dte = new Date();
         String receiptId ="01CstM2023";
+        //GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,"Petrol",
+        //       "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date)
         String expResult ="""
                                                ------------|Car Dealership Receipt|------------
                           _______________________________________________________________________________________
-                                                                Receipt ID: 01CstM2023
-                          Name: Leonard David
-                          ID NO: 01010700607                                       Date: """ +dte+"\n"+
+                                                                               Receipt ID: """+"01CstM2023"+
+                          "\nClient Name: "+"Leonard David"+
+                          "\nID NO: "+"01010700607"+"                                   "+"Date: "+dte+"\n"+
                           "_______________________________________________________________________________________\n"+
-                          " Car code                             Brand                             Price"+
+                          " Car code                     Brand            Model                      Price"+
+                          "\n_______________________________________________________________________________________\n"+
+                          "1HGB41JXMN109186"+"              "+"Ford"+"            "+"Mustang"+"                  "+toCurrency.format(1194000.0)+
+                          "\n\n                                                                   VAT 0% $0.00\n"+
                           "_______________________________________________________________________________________\n"+
-                          "01010700607"+"                  "+"Ford"+" "+"Mustang-GT"+"                        "+toCurrency.format(1194000.0)+
-                            
-                            
-                          "\n                                                             VAT 0%    N$0.00\n"+
-                          " _______________________________________________________________________________________\n"+
                           "                                                                   Total: "+toCurrency.format(1194000.0);
         String result = carDealershipInstance.returnCustomerReceipt(receiptId).toString();
         assertEquals(expResult, result);
