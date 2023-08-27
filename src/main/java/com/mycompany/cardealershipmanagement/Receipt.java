@@ -1,4 +1,5 @@
 package com.mycompany.cardealershipmanagement;
+import java.text.NumberFormat;
 import java.util.Date;
 /**
  *
@@ -55,6 +56,7 @@ public class Receipt {
     }
     @Override
     public String toString(){
+        NumberFormat toCurrency = NumberFormat.getCurrencyInstance();
         return """
                                                 ------------|Car Dealership Receipt|------------
                             _______________________________________________________________________________________
@@ -66,11 +68,11 @@ public class Receipt {
                             Car code                             Brand                             Price 
                             _______________________________________________________________________________________
                             """+ 
-                            carCode+"                  "+carBrand+" "+model+"                        "+Double.toString(cost)+
+                            carCode+"                  "+carBrand+" "+model+"                        "+toCurrency.format(cost)+
                             """
                             
                             \n                                                             VAT 0%    N$0.00 
                             _______________________________________________________________________________________ 
-                                                                                         Total:    N$ """ +Double.toString(cost);
+                                                                                         Total:     """ +toCurrency.format(cost);
     }
 }

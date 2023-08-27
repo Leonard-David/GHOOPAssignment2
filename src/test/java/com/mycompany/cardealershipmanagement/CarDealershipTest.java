@@ -104,12 +104,12 @@ public class CarDealershipTest {
                             Car code                             Brand                             Price 
                             _______________________________________________________________________________________
                             """ + 
-                            "01010700607"+"                  "+"Ford"+" "+"Mustang-GT"+"                        "+1194000.0+
+                            "01010700607"+"                  "+"Ford"+" "+"Mustang-GT"+"                        "+toCurrency.format(1194000.0)+
                             """
                             
                             \n                                                             VAT 0%    N$0.00 
                             _______________________________________________________________________________________ 
-                                                                                         Total:    N$ """ +1194000.0;
+                                                                                         Total:    N$ """ +toCurrency.format(1194000.0);
         String result = carDealershipInstance.returnCustomerReceipt(receiptId).toString();
         assertEquals(expResult, result);
    }
@@ -202,7 +202,7 @@ public class CarDealershipTest {
         System.out.println("carWithSpecificColor");
         String color = "red";
         String expResult = "Tesla Roadstar";
-        String result = carDealershipInstance.carWithSpecificColor(color);
+        Car result = carDealershipInstance.carWithSpecificColor(color);
         assertEquals(expResult, result);
    }
      /**
@@ -213,7 +213,7 @@ public class CarDealershipTest {
         System.out.println("carWithSpecificColor");
         String color = "green";
         String expResult = "Car with green colour not found.";
-        String result = carDealershipInstance.carWithSpecificColor(color);
+        Car result = carDealershipInstance.carWithSpecificColor(color);
         assertEquals(expResult, result);
    }
 

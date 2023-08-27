@@ -51,7 +51,9 @@ public class CarDealershipManagement {
                    System.out.println("There are " + cds.carsInStockNo()+" cars in stock.");
                    break;
                case 6:
-                   System.out.println("Cars with a Stratosphere color\n" + cds.carWithSpecificColor( "Stratosphere"));
+                   String carWithColor = cds.carWithSpecificColor( "Stratosphere").getBrand() +" "+cds.carWithSpecificColor( "Stratosphere").getModel();
+                   
+                   System.out.println("Cars with a Stratosphere color is a " + carWithColor);
                    break;
                case 7:
                     boolean isInStock = cds.isCarInStock( "Ford", "Mustang-GT");
@@ -96,8 +98,6 @@ public class CarDealershipManagement {
            catch(InputMismatchException invalidValueEnterd){
                System.out.println("Error! You have enteres an invalid value\n\nPlease try again");  
            }
-           
         }
-
     }
 }

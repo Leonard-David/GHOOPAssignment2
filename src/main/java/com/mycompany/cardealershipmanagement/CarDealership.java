@@ -41,14 +41,14 @@ public class CarDealership {
             String carIdNumber, String lIdNumber, String lCode, String lIssueDate, String lExpiryDate, String brand, String model){
         
         License license;
-        Date date = new Date();
+        Date de = new Date();
         String fName = firstName +" "+ lastName;
         for (int i = 0; i < car.size(); i++){
             if (carIdNumber.equals(car.get(i).getCarCode())){
                 license = new License(lIdNumber,lCode,lIssueDate,lExpiryDate);
-                car.get(i).setDateSold(date);
+                car.get(i).setDateSold(de);
                 customer.add(new Customer(customerIdNumber, firstName, lastName, gender, cellphoneNo, license));
-                receipt.add(new Receipt( receiptId, customerIdNumber, fName, brand, carIdNumber, date, car.get(i).getCost(), model)) ;
+                receipt.add(new Receipt( receiptId, customerIdNumber, fName, brand, carIdNumber, de, car.get(i).getCost(), model)) ;
             }
         }
     }
@@ -88,12 +88,12 @@ public class CarDealership {
         return car.size();
     }
     //This method returns a car with a specific color
-    public String carWithSpecificColor(String color){
-        String carName = "Car with "+color+" colour not found.";
+    public Car carWithSpecificColor(String color){
+        Car carName = null;
         
         for( int i = 0; i < car.size() ; i++){
             if(color.equalsIgnoreCase(car.get(i).getColor())){
-                carName = car.get(i).getBrand() +" "+ car.get(i).getModel();
+                carName = car.get(i);
             }
         }
         return carName;
