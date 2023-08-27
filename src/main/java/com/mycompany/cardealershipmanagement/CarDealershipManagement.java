@@ -16,14 +16,14 @@ public class CarDealershipManagement {
         NumberFormat toCurrency = NumberFormat.getCurrencyInstance();
        while(true){
            System.out.println("""
-                              1. Add Car                       8. Cheapest electric car\t0. Exit program
+                              1. Add Car                       8. Cheapest electric car
                               2. Sell car                      9. Expensive car
                               3. Retrive customer receipt      10. Cheapest car
                               4. Remove car                    11. Gas-Powered car cost average
                               5. Car stock number              12. Cars sold in a year 
                               6. car with specific color       13. Money made in a year
                               7. Car in stock available        14. Car price
-                             
+                                                   0. Exit program
                               """);
            try{
                int x = scan.nextInt();
@@ -33,16 +33,19 @@ public class CarDealershipManagement {
                    cds.addNewCar("5YJSA1CN8D", "Tesla", "Roadstar", "-phase, 4-pole, induction electric motor", 958.50,"","ElecticPoweredCar", "Red", 3400000.0);
                    cds.addNewCar("2FUB51PKMN157", "Audi", "E-tron-GT", "AC synchronous electric motors", 400.86,"","ElecticPoweredCar", "Ascari Blue metallic", 2065712.0);
                    cds.addNewCar("4KJDSN786DS512", "Toyota", "Supra-MK4", "2JZ-GTE 3.0-litre", 2436.0,"Petrol","GasPoweredCar", "Stratosphere", 418377);
+                   System.out.println("Car added successfully.");
                    break;
                case 2:
                    cds.sellACar("01CstM2023","01010700607", "Leonard", "David", 'M', "0812883053", "1HGB41JXMN109186", "999999ABC", "C1E", "01/02/2022", "01/02/2026", "Ford", "Mustang-GT");
                     System.out.println(cds.returnCustomerReceipt( "01CstM2023"));
+                    System.out.println("Car sold successfully.");
                    break;
                case 3:
                    System.out.println(cds.returnCustomerReceipt( "01CstM2023"));
                    break;
                case 4:
                    cds.removeCar( "4KJDSN786DS512");
+                   System.out.println("Car removed successfully.");
                    break;
                case 5:
                    System.out.println("There are " + cds.carsInStockNo()+" cars in stock.");
