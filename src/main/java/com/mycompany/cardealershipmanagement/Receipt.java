@@ -60,17 +60,17 @@ public class Receipt {
                             _______________________________________________________________________________________
                                                                  Receipt ID: """+receiptId+
                              "\nName: " + fullName+
-                            "\nID NO: " + idNumber + "                                   Date: " + datePurchased +"\n"+
+                            "\nID NO: " +idNumber+ "                                   Date: " +datePurchased+"\n"+
                             """
                             _______________________________________________________________________________________
                             Car code                             Brand                             Price 
                             _______________________________________________________________________________________
-                            """ + ""+ 
-                            carCode+"                  "+carBrand+" "+model+"                        "+ Double.toString(cost)+
+                            """+ 
+                            carCode+"                  "+carBrand+" "+model+"                        "+Double.toString(cost)+
                             """
                             
                             \n                                                             VAT 0%    N$0.00 
                             _______________________________________________________________________________________ 
-                                                                                         Total:    N$ """ + Double.toString(cost);
+                                                                                         Total:    N$ """ +Double.toString(cost);
     }
 }

@@ -42,9 +42,7 @@ public class CarDealership {
         
         License license;
         Date date = new Date();
-        
         String fName = firstName +" "+ lastName;
-        
         for (int i = 0; i < car.size(); i++){
             if (carIdNumber.equals(car.get(i).getCarCode())){
                 license = new License(lIdNumber,lCode,lIssueDate,lExpiryDate);
@@ -69,8 +67,10 @@ public class CarDealership {
     // here we as well called the method indexOf to be able to get the value.
     public void removeCar(String carCode){                                 
         int index = indexOf(carCode);
-        for( int i = index; i < car.size(); i++){
-            
+        for( int i = 0; i < car.size(); i++){
+            if(index == i){
+                car.remove(car.get(i));
+            }
         }
     }
     //This method get the index of a car given its car code.

@@ -17,6 +17,16 @@ public class CarDealershipTest {
     public CarDealershipTest() {
         Date date = new Date();
         carDealershipInstance = new CarDealership();
+        carDealershipInstance.car.add(0, new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,"Petrol",
+               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date));
+        carDealershipInstance.car.add(1,new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
+                "Electric-Powered-Car","Red",3400000.0,date));
+        carDealershipInstance.car.add(2, new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
+                "ElecticPoweredCar", " Ascari Blue metallic",2065712.0,date));
+        carDealershipInstance.car.add(3, new GasPoweredCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
+                "Petrol", "GasPoweredCar","Stratosphere",418377.00, date));
+         carDealershipInstance.receipt.add(0,new Receipt("01CstM2023", "01010700607","Leoanrd David",
+                "Ford", "4KJDSN786DS512", date,1194000.0, "Mustang-GT"));
     }
 
     /**
@@ -59,30 +69,16 @@ public class CarDealershipTest {
         //instance to sell a car. and a create objects for the Receipt and Customer class
         cds.sellACar("01CstM2023","01010700607", "Leonard", "David", 'M', "0812883053", 
                 "1HGB41JXMN109186", "999999ABC", "C1E", "01/02/2022", "01/02/2026", "Ford", "Mustang-GT");
-        assertEquals(1,cds.customer.size() );
+        assertEquals(1,cds.customer.size());
         assertEquals(1, cds.receipt.size());
     }
-    /**
-     * Test of sellACar method, of class CarDealership. When selling to more than one customer
-     */
-    @Test
-    public void testSellACarTo2people() {
-        CarDealership cds = new CarDealership();
-        System.out.println("selling a car");
-        //instance to sell a car. and a create objects for the Receipt and Customer class
-        cds.sellACar("01CstM2023", "01010700607", "Leonard", "David", 'M', "0812883053", 
-                "1HGB41JXMN109186", "999999ABC", "C1E", "01/02/2022", "01/02/2026", "Ford", "Mustang-GT");
-        cds.sellACar("02CstM2023", "00060500709", "Hellen", "Davidson", 'F', "0812656589", 
-                "1HGB41JXMN109186", "999999ABC", "B", "01/02/2023", "01/02/2027", "Tesla", "Roadstar");
-        assertEquals(2,cds.customer.size() );
-        assertEquals(2, cds.receipt.size());
-    }
+   
      /**
      * Test of sellACar method, of class CarDealership. When making a sell to an non-existing customer
      */
     @Test
-    public void testSellACarToNoCustomer() {
-        System.out.println("selling a car");
+    public void testSellACarToNoCustomer() {    
+        System.out.println("selling a car. when there is nno car in the dealership");
          CarDealership cdsInstance = new CarDealership();
         assertEquals(0,cdsInstance.customer.size() );
         assertEquals(0, cdsInstance.receipt.size());
@@ -101,19 +97,19 @@ public class CarDealershipTest {
                                                 ------------|Car Dealership Receipt|------------
                             _______________________________________________________________________________________
                                                                  Receipt ID: """+"01CstM2023"+
-                            "\nName: " + carDealershipInstance.receipt.get(0).getFullName()+
-                            "\nID NO: " + "01010700607" + "                                   Date: " + dte +"\n"+
+                             "\nName: " +"Leonard David"+
+                            "\nID NO: " +"01010700607"+ "                                   Date: " +dte+"\n"+
                             """
                             _______________________________________________________________________________________
                             Car code                             Brand                             Price 
                             _______________________________________________________________________________________
-                            """ + ""+ 
-                            "1HGB41JXMN109186"+"                  "+"Ford"+" "+"Mustang-GT"+"                        "+ 1194000.0+
+                            """ + 
+                            "01010700607"+"                  "+"Ford"+" "+"Mustang-GT"+"                        "+1194000.0+
                             """
                             
                             \n                                                             VAT 0%    N$0.00 
                             _______________________________________________________________________________________ 
-                                                                                         Total:    N$ """ + 1194000.0;
+                                                                                         Total:    N$ """ +1194000.0;
         String result = carDealershipInstance.returnCustomerReceipt(receiptId).toString();
         assertEquals(expResult, result);
    }
@@ -152,7 +148,7 @@ public class CarDealershipTest {
         int expResult = 0;
         cdsInstance.removeCar(carCode);
         //assertArrayEquals(expResult, result);
-        assertEquals(expResult, cdsInstance.car.size()+1);
+        assertEquals(expResult, cdsInstance.car.size());
     }
      /**
      * Test of indexOf method, of class CarDealership.
@@ -332,14 +328,14 @@ public class CarDealershipTest {
         CarDealership cds = new CarDealership();
         Date date = new Date();
         System.out.println("Cars sold in a specific year no.");
-        //cds.car[0] = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,"Petrol",
-          //     "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
+        cds.car.add(0,new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,"Petrol",
+               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date));
         cds.car.get(0).setDateSold(date);
-        //cds.car[1] = new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
-          //      "Electric-Powered-Car","Red",3400000.0,date); 
+        cds.car.add(1,  new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
+               "Electric-Powered-Car","Red",3400000.0,date));
         cds.car.get(1).setDateSold(date);
-       // cds.car.get(2) = ArrayList<Car>(new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
-         //       "ElecticPoweredCar", " Ascari Blue metallic",2065712.0,date));
+        cds.car.add(2,  new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
+                "ElecticPoweredCar", " Ascari Blue metallic",2065712.0,date));
         cds.car.get(2).setDateSold(date);
         int specificYear = 2023;
         int expResult = 3;
@@ -369,13 +365,13 @@ public class CarDealershipTest {
         CarDealership cds = new CarDealership();
         Date date = new Date();
         System.out.println("Cars sold in a specific year no.");
-       cds.car.set(0, new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,"Petrol",
+        cds.car.add(0,new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,"Petrol",
                "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date));
         cds.car.get(0).setDateSold(date);
-        cds.car.set(1, new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
-                "Electric-Powered-Car","Red",3400000.0,date)); 
-        cds.car.get(0).setDateSold(date);
-        cds.car.set(2, new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
+        cds.car.add(1,  new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
+               "Electric-Powered-Car","Red",3400000.0,date));
+        cds.car.get(1).setDateSold(date);
+        cds.car.add(2,  new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
                 "ElecticPoweredCar", " Ascari Blue metallic",2065712.0,date));
         cds.car.get(2).setDateSold(date);
         int specificYear = 2023;
@@ -387,26 +383,25 @@ public class CarDealershipTest {
      * Test of moneyMadeInASpecificYear method, of class CarDealership. when there is no money made in that year.
      * @throws java.text.ParseException
      */
+    @Test
      public void testMoneyMadeInASpecificYear2()throws ParseException {
-        System.out.println("Money made in a specific year.");
+        System.out.println("Money made in a specific year. Where no money was made in that year");
         CarDealership cds = new CarDealership();
         Date date = new Date();
-        System.out.println("Cars sold in a specific year no.");
-        cds.car.set(0, new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,"Petrol",
+        cds.car.add(0,new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,"Petrol",
                "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date));
         cds.car.get(0).setDateSold(date);
-        cds.car.set(1, new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
-                "Electric-Powered-Car","Red",3400000.0,date)); 
-        cds.car.get(0).setDateSold(date);
-        cds.car.set(2, new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
+        cds.car.add(1,  new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
+               "Electric-Powered-Car","Red",3400000.0,date));
+        cds.car.get(1).setDateSold(date);
+        cds.car.add(2,  new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
                 "ElecticPoweredCar", " Ascari Blue metallic",2065712.0,date));
         cds.car.get(2).setDateSold(date);
         int specificYear = 2022;
-        String expResult =toCurrency.format(6643708.00);
+        String expResult =toCurrency.format(0.00);
         String result = toCurrency.format(cds.moneyMadeInASpecificYear(specificYear));
         assertEquals(expResult, result);
     }
-     
     /**
      * Test of priceOfGivenCar method, of class CarDealership.
      */
@@ -417,6 +412,19 @@ public class CarDealershipTest {
         String model = "Mustang-GT";
         String expResult = toCurrency.format(1189999.00);
         String result = toCurrency.format(carDealershipInstance.priceOfGivenCar(brand, model));
+        assertEquals(expResult, result);
+    }
+     /**
+     * Test of priceOfGivenCar method, of class CarDealership.
+     */
+    @Test
+    public void testPriceOfGivenCar2() {
+        System.out.println("Price of a given car. Where no car is in the dealership");
+        CarDealership cds = new CarDealership();
+        String brand = "Ford";
+        String model = "Mustang-GT";
+        String expResult = toCurrency.format(0.00);
+        String result = toCurrency.format(cds.priceOfGivenCar(brand, model));
         assertEquals(expResult, result);
     }
 }

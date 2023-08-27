@@ -16,132 +16,76 @@ public class CarDealershipManagement {
         NumberFormat toCurrency = NumberFormat.getCurrencyInstance();
        while(true){
            System.out.println("""
-                              1. Add Car
-                              2. Sell car
-                              3. Retrive customer receipt
-                              4. Remove car
-                              5. Car stock number
-                              6. car with specific color
-                              7. Car in stock available
-                              8. Cheapest electric car
-                              9. Expensive car
-                              10. Cheapest car
-                              11. Gas-Powered car cost average
-                              12. Cars sold in a year 
-                              13. Money made in a year
-                              14. Car price
-                              0. Exit program
+                              1. Add Car                       8. Cheapest electric car\t0. Exit program
+                              2. Sell car                      9. Expensive car
+                              3. Retrive customer receipt      10. Cheapest car
+                              4. Remove car                    11. Gas-Powered car cost average
+                              5. Car stock number              12. Cars sold in a year 
+                              6. car with specific color       13. Money made in a year
+                              7. Car in stock available        14. Car price
+                             
                               """);
            try{
                int x = scan.nextInt();
            switch(x){
                case 1:
-                   System.out.println("Add Car\nEnter car type (GasPoweredCar or ElectricPoweredCar)");
-                   String carType = scan.next();
-                   System.out.println("Enter code:");
-                   String carCode = scan.next();
-                   System.out.println("Enter brand:");
-                   String brand = scan.next();
-                   System.out.println("Enter model:");
-                   String model = scan.next();
-                   System.out.println("Enter engine type:");
-                   String engineType = scan.next();
-                   System.out.println("Enter mileage:");
-                   double mileage = scan.nextDouble();
-                   String fuelType = "";
-                   if("GasPoweredCar".equals(carType)){
-                       System.out.println("Enter fuel type:");
-                       fuelType = scan.next();
-                   }
-                   System.out.println("Enter color:");
-                   String color = scan.next();
-                   System.out.println("Ener cost:");
-                   double cost = scan.nextDouble();
-                   cds.addNewCar(carCode, brand, model, engineType, mileage,fuelType,carType, color, cost);
+                   cds.addNewCar("1HGB41JXMN109186", "Ford", "Mustang-GT", "5038 cc (307 cu in) V8", 2000.50,"Petrol","GasPoweredCar", "Dark Matter Gray Metallic", 1194000.0);
+                   cds.addNewCar("5YJSA1CN8D", "Tesla", "Roadstar", "-phase, 4-pole, induction electric motor", 958.50,"","ElecticPoweredCar", "Red", 3400000.0);
+                   cds.addNewCar("2FUB51PKMN157", "Audi", "E-tron-GT", "AC synchronous electric motors", 400.86,"","ElecticPoweredCar", "Ascari Blue metallic", 2065712.0);
+                   cds.addNewCar("4KJDSN786DS512", "Toyota", "Supra-MK4", "2JZ-GTE 3.0-litre", 2436.0,"Petrol","GasPoweredCar", "Stratosphere", 418377);
                    break;
                case 2:
-                   System.out.println("Sell Car\n\nEnter customer ID number:");
-                   String customerIdNumber = scan.next();
-                   System.out.println("Customer's first name:");
-                   String firstName = scan.next();
-                   System.out.println("Enter last Name:");
-                   String lastName = scan.next();
-                   System.out.println("Enter gender (M/F):");
-                   char gender = scan.next().charAt(0);
-                   System.out.println("Enter customers cellphone number:");
-                   String cellphoneNo = scan.next();
-                   System.out.println("Enter license ID");
-                   String lIdNumber = scan.next();
-                   System.out.println("Enter license code (B/BE/C1/C1E/C/CE)");
-                   String lCode = scan.next();
-                   System.out.println("Enter date license was issued:");
-                   String lIssueDate = scan.next();
-                   System.out.println("Enter license expiry date:");
-                   String lExpiryDate = scan.next();
-                   System.out.println("Enter car Brand:");
-                   String brnd = scan.next();
-                   System.out.println("Enter car Model:");
-                   String modl = scan.next();
-                   System.out.println("Enter car ID No:");
-                   String carIdNumber = scan.next();
-                   System.out.println("Enter receipt ID No:");
-                   String rcptId = scan.next();
-                   cds.sellACar( rcptId,customerIdNumber, firstName, lastName, gender, cellphoneNo, carIdNumber, lIdNumber, lCode, lIssueDate, lExpiryDate,brnd,modl);
-                   System.out.println(cds.returnCustomerReceipt(rcptId));
+                   cds.sellACar("01CstM2023","01010700607", "Leonard", "David", 'M', "0812883053", "1HGB41JXMN109186", "999999ABC", "C1E", "01/02/2022", "01/02/2026", "Ford", "Mustang-GT");
+                    System.out.println(cds.returnCustomerReceipt( "01CstM2023"));
                    break;
                case 3:
-                   System.out.println("Retrieving receipt\nEnter Customers Enter:");
-                   String receiptId = scan.next();
-                   System.out.println(cds.returnCustomerReceipt( receiptId));
+                   System.out.println(cds.returnCustomerReceipt( "01CstM2023"));
                    break;
                case 4:
-                   System.out.println("Retrieving receipt\nEnter Customers Enter:");
-                   String  cIdNumber = scan.next();
-                   cds.removeCar( cIdNumber);
+                   cds.removeCar( "4KJDSN786DS512");
                    break;
                case 5:
                    System.out.println("There are " + cds.carsInStockNo()+" cars in stock.");
                    break;
                case 6:
-                   System.out.println("To get cars with a type of color\nEnter color:");
-                   String carColor = scan.next();
-                   System.out.println("Cars with a " + carColor +" color\n" + cds.carWithSpecificColor( carColor));
+                   System.out.println("Cars with a Stratosphere color\n" + cds.carWithSpecificColor( "Stratosphere"));
                    break;
                case 7:
-                   System.out.println("Cars in Stock\nEnter car brand:");
-                   String cBrand = scan.next();
-                    System.out.println("\nEnter car model:");
-                   String cModel = scan.next();
-                   System.out.println( cds.isCarInStock( cBrand, cModel));
+                    boolean isInStock = cds.isCarInStock( "Ford", "Mustang-GT");
+                   if( isInStock == true){
+                      System.out.println("Car is in stock.");
+                   }
+                   else{
+                       System.out.println("Car is not in stock.");
+                   }
                    break;
                case 8:
-                   System.out.println("The cheapest electric-powered car is a " + cds.cheapestElectricCar().getBrand() +" "+cds.cheapestElectricCar().getModel());
+                   String cheapestElectricCar =cds.cheapestElectricCar().getBrand() +" "+cds.cheapestElectricCar().getModel();
+                   System.out.println("The cheapest electric-powered car is a " + cheapestElectricCar);
                    break;
                case 9:
-                   System.out.println("The most expensive car is a " +cds.mostExpensiveCar().getBrand() +" "+cds.mostExpensiveCar().getModel());
+                   String expensiveCar = cds.mostExpensiveCar().getBrand() +" "+cds.mostExpensiveCar().getModel();
+                   System.out.println("The most expensive car is a " + expensiveCar);
                    break;
                case 10:
-                   System.out.println("The cheapest car is a " + cds.cheapestCar().getBrand() +" "+cds.cheapestCar().getModel());
+                   String cheapetCar =cds.cheapestCar().getBrand() +" "+cds.cheapestCar().getModel();
+                   System.out.println("The cheapest car is a " + cheapetCar);
                    break;
                case 11:
-                   System.out.println("The cost average of gas-powered cars is " + toCurrency.format( cds.gasPoweredCarCostAverage()));
+                   String costAverage = toCurrency.format( cds.gasPoweredCarCostAverage());
+                   System.out.println("The cost average of gas-powered cars is " + costAverage );
                    break;
                case 12:
-                   System.out.println("number of cars sold in a specific year:\nEnter year only:");
-                   int cSISY = scan.nextInt();
-                   System.out.println("The following is the number of cars that were sold in "+ cSISY+"\n"+cds.carSoldInASpecificYearNo(cSISY)+" were sold in "+cSISY);
+                   int number = cds.carSoldInASpecificYearNo(2023);
+                   System.out.println(number +" cars were sold");
                    break;
                case 13:
-                  System.out.println("Money made in a specific year:\nEnter year only:");
-                   int year = scan.nextInt();
-                   System.out.println("Money made in "+ year+" was N$ "+toCurrency.format(cds.moneyMadeInASpecificYear(year)));
+                   String amount = toCurrency.format(cds.moneyMadeInASpecificYear(2023));
+                   System.out.println("Money made in that year was/is N$ "+ amount);
                    break;  
                case 14:
-                   System.out.println("Cars in Stock\nEnter car brand:");
-                    String cB = scan.next();
-                    System.out.println("Cars in Stock\nEnter car brand:");
-                    String cM = scan.next();
-                    System.out.println("The price of a " + cB + " is N$" +toCurrency.format(cds.priceOfGivenCar(cB, cM)));
+                    String price = toCurrency.format(cds.priceOfGivenCar("Toyota", "Supra-MK4"));
+                    System.out.println("The price of the car is N$ " +price);
                    break;
                default: System.exit(0);
            }
