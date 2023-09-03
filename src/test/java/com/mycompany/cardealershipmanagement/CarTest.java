@@ -1,6 +1,8 @@
 package com.mycompany.cardealershipmanagement;
 
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,10 +14,19 @@ import static org.junit.jupiter.api.Assertions.*;
 public class CarTest {
     Date date = null;
     Car carInstance = null;
+    
+    
+      LocalTime cTime = LocalTime.now();
+      LocalDate cDate = LocalDate.now();
+      DateTimeFormatter toTime = DateTimeFormatter.ofPattern("HH:mm:ss");
+      DateTimeFormatter toDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+      String currentTime = toTime.format(cTime);
+      String currentDate = toDate.format(cDate);
+      
     public CarTest() {
         date = new Date();
         carInstance = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
-                "Petrol","Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
+                "Petrol","Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,currentDate,currentTime);
     }
     
     /**
@@ -110,13 +121,22 @@ public class CarTest {
      * Test of getdateBroughtIn method, of class Car.
      */
     @Test
-    public void testGetdateBroughtIn() {
+    public void testGetDateBroughtIn() {
         System.out.println("getdateBroughtIn");
-        Date expResult = date;
-        Date result = carInstance.getdateBroughtIn();
+        String expResult = currentDate;
+        String result = carInstance.getDateBroughtIn();
         assertEquals(expResult, result);
     }
-
+    /**
+     * Test of testGetTimeBroughtIn method, of class Car.
+     */
+    @Test
+    public void testGetTimeBroughtIn() {
+        System.out.println("getdateBroughtIn");
+        String expResult = currentTime;
+        String result = carInstance.getTimeBroughtIn();
+        assertEquals(expResult, result);
+    }
     /**
      * Test of getDateSold method, of class Car.
      */
