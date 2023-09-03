@@ -31,15 +31,22 @@ public class CarDealership {
     //This method adds a new car to the carDealership depending on the type of car as per requirement from the Dealership.
     public void addNewCar(String carCode, String brand, String model, String engineType, double mileage, String fuelType,
         String carType, String color, double cost) throws Exception{
+        //local date and time instances
         LocalTime cTime = LocalTime.now();
         LocalDate cDate = LocalDate.now();
+        
+        //using the  date formatter for to get the time and date only
         DateTimeFormatter toTime = DateTimeFormatter.ofPattern("HH:mm:ss");
         DateTimeFormatter toDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        
+        //fornating the date to suit the below time and date attributes
         String currenntTime = toTime.format(cTime);
         String currentDate = toDate.format(cDate);
+        
         Car newCar = null;
-        for(int i = 0; i < car.size(); i++){
-            if(carCode.equals(car.get(i).getCarCode())){
+        
+        for(Car exist : car){
+            if(carCode.equals(exist.getCarCode())){
                 throw new Exception("The car already exist.");
             }
         }
@@ -47,7 +54,7 @@ public class CarDealership {
             newCar = new GasPoweredCar(carCode, brand, model, engineType, mileage, fuelType, carType, color, cost, currentDate,currenntTime);
         } else if (carType.equals("ElectricPoweredCar")) {
             newCar = new ElectricPoweredCar(carCode, brand, model, engineType, mileage, carType, color, cost, currentDate,currenntTime);
-        } else {
+        } else{
             throw new Exception("Unsupported car type.");
         }
         car.add(newCar);
