@@ -25,16 +25,34 @@ public class CarDealership {
     
     //This method adds a new car to the carDealership depending on the type of car as per requirement from the Dealership.
     public void addNewCar(String carCode, String brand, String model, String engineType, double mileage, String fuelType,
-            String carType, String color, double cost){
-        Date date = new Date();
-        if(carType.equals("GasPoweredCar")){
-            car.add(new GasPoweredCar(carCode, brand, model, engineType, mileage,fuelType, carType, color, cost, date));
+        String carType, String color, double cost) throws Exception{
+        
+       //local date and time instances
+        LocalTime cTime = LocalTime.now();
+        LocalDate cDate = LocalDate.now();
+      
+        //using the  date formatter for to get the time and date only
+        DateTimeFormatter toTime = DateTimeFormatter.ofPattern("HH:mm:ss");
+        DateTimeFormatter toDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+     
+        //fornating the date to suit the below time and date attributes
+        String currentTime = toTime.format(cTime);
+        String currentDate = toDate.format(cDate);
+        
+        Car newCar = null;
+        for(int i = 0; i < car.size(); i++){
+            if(carCode.equals(car.get(i).getCarCode())){
+                throw new Exception("The car already exist.");
+            }
         }
-        else if(carType.equals("ElecticPoweredCar")){
-            car.add(new ElectricPoweredCar(carCode, brand, model, engineType, mileage, carType, color, cost, date));
+        if (carType.equals("GasPoweredCar")) {
+            newCar = new GasPoweredCar(carCode, brand, model, engineType, mileage, fuelType, carType, color, cost, currentDate,currenntTime);
+        } else if (carType.equals("ElectricPoweredCar")) {
+            newCar = new ElectricPoweredCar(carCode, brand, model, engineType, mileage, carType, color, cost, currentDate,currenntTime);
+        } else {
+            throw new Exception("Unsupported car type.");
         }
-        else if(!carType.equals("GasPoweredCar") || !carType.equals("ElecticPoweredCar")){
-        }
+        car.add(newCar);
     }
     // This methos record customer details, receipt details and sets date sold as the Dealership sells a car.
     public void sellACar(String receiptId, String customerIdNumber, String firstName, String lastName, char gender, String cellphoneNo, 
