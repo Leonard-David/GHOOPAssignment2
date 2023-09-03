@@ -54,13 +54,26 @@ public class CarDealershipManagement {
                             System.out.println(e.toString());
                         }
                     break;
-               case 3:
-                   System.out.println(cds.returnCustomerReceipt( "01CstM2023")+"\n");
-                   break;
-               case 4:
-                   cds.removeCar( "4KJDSN786DS512");
-                   System.out.println("Car removed successfully.\n");
-                   break;
+              //Here a customers receipt is returned or retrieved    
+                case 3:
+                    try{
+                        String receipt = cds.returnCustomerReceipt( "01CstM2023").toString();
+                        System.out.println(receipt+"\n");
+                    }
+                    catch(Exception e){
+                        System.out.println(e.toString());
+                    }
+                    break;
+                //This case allows for a removal of a car from the program
+                case 4:
+                    try{
+                        cds.removeCar( "4KJDSN786DS512");
+                        System.out.println("Car removed successfully.\n");
+                        }
+                    catch(Exception e){
+                        System.out.println(e.toString());
+                    }
+                    break;
                case 5:
                    System.out.println("There are " + cds.carsInStockNo()+" cars in stock.\n");
                    break;
