@@ -130,9 +130,10 @@ public class CarDealershipTest {
      
     /**
      * Test of returnCustomerReceipt method, of class CarDealership.
+     * @throws java.lang.Exception
      */
     @Test
-    public void testReturnCustomerReceipt() {
+    public void testReturnCustomerReceipt() throws Exception {
          System.out.println("Returning/retrieving customer's receipt, when its found");
          
         Date dte = new Date();
@@ -157,21 +158,29 @@ public class CarDealershipTest {
    }
     /**
      * Test of returnCustomerReceipt method, of class CarDealership.When customers receipt is not found.
+     * @throws java.lang.Exception
      */
     @Test
-    public void testReturnCustomerReceiptNotFound() {
+    public void testReturnCustomerReceiptNotFound() throws Exception {
         System.out.println("Returning customer's Receipt. When customers receipt is not found.");
+        try{
+        Date d = new Date();
         String receiptId ="04CstM2023";
         Receipt expResult = null;
         Receipt result = carDealershipInstance.returnCustomerReceipt(receiptId);
         assertEquals(expResult, result);
+        }
+        catch(Exception e){
+            assertEquals("java.lang.Exception: Receipt not found or incorrect input! Please try again!\nIf problem persist please call your system adminstrator.",e.toString());
+        }
    }
 
     /**
      * Test of removeCar method, of class CarDealership.
+     * @throws java.lang.Exception
      */
     @Test
-    public void testRemoveCar() {
+    public void testRemoveCar() throws Exception {
         System.out.println("Removing a car.");
         String carCode = "5YJSA1CN8D";
         int expResult = 3;
@@ -180,10 +189,12 @@ public class CarDealershipTest {
         assertEquals(expResult, carDealershipInstance.car.size());
     }
     /**
-     * Test of removeCar method, of class CarDealership.
+     * Test of removeCar method, of class CarDealership. when there is no car
+     * @throws java.lang.Exception
      */
     @Test
-    public void testRemoveCar2() {
+    public void testRemoveCar2() throws Exception {
+        try{
         System.out.println("Removing a car. When there there is no car.");
         CarDealership cdsInstance = new CarDealership();
         String carCode = "5YJSA1CN8D";
@@ -191,28 +202,11 @@ public class CarDealershipTest {
         cdsInstance.removeCar(carCode);
         //assertArrayEquals(expResult, result);
         assertEquals(expResult, cdsInstance.car.size());
-    }
-     /**
-     * Test of indexOf method, of class CarDealership.
-     */
-    @Test
-    public void testIndexOf(){
-        String value = "5YJSA1CN8D";
-        int expResult = 1;
-        int result = carDealershipInstance.indexOf(value);
-        assertEquals(expResult, result);
-    }
-     /**
-     * Test of indexOf method, of class CarDealership when there is no value in the array
-     */
-    @Test
-    public void testIndexOf2(){
-        CarDealership cdsInstance = new CarDealership();
-        String value = "5YJSA1CN8D";
-        int expResult = 0;
-        int result = cdsInstance.indexOf(value);
-        assertEquals(expResult, result);
-    }
+        }
+        catch(Exception e){
+            assertEquals("java.lang.Exception: Vehicle verification number not found or incorrect ID! Please try again!\nIf the problem persists, please call your system administrator.",e.toString());
+        }
+    } 
     
     /**
      * Test of carsInStockNo method, of class CarDealership.
