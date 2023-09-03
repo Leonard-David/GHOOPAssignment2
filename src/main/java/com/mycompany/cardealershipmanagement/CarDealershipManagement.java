@@ -57,7 +57,7 @@ public class CarDealershipManagement {
                 // in this method the dealership is selling a car to a customer yet at the same time keep record of the customers detalis and generatin a receipt     
                 case 2:
                     try{
-                        cds.sellACar("01CstM2023","01010700607", "Leonard", "David", 'M', "0812883053", "1HGB41JXMN109186", "999999ABC", "C1E", "01/02/2022", "01/02/2026", "Ford", "Mustang-GT");
+                        cds.sellACar("01CstM2023","01010700607", "Asteria", "David", 'M', "0812883053", "1HGB41JXMN109186", "999999ABC", "C1E", "01/02/2022", "01/02/2026", "Ford", "Mustang-GT");
                         System.out.println("Car sold successfully.\n");
                     }
                     catch(Exception e){
@@ -345,7 +345,7 @@ public class CarDealershipManagement {
                                _______________________________________________________________________________________________________________
                                OPTIONS: Please Select an option from the list below:
                                _______________________________________________________________________________________________________________
-                               1. Add Car                       8.  Cheapest electric car             15. Create File
+                               1. Add Car                       8.  Cheapest electric car             15. Create Files
                                2. Sell car                      9.  Expensive car                     16. Save car data
                                3. Retrive customer receipt      10. Cheapest car                      17. Customer with 2 A's in name
                                4. Remove car                    11. Gas-Powered car cost average      18. All gas-powered car information
