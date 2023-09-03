@@ -152,7 +152,7 @@ public class CarDealership {
         double cheapestAmount = 40000000.00;
         try{
             for ( int i = 0; i < car.size(); i++ ){
-                if(!(car.get(i) instanceof ElectricPoweredCar && ((ElectricPoweredCar)car.get(i)).getCost() < cheapestAmount)){
+                if(car.get(i) instanceof ElectricPoweredCar && ((ElectricPoweredCar)car.get(i)).getCost() < cheapestAmount){
                      cheapestAmount = car.get(i).getCost();
                     cheapElectricCar = (ElectricPoweredCar) car.get(i);
                 }
