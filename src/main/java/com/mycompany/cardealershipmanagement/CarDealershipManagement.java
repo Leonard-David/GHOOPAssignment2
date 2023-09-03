@@ -74,22 +74,35 @@ public class CarDealershipManagement {
                         System.out.println(e.toString());
                     }
                     break;
-               case 5:
-                   System.out.println("There are " + cds.carsInStockNo()+" cars in stock.\n");
-                   break;
-               case 6:
-                   String carWithColor = cds.carWithSpecificColor( "Stratosphere").getBrand() +" "+cds.carWithSpecificColor( "Stratosphere").getModel();
-                   System.out.println("Cars with a Stratosphere color is a " + carWithColor+"\n");
-                   break;
-               case 7:
-                    boolean isInStock = cds.isCarInStock( "Ford", "Mustang-GT");
-                   if( isInStock == true){
-                      System.out.println("Car is in stock.\n");
-                   }
-                   else{
-                       System.out.println("Car is not in stock.\n");
-                   }
-                   break;
+              //This case allows for checking the number of cars in stock    
+                case 5:
+                    int number = cds.carsInStockNo();
+                    System.out.println("There are " + number+" cars in stock.\n");
+                    break;
+                //Here a car with a given color is returned depending on its availability in stock of if such a car with the given color exists
+                case 6:
+                    String carWithColor;
+                    try{
+                        carWithColor = cds.carWithSpecificColor( "Stratosphere").getBrand() +" "+cds.carWithSpecificColor( "Stratosphere").getModel();
+                        System.out.println("Cars with a Stratosphere color is a " + carWithColor+"\n");
+                    }
+                    catch(NullPointerException e){
+                        System.out.println("\nCar with given color not found or does not exist! Please try again.\nIf problem persist please call your system adminstrator.");
+                    }catch(Exception e){
+                        System.out.println(e.toString());
+                    }
+                    break;
+                //This case allows for checking if a given car brand and model is in stock
+                case 7:
+                    boolean isInStock;
+                    isInStock = cds.isCarInStock( "Ford", "Mustang-GT");
+                    if( isInStock == true){
+                        System.out.println("Car is in stock.\n");
+                    }
+                    else if (isInStock == true ){
+                        System.out.println("Car is not in stock.\n");
+                    }
+                    break;
                case 8:
                    String cheapestElectricCar =cds.cheapestElectricCar().getBrand() +" "+cds.cheapestElectricCar().getModel();
                    System.out.println("The cheapest electric-powered car is a " + cheapestElectricCar+"\n");
