@@ -1,79 +1,55 @@
 package com.mycompany.cardealershipmanagement;
 
+import java.text.NumberFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 /**
  *
- * @author mpula
+ * @author Group H
  */
-public class CustomerTest {
-     Customer customerInstance;
-     License licenseInstance = null;
-    public CustomerTest() {
-        licenseInstance = new License("999999ABC","C1E","01/02/2022","01/02/2026");
-        customerInstance = new Customer("01010700607", "Leonard","David", 'M',"0812883053",licenseInstance);
+public class GasPoweredCarTest { 
+     Date date = new Date();
+     NumberFormat toCurrency = NumberFormat.getCurrencyInstance();
+     GasPoweredCar gasPoweredCarInstance = null;
+     
+      LocalTime cTime = LocalTime.now();
+      LocalDate cDate = LocalDate.now();
+      DateTimeFormatter toTime = DateTimeFormatter.ofPattern("HH:mm:ss");
+      DateTimeFormatter toDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+      String currentTime = toTime.format(cTime);
+      String currentDate = toDate.format(cDate);
+      
+    public GasPoweredCarTest() {
+        gasPoweredCarInstance = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
+                "Petrol","Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,currentDate,currentTime);
     }
     
-    /**
-     * Test of getIdNumber method, of class Customer...
+     /**
+     * Test of getCost method, of class GasPoweredCar...
      */
     @Test
-    public void testGetIdNumber() {
-        System.out.println("getIdNumber");
-        String expResult = "01010700607";
-        String result = customerInstance.getIdNumber();
+    public void testGetCost() {
+        System.out.println("getCost");
+      
+        String expResult = toCurrency.format(1189999.00);
+        String result = toCurrency.format(gasPoweredCarInstance.getCost());
+        assertEquals(expResult, result);
+    }
+
+    /**
+     * Test of getfuelType method, of class GasPoweredCar.
+     */
+    @Test
+    public void testGetfuelType() {
+        System.out.println("getfuelType");
+        String expResult = "Petrol";
+        String result = gasPoweredCarInstance.getFuelType();
         assertEquals(expResult, result);
    }
-
-    /**
-     * Test of getFirstName method, of class Customer.
-     */
-    @Test
-    public void testGetFirstName() {
-        System.out.println("getFirstName");
-        String expResult = "Leonard";
-        String result = customerInstance.getFirstName();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getLastName method, of class Customer.
-     */
-    @Test
-    public void testGetLastName() {
-        System.out.println("getLastName");
-        String expResult = "David";
-        String result = customerInstance.getLastName();
-        assertEquals(expResult, result);
-    }
-
-    /**
-     * Test of getCellphoneNo method, of class Customer.
-     */
-    @Test
-    public void testGetCellphoneNo() {
-        System.out.println("getCellphoneNo");
-        String expResult = "0812883053";
-        String result = customerInstance.getCellphoneNo();
-        assertEquals(expResult, result);
-     }
-    @Test
-    public void testGetGender(){
-        System.out.println("getGender");
-        char expResult = 'M';
-        char result = customerInstance.getGender();
-         assertEquals(expResult, result);
-     }
-    /**
-     * Test of getLicense method, of class Customer.
-     */
-    @Test
-    public void testGetLicense() {
-        System.out.println("getLicense");
-        License expResult = licenseInstance;
-        License result = customerInstance.getLicense();
-        assertEquals(expResult, result);
-    }
     
 }
