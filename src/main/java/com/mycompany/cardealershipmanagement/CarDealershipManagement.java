@@ -1,7 +1,11 @@
 package com.mycompany.cardealershipmanagement;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 /**
@@ -11,24 +15,30 @@ import java.util.Scanner;
 public class CarDealershipManagement {
 
     public static void main(String[] args) throws ParseException {
-       CarDealership cds = new CarDealership();
+        CarDealership cds = new CarDealership();
         Scanner scan = new Scanner(System.in);
         NumberFormat toCurrency = NumberFormat.getCurrencyInstance();
-       while(true){
-           System.out.println("""
-                              1. Add Car                       8. Cheapest electric car
-                              2. Sell car                      9. Expensive car
-                              3. Retrive customer receipt      10. Cheapest car
-                              4. Remove car                    11. Gas-Powered car cost average
-                              5. Car stock number              12. Cars sold in a year 
-                              6. car with specific color       13. Money made in a year
-                              7. Car in stock available        14. Car price
-                                                   0. Exit program
-                              """);
-          
-               int x = scan.nextInt();
-           switch(x){
-               //adding cars to the dealrship
+        String gasPCFPath = "C:\\Users\\mpula\\OneDrive\\Documents\\GasPoweredCarInventory.txt";
+        while(true){
+            
+            //Menu with a number of options/services
+            carDealershipServicesMenu();
+            
+            int x = 0;
+            //chaecking if input is an integer type or not
+            if(scan.hasNextInt() == true){
+                x = scan.nextInt();//assigning a integer if condition is met
+            }
+            else{
+                //if above condition is not met then an exception is thrown
+                System.out.println("\nInvalid value entered! Please enter a number from the list of options.");
+                scan.next();//allows for control of the loop when above condition is not met.
+                continue; // continues to the switch if condition is met and avoids termination of program.
+            }
+            
+            //using a switch to access the options in the service menu one at a time.
+            switch(x){
+                //adding cars to the dealrship
                 case 1: 
                     try{
                         cds.addNewCar("1HGB41JXMN109186", "Ford", "Mustang-GT", "5038-cc-V8", 2050,"Petrol","GasPoweredCar", "Gray-Metallic", 1194000.0);
@@ -54,7 +64,7 @@ public class CarDealershipManagement {
                             System.out.println(e.toString());
                         }
                     break;
-              //Here a customers receipt is returned or retrieved    
+                //Here a customers receipt is returned or retrieved    
                 case 3:
                     try{
                         String receipt = cds.returnCustomerReceipt( "01CstM2023").toString();
@@ -74,7 +84,7 @@ public class CarDealershipManagement {
                         System.out.println(e.toString());
                     }
                     break;
-              //This case allows for checking the number of cars in stock    
+                //This case allows for checking the number of cars in stock    
                 case 5:
                     int number = cds.carsInStockNo();
                     System.out.println("There are " + number+" cars in stock.\n");
@@ -103,7 +113,7 @@ public class CarDealershipManagement {
                         System.out.println("Car is not in stock.\n");
                     }
                     break;
-               //This case allows for checking the cheapest electric car
+                //This case allows for checking the cheapest electric car
                 case 8:
                     String cheapestElectricCar;
                     try{
@@ -132,7 +142,7 @@ public class CarDealershipManagement {
                         System.out.println("\nAn unexpected error has occured! Please contact your system adminstrator.");
                     }
                     break;
-              //Similarly his cade does the oposite of case 9, basically alowing for checkinfg the cheapest car
+                //Similarly his cade does the oposite of case 9, basically alowing for checkinfg the cheapest car
                 case 10:
                     String cheapetCar;
                     try{
@@ -162,7 +172,7 @@ public class CarDealershipManagement {
                         System.out.println("An unexpected error has occured! Please contact your system adminstrator.");
                     }
                     break;
-              //This case allows for checking the number of cars sold in a given year
+                //This case allows for checking the number of cars sold in a given year
                 case 12:
                     int amount;
                     try{
@@ -193,7 +203,7 @@ public class CarDealershipManagement {
                         System.out.println("An unexpected error has occured! Please contact your system adminstrator.");
                    }
                     break;
-               //This case allows for cheking a given car's price.
+                //This case allows for cheking a given car's price.
                 case 14:
                     String price;
                     try{
@@ -244,7 +254,7 @@ public class CarDealershipManagement {
                     String  nameWith2As; 
                     try{
                         nameWith2As = cds.CustWithOnly2AsInSurname();
-                        System.out.println(nameWith2As+"has two letter a's in their name.");
+                        System.out.println(nameWith2As+" has two letter a's in their name.");
                     }
                     catch(IndexOutOfBoundsException e){
                         System.out.println("\nName not found or empty! Please try again. \nIf problem persist please call your system adminstrator.");
@@ -253,8 +263,96 @@ public class CarDealershipManagement {
                         System.out.println("An unexpected error has occured! Please contact your system adminstrator.");
                     }
                     break;
-               default: System.exit(0);
-               }
+                //This case allows for reading from data saved in case 16 for the file created in case 16.
+                case 18:
+                    File path;
+                    Scanner read = null;
+                    try{
+                        path = new File(gasPCFPath);
+                        read = new Scanner(path);
+                        while(read.hasNext()){
+                            System.out.println(read.nextLine());
+                        }
+                    }
+                    catch(NullPointerException e){
+                        System.out.println("File is empty!");
+                    }
+                    catch(SecurityException e){
+                                System.out.println("\nFile cannot be accessed or read! Please check and try again. \nIf problem persist please call your system adminstrator.");
+                    }
+                    catch(FileNotFoundException e){
+                                System.out.println("\nFile not found or does not exist! Please check and try again. \nIf problem persist please call your system adminstrator.");
+                    }
+                    catch(Exception e){
+                                System.out.println("\nAn unexpected error has occured! Please contact your system adminstrator.");
+                    }
+                    finally{
+                        read.close();
+                    }
+                    break;
+                //finally this case allows for printing car objects created from the file created in case 15, of which some cars data was writted to the file in case 16
+                case 19:
+                    try {
+                        ArrayList<Car> sortedCars = cds.readFilAndCreateGasPoweredCarObjects(gasPCFPath);
+                        for (Car car : sortedCars) {
+                            System.out.println("Car Code: " + car.getCarCode());
+                            System.out.println("Brand: " + car.getBrand());
+                            System.out.println("Model: " + car.getModel());
+                            System.out.println("Engine Type: " + car.getEngineType());
+                            System.out.println("Mileage: " + car.getMileage());
+                            System.out.println("Fuel Type: " + ((GasPoweredCar)car).getFuelType());
+                            System.out.println("Car Type: " + car.getCarType());
+                            System.out.println("Color: " + car.getColor());
+                            System.out.println("Cost: " + car.getCost());
+                            System.out.println("Date Brought In: " + car.getDateBroughtIn());
+                            System.out.println("Time Brought In: " + car.getTimeBroughtIn());
+                            System.out.println();
+                        }
+                    }
+                    catch(NullPointerException e){
+                        System.out.println("\nNo data found! Please try again later. \nIf problem persist please call your system adminstrator.");
+                    }
+                    catch(InputMismatchException e){
+                                System.out.println("\nAn invalid value was recoreded as input! Please try again later. \nIf problem persist please call your system adminstrator."+e.getCause()+e.getStackTrace());
+                                e.printStackTrace();
+                    }
+                    catch(SecurityException e){
+                                System.out.println("\nAccess denied! Can not get data.Please try again later. \nIf problem persist please call your system adminstrator.");
+                    }
+                    catch(FileNotFoundException e){
+                                System.out.println("\nFile not found! Please check and try again. \nIf problem persist please call your system adminstrator.");
+                    }
+                     catch(ClassCastException e){
+                                System.out.println("\nFailed to convert information! Please check and try again. \nIf problem persist please call your system adminstrator.");
+                    }
+                    catch(IOException e){
+                        System.out.println("\nAn input/output of some sort has occured!");
+                    }
+                    catch(Exception e){
+                                System.out.println("\nAn unexpected error has occured! Please contact your system adminstrator.");
+                    }
+                    break;
+                case 0:
+                    System.exit(0);
+                    break;
+            }
         }
+    }
+    //This is a method that prints a list of options or services at the begining if the program and through out the duration of it being used
+    public static void carDealershipServicesMenu(){
+        System.out.println("""
+                                                   ------------------------|Car Dealership|------------------------
+                               _______________________________________________________________________________________________________________
+                               OPTIONS: Please Select an option from the list below:
+                               _______________________________________________________________________________________________________________
+                               1. Add Car                       8.  Cheapest electric car             15. Create Files
+                               2. Sell car                      9.  Expensive car                     16. Save car data
+                               3. Retrive customer receipt      10. Cheapest car                      17. Customer with 2 A's in name
+                               4. Remove car                    11. Gas-Powered car cost average      18. All gas-powered car information
+                               5. Car stock number              12. Cars sold in a year               19. Print created car ofbject from file
+                               6. car with specific color       13. Money made in a year              0.  Exit program 
+                               7. Check if car is in stock      14. Car price                         
+                               _______________________________________________________________________________________________________________
+                               Please Enter a value form the list of options: """);
     }
 }
