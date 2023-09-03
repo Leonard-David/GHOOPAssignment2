@@ -179,30 +179,41 @@ public class CarDealership {
         catch(Exception e){
            throw e;
         }
-    }    //This method returns the cheapest car of all car types.
-    public Car cheapestCar(){
+    }   
+   //This method returns the cheapest car of all car types.
+    public Car cheapestCar()throws Exception {
         Car cheapCar = null;
-        double cheapestAmount = 40000000.00;
-        for ( int i = 0; i < car.size(); i++ ){
-            if(cheapestAmount > car.get(i).getCost()){
-                cheapestAmount = car.get(i).getCost();
-                cheapCar = car.get(i);
+        try{
+            double cheapestAmount = 40000000.00;
+            for ( int i = 0; i < car.size(); i++ ){
+                if(cheapestAmount > car.get(i).getCost()){
+                    cheapestAmount = car.get(i).getCost();
+                    cheapCar = car.get(i);
+                }
             }
+            return cheapCar;
         }
-        return cheapCar;
+        catch(Exception e){
+            throw e;
+        }
     }
     //This car returns the cost average of the gass powered cars.
-    public double gasPoweredCarCostAverage(){
-        double costAverage = 00.00;
+    public double gasPoweredCarCostAverage()throws Exception{
         int count = 0;
-        for ( int i = 0; i < car.size(); i++ ){
-            if(car.get(i) instanceof GasPoweredCar){
-                costAverage = costAverage + car.get(i).getCost();
-                count++;
+        double costAverage = 00.00;
+        try{
+            for( int i = 0; i < car.size(); i++ ){
+                if(car.get(i) instanceof GasPoweredCar){
+                    costAverage = costAverage + car.get(i).getCost();
+                    count++;
+                }
             }
+            costAverage = costAverage/count;
+            return costAverage;
         }
-        costAverage = costAverage/count;
-        return costAverage;
+        catch(Exception e){
+            throw e;
+        }
    }
     //This method return the number of cars sold in a specific year.
     public int carSoldInASpecificYearNo(int specificYear)throws ParseException {
