@@ -557,4 +557,15 @@ public class CarDealershipTest {
         carDealershipInstance.saveGasPoweredCarDataToFile(filePath);
         assertTrue(Files.exists(Path.of(filePath)));
    }
+    /**
+     * Test of CustWithOnly2AsInSurname method, of class CarDealership.
+     * @throws java.lang.Exception
+     */
+    @Test
+    public void testCustWithOnly2AsInSurname() throws Exception {
+        System.out.println("CustWithOnly2AsInSurname");
+        CarDealership cds = new CarDealership();
+        String result = carDealershipInstance.CustWithOnly2AsInSurname();
+        assertEquals("Andreas", result);
+    }
 }
