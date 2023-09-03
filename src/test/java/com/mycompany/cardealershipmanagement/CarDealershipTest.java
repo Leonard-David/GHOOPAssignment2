@@ -110,6 +110,23 @@ public class CarDealershipTest {
         assertEquals(0,cdsInstance.customer.size() );
         assertEquals(0, cdsInstance.receipt.size());
     }
+     /**
+     * Test of sellACar method, of class CarDealership.When making a sell to an non-existing customer
+     * @throws java.lang.Exception
+     */
+    @Test
+    public void testSellACarToNoCustomer2() throws Exception {    
+        System.out.println("selling a car. when there is nno car in the dealership");
+        try{
+        CarDealership cdsInstance = new CarDealership();
+        carDealershipInstance.sellACar("01CstM2023","01010700607", "Leonard", "David", 'M', "0812883053", 
+                "hbd109186", "999999ABC", "C1E", "01/02/2022", "01/02/2026", "Ford", "Mustang-GT");
+        assertEquals(0,carDealershipInstance.customer.size() );
+        assertEquals(0, carDealershipInstance.receipt.size());
+        }catch(Exception  e){
+            assertEquals("java.lang.Exception: Car not found or incorrect input! Please try again!\nIf problem persist please call your system adminstrator.",e.toString());
+        }
+    }
      
     /**
      * Test of returnCustomerReceipt method, of class CarDealership.
