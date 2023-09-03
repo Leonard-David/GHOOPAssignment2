@@ -1,8 +1,8 @@
 package com.mycompany.cardealershipmanagement;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
-import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -294,10 +294,10 @@ public class CarDealership {
     //this method saved the information of the electric powered car to a  text file.
     public void saveGasPoweredCarDataToFile(String filePath) throws Exception {
         FileWriter buffer = null;
-        PrintWriter toGasPoweredCarFile = null;
+        BufferedWriter toGasPoweredCarFile = null;
         try{
              buffer = new FileWriter(filePath, true);
-             toGasPoweredCarFile = new PrintWriter(buffer);
+             toGasPoweredCarFile = new BufferedWriter(buffer);
             
             for(int i = 0; i < car.size(); i++){
                 if(car.get(i) instanceof GasPoweredCar ){
