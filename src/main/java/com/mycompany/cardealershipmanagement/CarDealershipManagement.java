@@ -345,7 +345,7 @@ public class CarDealershipManagement {
                                _______________________________________________________________________________________________________________
                                OPTIONS: Please Select an option from the list below:
                                _______________________________________________________________________________________________________________
-                               1. Add Car                       8.  Cheapest electric car             15. Create Files
+                               1. Add Car                       8.  Cheapest electric car             15. Create File
                                2. Sell car                      9.  Expensive car                     16. Save car data
                                3. Retrive customer receipt      10. Cheapest car                      17. Customer with 2 A's in name
                                4. Remove car                    11. Gas-Powered car cost average      18. All gas-powered car information
