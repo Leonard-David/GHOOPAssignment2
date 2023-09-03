@@ -568,4 +568,34 @@ public class CarDealershipTest {
         String result = carDealershipInstance.CustWithOnly2AsInSurname();
         assertEquals("Andreas", result);
     }
+     /**
+     * Test of readFilAndCreateGasPoweredCarObjects method, of class CarDealership.
+     */
+    @Test
+    public void testReadFilAndCreateGasPoweredCarObjects() throws Exception {
+        ArrayList<Car> cars = carDealershipInstance.readFilAndCreateGasPoweredCarObjects("GasPoweredCarInventory.txt");
+        assertFalse(cars.isEmpty());
+        // Test if the cars are sorted alphabetically by brand
+        for (int i = 1; i < cars.size(); i++) {
+            assertTrue(cars.get(i - 1).getBrand().compareTo(cars.get(i).getBrand()) <= 0);
+        }
+    }
+
+    /**
+     * Test of sortCarsAlphabeticallyByBrand method, of class CarDealership.
+     */
+    @Test
+    public void testSortCarsAlphabeticallyByBrand() {
+        ArrayList<Car> cars = new ArrayList<>();
+        cars.add(new GasPoweredCar("001", "Honda", "Civic", "Gas", 30.0, "Regular", "Sedan", "Blue", 20000.0, "2023-09-03", "09:00 AM"));
+        cars.add(new GasPoweredCar("002", "Toyota", "Corolla", "Gas", 35.0, "Regular", "Sedan", "Silver", 22000.0, "2023-09-03", "09:30 AM"));
+        cars.add(new GasPoweredCar("003", "Ford", "Mustang", "Gas", 25.0, "Premium", "Sports Car", "Red", 45000.0, "2023-09-03", "10:00 AM"));
+        
+        ArrayList<Car> sortedCars = carDealershipInstance.sortCarsAlphabeticallyByBrand(cars);
+        
+        // Verify that the cars are sorted alphabetically by brand
+        for (int i = 1; i < sortedCars.size(); i++) {
+            assertTrue(sortedCars.get(i - 1).getBrand().compareTo(sortedCars.get(i).getBrand()) <= 0);
+        }
+    }
 }
