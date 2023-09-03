@@ -259,13 +259,66 @@ public class CarDealership {
         }
     }
     //This method returns the price of a given car it name and brand.
-    public double priceOfGivenCar(String brand, String model){
-        double givenCarPrice = 00.00;
-        for ( int i = 0; i < car.size(); i++ ){
-            if(brand.equals(car.get(i).getBrand()) && model.equals(car.get(i).getModel())){
-                givenCarPrice =car.get(i).getCost();
+    public double priceOfGivenCar(String brand, String model)throws Exception {
+       Car carPrice = car.get(0);
+        try{
+            for( int i = 0; i < car.size(); i++ ){
+                if(brand.equals(car.get(i).getBrand()) && model.equals(car.get(i).getModel())){
+                    carPrice =car.get(i);
+                }
+            }
+            if(carPrice instanceof GasPoweredCar){
+                return carPrice.getCost();
+            }
+            else if(carPrice instanceof ElectricPoweredCar){
+                return carPrice.getCost();
+            }
+            return 0;
+        }
+        catch(Exception e){
+            throw e;
+         }
+    }
+    //Wiht this method we are creating a text file for the Electric-powered car
+    public void createGPCFile(String filePath) throws Exception{
+        File txtGas = new File(filePath);
+        if(txtGas.exists() == false){
+            txtGas.createNewFile();
+        }
+        else if(txtGas.exists() == true){
+            throw new Exception("The file already exist!");
+        }
+    }
+    //this method saved the information of the electric powered car to a  text file.
+    public void saveGasPoweredCarDataToFile(String filePath) throws Exception {
+        FileWriter buffer = null;
+        PrintWriter toGasPoweredCarFile = null;
+        try{
+             buffer = new FileWriter(filePath, true);
+             toGasPoweredCarFile = new PrintWriter(buffer);
+            
+            for(int i = 0; i < car.size(); i++){
+                if(car.get(i) instanceof GasPoweredCar ){
+                    toGasPoweredCarFile.write(car.get(i).getCarCode()+"\n"+
+                                              "\n"+car.get(i).getBrand()+
+                                              "\n"+car.get(i).getModel()+
+                                              "\n"+car.get(i).getEngineType()+
+                                              "\n"+car.get(i).getMileage()+
+                                              ((GasPoweredCar)car.get(i)).getFuelType()+"\n"+
+                                              car.get(i).getCarType()+"\n"+
+                                              car.get(i).getColor()+"\n"+
+                                              car.get(i).getCost()+"\n"+
+                                              car.get(i).getDateBroughtIn()+"\n"+
+                                              car.get(i).getTimeBroughtIn()+"\n");
+                }
             }
         }
-        return givenCarPrice;
+        catch(Exception e){
+            throw e;
+        }
+        finally{
+            toGasPoweredCarFile.close();
+            buffer.close();
+        }
     }
 }
