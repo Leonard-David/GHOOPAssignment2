@@ -103,14 +103,35 @@ public class CarDealershipManagement {
                         System.out.println("Car is not in stock.\n");
                     }
                     break;
-               case 8:
-                   String cheapestElectricCar =cds.cheapestElectricCar().getBrand() +" "+cds.cheapestElectricCar().getModel();
-                   System.out.println("The cheapest electric-powered car is a " + cheapestElectricCar+"\n");
-                   break;
-               case 9:
-                   String expensiveCar = cds.mostExpensiveCar().getBrand() +" "+cds.mostExpensiveCar().getModel();
-                   System.out.println("The most expensive car is a " + expensiveCar+"\n");
-                   break;
+               //This case allows for checking the cheapest electric car
+                case 8:
+                    String cheapestElectricCar;
+                    try{
+                        cheapestElectricCar =cds.cheapestElectricCar().getBrand() +" "+cds.cheapestElectricCar().getModel();
+                        System.out.println("The cheapest electric-powered car is a " + cheapestElectricCar+"\n");
+                    }
+                    catch(NullPointerException e){
+                        System.out.println("\nCar not found or does not exist! Please try again.\nIf problem persist please call your system adminstrator.");
+                    }
+                    catch(ClassCastException e){
+                        System.out.println("\nFalied to cast vehicle elements! Pleaase try again.\nIf problem persist please call your system adminstrator.");
+                    }
+                    catch(Exception e){
+                        System.out.println("\nAn unexpected error has occured! Please contact your system adminstrator.");
+                    }
+                    break;
+                //This case checks for the most expensive car
+                case 9:
+                    try{
+                        String expensiveCar = cds.mostExpensiveCar().getBrand() +" "+cds.mostExpensiveCar().getModel();
+                        System.out.println("The most expensive car is a " + expensiveCar+"\n");
+                    }
+                    catch(NullPointerException e){
+                        System.out.println("\nCar not found or does not exist! Please try again.\nIf problem persist please call your system adminstrator.");
+                    }catch(Exception e){
+                        System.out.println("\nAn unexpected error has occured! Please contact your system adminstrator.");
+                    }
+                    break;
                case 10:
                    String cheapetCar =cds.cheapestCar().getBrand() +" "+cds.cheapestCar().getModel();
                    System.out.println("The cheapest car is a " + cheapetCar+"\n");
