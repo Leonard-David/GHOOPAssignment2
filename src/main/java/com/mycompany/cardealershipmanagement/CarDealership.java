@@ -216,32 +216,47 @@ public class CarDealership {
         }
    }
     //This method return the number of cars sold in a specific year.
-    public int carSoldInASpecificYearNo(int specificYear)throws ParseException {
-        SimpleDateFormat sdtf = new SimpleDateFormat("y");
-        String givenYear = sdtf.format(sdtf.parse(Integer.toString(specificYear)));
-        String dateSold;
-        int count = 0;
-        for ( int i = 0; i < car.size(); i++ ){
-            dateSold  = sdtf.format(car.get(i).getDateSold());
-            if(givenYear.equals(dateSold)){
-                count++;
+    public int carSoldInASpecificYearNo(int specificYear)throws Exception {
+         SimpleDateFormat sdtf;
+         String givenYear;
+         String dateSold;
+        try{
+            sdtf = new SimpleDateFormat("y");
+            givenYear = sdtf.format(sdtf.parse(Integer.toString(specificYear)));
+            int count = 0;
+            for( int i = 0; i < car.size(); i++ ){
+                dateSold  = sdtf.format(car.get(i).getDateSold());
+                if(givenYear.equals(dateSold)){
+                    count++;
+                }
             }
+            return count;
         }
-        return count;
+        catch(Exception e){
+            throw e;
+        }
     }
     //This method returns the amount of money made in a given year.
-    public double moneyMadeInASpecificYear(int specificYear)throws ParseException{
-        SimpleDateFormat sdtf = new SimpleDateFormat("y");
-        String givenYear = sdtf.format(sdtf.parse(Integer.toString(specificYear)));
+    public double moneyMadeInASpecificYear(int specificYear)throws Exception {
+        SimpleDateFormat sdtf;
+        String givenYear;
         String dateSold;
         double sum = 00.0;
-        for ( int i = 0; i < car.size(); i++ ){
-            dateSold  = sdtf.format(car.get(i).getDateSold());
-            if(givenYear.equals(dateSold)){
+        try{
+            sdtf = new SimpleDateFormat("y");
+            givenYear = sdtf.format(sdtf.parse(Integer.toString(specificYear)));
+            
+            for( int i = 0; i < car.size(); i++ ){
+                dateSold  = sdtf.format(car.get(i).getDateSold());
+                if(givenYear.equals(dateSold)){
                 sum = sum + car.get(i).getCost();
+                }
             }
+            return sum;
         }
-        return sum;
+        catch(Exception e){
+            throw e;
+        }
     }
     //This method returns the price of a given car it name and brand.
     public double priceOfGivenCar(String brand, String model){
