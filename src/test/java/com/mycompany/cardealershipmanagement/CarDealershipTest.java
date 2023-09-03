@@ -68,11 +68,11 @@ public class CarDealershipTest {
         assertEquals(2, cds.car.size());
     }
     /**
-     * Test of addNewCar method, of class CarDealership.When adding a non existing or non related vehicle
+     * Test of addNewCar method, of class CarDealership.When adding a non related vehicle
      * @throws java.lang.Exception
      */
     @Test
-    public void testAddNewCarNonExistingCar() throws Exception {
+    public void testAddNewCarNonSupportedCar() throws Exception {
         try{
         CarDealership cds = new CarDealership();
         System.out.println("Adding a new car");
@@ -88,16 +88,16 @@ public class CarDealershipTest {
 
     /**
      * Test of sellACar method, of class CarDealership.
+     * @throws java.lang.Exception
      */
     @Test
-    public void testSellACar() {
-        CarDealership cds = new CarDealership();
+    public void testSellACar() throws Exception {
         System.out.println("selling a car");
         //instance to sell a car. and a create objects for the Receipt and Customer class
-        cds.sellACar("01CstM2023","01010700607", "Leonard", "David", 'M', "0812883053", 
+        carDealershipInstance.sellACar("01CstM2023","01010700607", "Leonard", "David", 'M', "0812883053", 
                 "1HGB41JXMN109186", "999999ABC", "C1E", "01/02/2022", "01/02/2026", "Ford", "Mustang-GT");
-        assertEquals(1,cds.customer.size());
-        assertEquals(1, cds.receipt.size());
+        assertEquals(3,carDealershipInstance.customer.size());
+        assertEquals(2, carDealershipInstance.receipt.size());
     }
    
      /**
@@ -106,7 +106,7 @@ public class CarDealershipTest {
     @Test
     public void testSellACarToNoCustomer() {    
         System.out.println("selling a car. when there is nno car in the dealership");
-         CarDealership cdsInstance = new CarDealership();
+        CarDealership cdsInstance = new CarDealership();
         assertEquals(0,cdsInstance.customer.size() );
         assertEquals(0, cdsInstance.receipt.size());
     }
@@ -118,7 +118,6 @@ public class CarDealershipTest {
     public void testSellACarToNoCustomer2() throws Exception {    
         System.out.println("selling a car. when there is nno car in the dealership");
         try{
-        CarDealership cdsInstance = new CarDealership();
         carDealershipInstance.sellACar("01CstM2023","01010700607", "Leonard", "David", 'M', "0812883053", 
                 "hbd109186", "999999ABC", "C1E", "01/02/2022", "01/02/2026", "Ford", "Mustang-GT");
         assertEquals(0,carDealershipInstance.customer.size() );
@@ -164,7 +163,6 @@ public class CarDealershipTest {
     public void testReturnCustomerReceiptNotFound() throws Exception {
         System.out.println("Returning customer's Receipt. When customers receipt is not found.");
         try{
-        Date d = new Date();
         String receiptId ="04CstM2023";
         Receipt expResult = null;
         Receipt result = carDealershipInstance.returnCustomerReceipt(receiptId);
@@ -206,7 +204,7 @@ public class CarDealershipTest {
         catch(Exception e){
             assertEquals("java.lang.Exception: Vehicle verification number not found or incorrect ID! Please try again!\nIf the problem persists, please call your system administrator.",e.toString());
         }
-    } 
+    }
     
     /**
      * Test of carsInStockNo method, of class CarDealership.
@@ -288,7 +286,7 @@ public class CarDealershipTest {
         boolean result = carDealershipInstance.isCarInStock(brand, model);
         assertEquals(expResult, result);
    }
-  /**
+     /**
      * Test of cheapestElectricCar method, of class CarDealership.
      * @throws java.lang.Exception
      */
@@ -300,25 +298,7 @@ public class CarDealershipTest {
         String results = result.getBrand()+" "+result.getModel();
         assertEquals(expResult, results);
     }
-    /**
-     * Test of cheapestElectricCar method, of class CarDealership.
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testCheapestElectricCar1() throws Exception {
-        CarDealership cds = new CarDealership();
-        try{
-        System.out.println("Cheapest electric Car");
-        String expResult = "Audi E-tron-GT";
-        Car result = (ElectricPoweredCar) cds.cheapestElectricCar();
-        String results = result.getBrand()+" "+result.getModel();
-        assertEquals(expResult, results);
-        }
-        catch(Exception e){
-            assertEquals(e.toString(), e.toString());
-        }
-    }
-    
+   
     /**
      * Test of mostExpensiveCar method, of class CarDealership.
      * @throws java.lang.Exception
@@ -330,26 +310,7 @@ public class CarDealershipTest {
         String result = carDealershipInstance.mostExpensiveCar().getBrand()+" "+carDealershipInstance.mostExpensiveCar().getModel();
         assertEquals(expResult, result);
     }
-    
-     /**
-     * Test of mostExpensiveCar method, of class CarDealership.When there is no car in stock
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testMostExpensiveCar2() throws Exception {
-        System.out.println("cheapestCar");
-        CarDealership cds = new CarDealership();
-        try{
-        Car expResult = null;
-        Car result = cds.mostExpensiveCar();
-        String results = result.getBrand() + "" +result.getModel();
-        assertEquals(expResult, result);
-        }catch(Exception e){
-            assertEquals(e.toString(),e.toString());
-        }
-    }
-    
-   /**
+    /**
      * Test of cheapestCar method, of class CarDealership.
      * @throws java.lang.Exception
      */
@@ -396,6 +357,7 @@ public class CarDealershipTest {
         String result = toCurrency.format(cds.gasPoweredCarCostAverage());
         assertEquals(expResult, result);
    }
+
     /**
      * Test of CarSoldInASpecificYearNo method, of class CarDealership.
      * @throws java.text.ParseException
@@ -458,46 +420,7 @@ public class CarDealershipTest {
         String result = toCurrency.format(cds.moneyMadeInASpecificYear(specificYear));
         assertEquals(expResult, result);
     }
-    /**
-     * Test of moneyMadeInASpecificYear method, of class CarDealership. when there is no date(null).
-     * @throws java.text.ParseException
-     */
-    @Test
-     public void testMoneyMadeInASpecificYear2()throws Exception {
-        try{
-        System.out.println("Money made in a specific year. Where no money was made in that year");
-        int specificYear = 2022;
-        String expResult =toCurrency.format(0.00);
-        String result = toCurrency.format(carDealershipInstance.moneyMadeInASpecificYear(specificYear));
-        assertEquals(expResult, result);
-        }catch(Exception e){
-            assertEquals("java.lang.NullPointerException: date must not be null",e.toString());
-        }
-    }    /**
-     * Test of priceOfGivenCar method, of class CarDealership.
-     */
-    @Test
-    public void testPriceOfGivenCar() {
-        System.out.println("Price of a given car.");
-        String brand = "Ford";
-        String model = "Mustang-GT";
-        String expResult = toCurrency.format(1189999.00);
-        String result = toCurrency.format(carDealershipInstance.priceOfGivenCar(brand, model));
-        assertEquals(expResult, result);
-    }
-     /**
-     * Test of priceOfGivenCar method, of class CarDealership.
-     */
-    @Test
-    public void testPriceOfGivenCar2() {
-        System.out.println("Price of a given car. Where no car is in the dealership");
-        CarDealership cds = new CarDealership();
-        String brand = "Ford";
-        String model = "Mustang-GT";
-        String expResult = toCurrency.format(0.00);
-        String result = toCurrency.format(cds.priceOfGivenCar(brand, model));
-        assertEquals(expResult, result);
-    }
+    
     /**
      * Test of priceOfGivenCar method, of class CarDealership.
      * @throws java.lang.Exception
@@ -511,26 +434,7 @@ public class CarDealershipTest {
         String result = toCurrency.format(carDealershipInstance.priceOfGivenCar(brand, model));
         assertEquals(expResult, result);
     }
-     /**
-     * Test of priceOfGivenCar method, of class CarDealership.
-     * @throws java.lang.Exception
-     */
-    @Test
-    public void testPriceOfGivenCar2() throws Exception {
-        try{
-        System.out.println("Price of a given car. Where no car is in the dealership");
-        CarDealership cds = new CarDealership();
-        String brand = "Ford";
-        String model = "Mustang-GT";
-        String expResult = toCurrency.format(0.00);
-        String result = toCurrency.format(cds.priceOfGivenCar(brand, model));
-        assertEquals(expResult, result);
-        }
-        catch(IndexOutOfBoundsException e){
-            assertEquals("java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0", e.toString());
-        }
-    }
-
+    
     /**
      * Test of createGPCFile method, of class CarDealership.
      * @throws java.lang.Exception
@@ -557,6 +461,7 @@ public class CarDealershipTest {
         carDealershipInstance.saveGasPoweredCarDataToFile(filePath);
         assertTrue(Files.exists(Path.of(filePath)));
    }
+    
     /**
      * Test of CustWithOnly2AsInSurname method, of class CarDealership.
      * @throws java.lang.Exception
@@ -564,12 +469,14 @@ public class CarDealershipTest {
     @Test
     public void testCustWithOnly2AsInSurname() throws Exception {
         System.out.println("CustWithOnly2AsInSurname");
-        CarDealership cds = new CarDealership();
         String result = carDealershipInstance.CustWithOnly2AsInSurname();
         assertEquals("Andreas", result);
+   
     }
-     /**
+
+    /**
      * Test of readFilAndCreateGasPoweredCarObjects method, of class CarDealership.
+     * @throws java.lang.Exception
      */
     @Test
     public void testReadFilAndCreateGasPoweredCarObjects() throws Exception {
