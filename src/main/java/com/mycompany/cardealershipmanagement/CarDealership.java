@@ -147,30 +147,39 @@ public class CarDealership {
         return carIsInStock;
     }
     //This method Returns the Cheapest Electric Car of all electric cars.
-    public ElectricPoweredCar cheapestElectricCar(){
-        ElectricPoweredCar cheapElectricCar = null;
+    public ElectricPoweredCar cheapestElectricCar()throws Exception {
+        ElectricPoweredCar  cheapElectricCar = null;
         double cheapestAmount = 40000000.00;
-        for ( int i = 0; i < car.size(); i++ ){
-            if(car.get(i) instanceof ElectricPoweredCar && ((ElectricPoweredCar)car.get(i)).getCost() < cheapestAmount){
-                cheapestAmount = car.get(i).getCost();
-                cheapElectricCar = (ElectricPoweredCar) car.get(i);
+        try{
+            for ( int i = 0; i < car.size(); i++ ){
+                if(!(car.get(i) instanceof ElectricPoweredCar && ((ElectricPoweredCar)car.get(i)).getCost() < cheapestAmount)){
+                     cheapestAmount = car.get(i).getCost();
+                    cheapElectricCar = (ElectricPoweredCar) car.get(i);
+                }
             }
+            return cheapElectricCar;
         }
-        return cheapElectricCar;
+        catch(Exception e){
+            throw e;
+        }
     }
     //This meethod returns the mos expensive cars of all car types.
-    public Car mostExpensiveCar(){
+    public Car mostExpensiveCar()throws Exception {
         Car expensiveCar = null;
         double expAmount = 15000.00;
-        for ( int i = 0; i < car.size(); i++ ){
-            if(expAmount < car.get(i).getCost()){
-               expAmount = car.get(i).getCost();
-               expensiveCar = car.get(i);
+        try{
+            for(int i = 0; i < car.size(); i++ ){
+                if(expAmount < car.get(i).getCost()){
+                    expAmount = car.get(i).getCost();
+                    expensiveCar = car.get(i);
+                }
             }
+            return expensiveCar;
         }
-        return expensiveCar;
-    }
-    //This method returns the cheapest car of all car types.
+        catch(Exception e){
+           throw e;
+        }
+    }    //This method returns the cheapest car of all car types.
     public Car cheapestCar(){
         Car cheapCar = null;
         double cheapestAmount = 40000000.00;
