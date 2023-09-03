@@ -1,7 +1,13 @@
 package com.mycompany.cardealershipmanagement;
 
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.text.NumberFormat;
 import java.text.ParseException;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -12,52 +18,73 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public class CarDealershipTest {
     CarDealership carDealershipInstance = null; 
-    
+    //local date and time instances
+    LocalTime cTime = LocalTime.now();
+    LocalDate cDate = LocalDate.now();
+      
+    //using the  date formatter for to get the time and date only
+    DateTimeFormatter toTime = DateTimeFormatter.ofPattern("HH:mm:ss");
+    DateTimeFormatter toDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+     
+    //fornating the date to suit the below time and date attributes
+    String currentTime = toTime.format(cTime);
+    String currentDate = toDate.format(cDate);
+      
     NumberFormat toCurrency = NumberFormat.getCurrencyInstance();
     public CarDealershipTest() {
         Date date = new Date();
         carDealershipInstance = new CarDealership();
-        carDealershipInstance.car.add(0, new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,"Petrol",
-               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date));
-        carDealershipInstance.car.add(1,new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
-                "Electric-Powered-Car","Red",3400000.0,date));
-        carDealershipInstance.car.add(2, new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
-                "ElecticPoweredCar", " Ascari Blue metallic",2065712.0,date));
-        carDealershipInstance.car.add(3, new GasPoweredCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
-                "Petrol", "GasPoweredCar","Stratosphere",418377.00, date));
-         carDealershipInstance.receipt.add(0,new Receipt("01CstM2023", "01010700607","Leoanrd David",
-                "Ford", "1HGB41JXMN109186", date,1194000.0, "Mustang-GT"));
+        //car 1
+        carDealershipInstance.car.add(0, new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,"Petrol","Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,currentDate,currentTime));
+        //car 2
+        carDealershipInstance.car.add(1,new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,"Electric-Powered-Car","Red",3400000.0,currentDate,currentTime));
+        //car 3
+        carDealershipInstance.car.add(2, new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50, "ElecticPoweredCar", " Ascari Blue metallic",2065712.0,currentDate,currentTime));
+        //car 4
+        carDealershipInstance.car.add(3, new GasPoweredCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,"Petrol", "GasPoweredCar","Stratosphere",418377.00, currentDate,currentTime));
+        //receipt 1
+        carDealershipInstance.receipt.add(0,new Receipt("01CstM2023", "01010700607","Leoanrd David","Ford", "1HGB41JXMN109186", date,1194000.0, "Mustang-GT"));
+        //customer 1
+        carDealershipInstance.customer.add(new Customer("02081900502", "John", "Andreas", 'M', "123456789", new License("L456", "L123", "2022-01-01", "2023-01-01")));
+        //customer 2
+        carDealershipInstance.customer.add(new Customer("12110203605", "Alice", "Randal", 'F', "987654321", new License("L789", "L456", "2021-01-01", "2022-01-01")));
+        
     }
 
     /**
-     * Test of addNewCar method, of class CarDealership. When Adding Two cars.
+     * Test of addNewCar method, of class CarDealership.When Adding Two cars.
+     * @throws java.lang.Exception
      */
     @Test
-    public void testAddNewCar() {
+    public void testAddNewCar() throws Exception {
         CarDealership cds = new CarDealership();
         System.out.println("Adding a new car"); 
-        // instance to add a car here i added 4 cars. We created objects for the car class of which are also objects of the child classes
-        cds.addNewCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
-                "Petrol", "GasPoweredCar","Stratosphere",418377.14);
-        cds.addNewCar("1HGB41JXMN109186", "Audi", "E-tron-GT", "AC synchronous electric motors", 3500.50,
-                "Petrol","ElecticPoweredCar"," Ascari Blue metallic",2065712.16);
+        
+        // Addind two cars 
+        cds.addNewCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,"Petrol", "GasPoweredCar","Stratosphere",418377.14);
+        cds.addNewCar("1HGB41JXMN109186", "Audi", "E-tron-GT", "AC synchronous electric motors", 3500.50,"Petrol","ElectricPoweredCar"," Ascari Blue metallic",2065712.16);
+        
         //Testing method to compare outputs
         assertEquals(2, cds.car.size());
     }
     /**
-     * Test of addNewCar method, of class CarDealership. When adding a non existing or non related vehicle
+     * Test of addNewCar method, of class CarDealership.When adding a non existing or non related vehicle
+     * @throws java.lang.Exception
      */
     @Test
-    public void testAddNewCarNonExistingCar() {
+    public void testAddNewCarNonExistingCar() throws Exception {
+        try{
         CarDealership cds = new CarDealership();
         System.out.println("Adding a new car");
-        // instance to add a car here i added 4 cars. We created objects for the car class of which are also objects of the child classes
-        cds.addNewCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,
-                "Petrol","GasPoweredMotorcycle","Stratosphere",418377.14);
+        // Adding a vehicle of a cartype that is not allowed
+        cds.addNewCar("5TENL42N94Z436445", "Toyota", "Supra-MK4", "a 2JZ-GTE 3.0-litre twin-turbocharged straight 6 with 280 horsepower", 200.50,"Petrol","GasPoweredMotorcycle","Stratosphere",418377.14);
         //Testing method to compare outputs
         assertEquals(0, cds.car.size());
+        }
+        catch(Exception e){
+            assertEquals("java.lang.Exception: Unsupported car type.",e.toString());
+        }
     }
-
 
     /**
      * Test of sellACar method, of class CarDealership.
