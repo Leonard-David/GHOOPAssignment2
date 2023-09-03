@@ -210,19 +210,21 @@ public class CarDealershipTest {
     
     /**
      * Test of carsInStockNo method, of class CarDealership.
+     * @throws java.lang.Exception
      */
     @Test
-    public void testCarsInStockNo() {
+    public void testCarsInStockNo() throws Exception {
         System.out.println("Cars in stock number");
         int expResult = 4;
-        int result = carDealershipInstance.car.size();
+        int result = carDealershipInstance.carsInStockNo();
         assertEquals(expResult, result);
     }
      /**
-     * Test of carsInStockNo method, of class CarDealership. when there is no car in stock.
+     * Test of carsInStockNo method, of class CarDealership.when there is no car in stock.
+     * @throws java.lang.Exception
      */
     @Test
-    public void testCarsInStockNumber() {
+    public void testCarsInStockNumber() throws Exception {
         System.out.println("Cars in stock number. When there are no cars in stock.");
         CarDealership cdsInstance = new CarDealership();
         int expResult = 0;
@@ -232,9 +234,10 @@ public class CarDealershipTest {
 
     /**
      * Test of carWithSpecificColor method, of class CarDealership.
+     * @throws java.lang.Exception
      */
     @Test
-    public void testCarWithSpecificColor() {
+    public void testCarWithSpecificColor() throws Exception {
         System.out.println("carWithSpecificColor");
         String color = "red";
         String expResult = "Tesla Roadstar";
@@ -242,22 +245,29 @@ public class CarDealershipTest {
         assertEquals(expResult, result);
    }
      /**
-     * Test of carWithSpecificColor method, of class CarDealership. When no car has the given color.
+     * Test of carWithSpecificColor method, of class CarDealership.When no car has the given color.
+     * @throws java.lang.Exception
      */
     @Test
-    public void testCarWithSpecificColorThatDoesNotExist() {
+    public void testCarWithSpecificColorThatDoesNotExist() throws Exception {
         System.out.println("carWithSpecificColor");
+        try{
         String color = "green";
-        String expResult = null;
+        String expResult = "";
         Car result = carDealershipInstance.carWithSpecificColor(color);
         assertEquals(expResult, result);
+        }
+        catch(Exception e){
+            assertEquals("java.lang.Exception: Car with green color not found.",e.toString());
+        }
    }
 
     /**
      * Test of isCarInStock method, of class CarDealership.
+     * @throws java.lang.Exception
      */
     @Test
-    public void testIsCarInStock() {
+    public void testIsCarInStock() throws Exception {
         System.out.println("isCarInStock");
         String brand = "Ford";
         String model = "Mustang-GT";
@@ -266,10 +276,11 @@ public class CarDealershipTest {
         assertEquals(expResult, result);
    }
     /**
-     * Test of isCarInStock method, of class CarDealership. when car is not in stock
+     * Test of isCarInStock method, of class CarDealership.when car is not in stock
+     * @throws java.lang.Exception
      */
     @Test
-    public void testIsCarInStock2() {
+    public void testIsCarInStock2() throws Exception {
         System.out.println("isCarInStock");
         String brand = "Volkswagen";
         String model = "Golf MK7 GTI";
