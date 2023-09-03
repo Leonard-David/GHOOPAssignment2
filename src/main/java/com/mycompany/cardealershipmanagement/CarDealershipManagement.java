@@ -25,7 +25,7 @@ public class CarDealershipManagement {
                               7. Car in stock available        14. Car price
                                                    0. Exit program
                               """);
-           try{
+          
                int x = scan.nextInt();
            switch(x){
                //adding cars to the dealrship
@@ -193,16 +193,54 @@ public class CarDealershipManagement {
                         System.out.println("An unexpected error has occured! Please contact your system adminstrator.");
                    }
                     break;
-               case 14:
-                    String price = toCurrency.format(cds.priceOfGivenCar("Toyota", "Supra-MK4"));
-                    System.out.println("The price of the car is N$ " +price+"\n");
+               //This case allows for cheking a given car's price.
+                case 14:
+                    String price;
+                    try{
+                        price = toCurrency.format(cds.priceOfGivenCar("Mustang", "Mustang-GT"));
+                        System.out.println("The price of the car is N$ " +price+"\n");
+                    }
+                    catch(IndexOutOfBoundsException e){
+                        System.out.println("\nPrice not found or emoty! Please try again!\nIf problem persist please call your system adminstrator.");
+                    }
+                    catch(Exception e){
+                        System.out.println("\nAn unexpected error has occured! Please contact your system adminstrator.");
+                    }
+                    break;
+                //This case allows for creating a gas-powered car's file (gasPCF).
+                case 15:
+                    try{
+                        cds.createGPCFile(gasPCFPath);
+                        System.out.println("File created Successfulley");
+                    }
+                    catch(Exception e){
+                        System.out.println(e.toString());
+                    }
+                    break;
+                //This case allows for saving gas-powered car data to the file created in case 15.
+                case 16:
+                    try{
+                        cds.saveGasPoweredCarDataToFile(gasPCFPath);
+                        System.out.println("Gas-powered car data saved Successfulley");
+                    }
+                    catch(InputMismatchException e){
+                        System.out.println("Invalid value enter! Please enter value from given options.");
+                    }
+                    catch(SecurityException e){
+                        System.out.println("File cannot be accessed or written! Please check and try again. \nIf problem persist please call your system adminstrator.");
+                    }
+                    catch(FileNotFoundException e){
+                        System.out.println("File not found or does not exist! Please check and try again. \nIf problem persist please call your system adminstrator.");
+                    }
+                    catch(IOException e){
+                        System.out.println("An input/ouput I/O error has occured! Please try again. \nIf problem persist please call your system adminstrator.");
+                    }
+                    catch(Exception e){
+                        System.out.println("An unexpected error has occured! Please contact your system adminstrator.");
+                    }
                    break;
                default: System.exit(0);
-           }
-           }
-           catch(InputMismatchException invalidValueEnterd){
-               System.out.println("Error! You have enteres an invalid value\n\nPlease try again");  
-           }
+               }
         }
     }
 }
