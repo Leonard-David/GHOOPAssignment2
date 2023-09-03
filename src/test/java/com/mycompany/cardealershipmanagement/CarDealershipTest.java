@@ -457,10 +457,10 @@ public class CarDealershipTest {
      */
     @Test
     public void testSaveGasPoweredCarDataToFile() throws Exception {
-        String filePath = "GasPoweredCarInventory.txt";
+        String filePath = "C:\\Users\\mpula\\OneDrive\\Documents\\GasPoweredCarInventory.txt";
         carDealershipInstance.saveGasPoweredCarDataToFile(filePath);
         assertTrue(Files.exists(Path.of(filePath)));
-   }
+    }
     
     /**
      * Test of CustWithOnly2AsInSurname method, of class CarDealership.
@@ -480,7 +480,8 @@ public class CarDealershipTest {
      */
     @Test
     public void testReadFilAndCreateGasPoweredCarObjects() throws Exception {
-        ArrayList<Car> cars = carDealershipInstance.readFilAndCreateGasPoweredCarObjects("GasPoweredCarInventory.txt");
+        CarDealership cds = new CarDealership();
+        ArrayList<Car> cars = cds.readFilAndCreateGasPoweredCarObjects("C:\\Users\\mpula\\OneDrive\\Documents\\GasPoweredCarInventory.txt");
         assertFalse(cars.isEmpty());
         // Test if the cars are sorted alphabetically by brand
         for (int i = 1; i < cars.size(); i++) {
