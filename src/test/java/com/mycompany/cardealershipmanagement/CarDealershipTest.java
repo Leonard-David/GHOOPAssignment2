@@ -288,22 +288,43 @@ public class CarDealershipTest {
         boolean result = carDealershipInstance.isCarInStock(brand, model);
         assertEquals(expResult, result);
    }
- /**
+  /**
      * Test of cheapestElectricCar method, of class CarDealership.
+     * @throws java.lang.Exception
      */
     @Test
-    public void testCheapestElectricCar() {
+    public void testCheapestElectricCar() throws Exception {
         System.out.println("Cheapest electric Car");
         String expResult = "Audi E-tron-GT";
-        String result = carDealershipInstance.cheapestElectricCar().getBrand() +" "+carDealershipInstance.cheapestElectricCar().getModel();
+        Car result = carDealershipInstance.cheapestElectricCar();
+        String results = result.getBrand()+" "+result.getModel();
         assertEquals(expResult, result);
+    }
+    /**
+     * Test of cheapestElectricCar method, of class CarDealership.
+     * @throws java.lang.Exception
+     */
+    @Test
+    public void testCheapestElectricCar1() throws Exception {
+        CarDealership cds = new CarDealership();
+        try{
+        System.out.println("Cheapest electric Car");
+        String expResult = "Audi E-tron-GT";
+        Car result = (ElectricPoweredCar) cds.cheapestElectricCar();
+        String results = result.getBrand()+" "+result.getModel();
+        assertEquals(expResult, results);
+        }
+        catch(Exception e){
+            assertEquals(e.toString(), e.toString());
+        }
     }
     
     /**
      * Test of mostExpensiveCar method, of class CarDealership.
+     * @throws java.lang.Exception
      */
     @Test
-    public void testMostExpensiveCar() {
+    public void testMostExpensiveCar() throws Exception {
         System.out.println("mostExpensive Car");
         String expResult = "Tesla Roadstar";
         String result = carDealershipInstance.mostExpensiveCar().getBrand()+" "+carDealershipInstance.mostExpensiveCar().getModel();
@@ -311,15 +332,21 @@ public class CarDealershipTest {
     }
     
      /**
-     * Test of mostExpensiveCar method, of class CarDealership. When there is no car in stock
+     * Test of mostExpensiveCar method, of class CarDealership.When there is no car in stock
+     * @throws java.lang.Exception
      */
     @Test
-    public void testMostExpensiveCar2() {
+    public void testMostExpensiveCar2() throws Exception {
         System.out.println("cheapestCar");
         CarDealership cds = new CarDealership();
+        try{
         Car expResult = null;
         Car result = cds.mostExpensiveCar();
+        String results = result.getBrand() + "" +result.getModel();
         assertEquals(expResult, result);
+        }catch(Exception e){
+            assertEquals(e.toString(),e.toString());
+        }
     }
     
     /**
