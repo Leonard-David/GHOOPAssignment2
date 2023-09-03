@@ -6,28 +6,30 @@ import java.util.Date;
  */
 public abstract class Car {
     //creating private fields
-    private String carType;
     private String carCode;
     private String brand;
     private String model;
     private String engineType;
     private double mileage;
+    private String carType;
     private String color;
     private double cost;
-    private Date dateBroughtIn;
+    private String dateBroughtIn;
+    private String timeBroughtIn;
     private Date dateSold;
     
     // a parameterized constructor 
-    public Car(String carCode, String brand, String model, String engineType, double mileage, String carType, String color, double cost, Date dateBroughtIn){
+    public Car(String carCode, String brand, String model, String engineType, double mileage, String carType, String color, double cost, String dateBroughtIn, String timeBroughtIn){
         this.carCode = carCode;
         this.brand = brand;
         this.model = model;
         this.engineType = engineType;
         this.mileage = mileage;
+        this.carType = carType;
         this.color = color;
         this.cost = cost;
         this.dateBroughtIn = dateBroughtIn;
-        this.carType = carType;
+        this.timeBroughtIn = timeBroughtIn;
     }
     //methos that returm associated valuees
     public String getCarCode(){
@@ -52,8 +54,11 @@ public abstract class Car {
         return color;
     }
     public abstract double getCost();
-    public Date getdateBroughtIn(){
+    public String getDateBroughtIn(){
         return dateBroughtIn;
+    }
+     public String getTimeBroughtIn(){
+        return timeBroughtIn;
     }
     public Date getDateSold(){
         return dateSold;
