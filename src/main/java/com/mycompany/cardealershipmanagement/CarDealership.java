@@ -346,4 +346,57 @@ public class CarDealership {
             throw e;
         }
     }
+    //This method is reading car data from a file then creats Car objects and finally calls the sortCarsAlphabeticallyByBrand and returns the sorted cars array list.
+    public ArrayList<Car> readFilAndCreateGasPoweredCarObjects(String path) throws Exception {
+        ArrayList<Car> sortedCars = new ArrayList<>();
+        File file;
+        Scanner scanner = null;
+       try {
+            file = new File(path);
+            scanner = new Scanner(file);
+            while (scanner.hasNext()) {
+                String carCode = scanner.next();
+                String brand = scanner.next();
+                String model = scanner.next();
+                String engineType = scanner.next();
+                double mileage = scanner.nextDouble();
+                String fuelType = scanner.next();
+                String carType = scanner.next();
+                String color = scanner.next();
+                double cost = scanner.nextDouble();
+                String dateBroughtIn = scanner.next();
+                String timeBroughtIn = scanner.next();
+
+               Car newObject = new GasPoweredCar(carCode, brand, model, engineType, mileage, fuelType, carType, color, cost, dateBroughtIn,timeBroughtIn);
+               sortedCars.add(newObject);
+            }
+
+            return sortCarsAlphabeticallyByBrand(sortedCars);
+        } 
+        catch (Exception e) {
+            throw e;
+        } finally {
+            if (scanner != null) {
+                scanner.close();
+            }
+        }
+    }
+    // This method sorts cars alphabetically by brand and returns the sorted cars array list.
+    public ArrayList<Car> sortCarsAlphabeticallyByBrand(ArrayList<Car> vehicles) {
+        ArrayList<Car> sortCars = new ArrayList<>(vehicles);
+        boolean swap;
+        do {
+            swap = false;
+            for (int i = 1; i < sortCars.size(); i++) {
+                if (sortCars.get(i - 1).getBrand().compareTo(sortCars.get(i).getBrand()) > 0) {
+                    Car temp = sortCars.get(i - 1);
+                    sortCars.set(i - 1, sortCars.get(i));
+                    sortCars.set(i, temp);
+                    swap = true;
+                }
+            }
+        } while (swap);
+
+        return sortCars;
+    }
 }
