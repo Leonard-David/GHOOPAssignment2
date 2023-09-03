@@ -44,11 +44,16 @@ public class CarDealershipManagement {
                         System.out.println(e+" Please ener valid car type.");
                     }
                     break;
-               case 2:
-                   cds.sellACar("01CstM2023","01010700607", "Leonard", "David", 'M', "0812883053", "1HGB41JXMN109186", "999999ABC", "C1E", "01/02/2022", "01/02/2026", "Ford", "Mustang-GT");
-                    System.out.println(cds.returnCustomerReceipt( "01CstM2023"));
-                    System.out.println("Car sold successfully.\n");
-                   break;
+                // in this method the dealership is selling a car to a customer yet at the same time keep record of the customers detalis and generatin a receipt     
+                case 2:
+                    try{
+                        cds.sellACar("01CstM2023","01010700607", "Leonard", "David", 'M', "0812883053", "1HGB41JXMN109186", "999999ABC", "C1E", "01/02/2022", "01/02/2026", "Ford", "Mustang-GT");
+                        System.out.println("Car sold successfully.\n");
+                    }
+                    catch(Exception e){
+                            System.out.println(e.toString());
+                        }
+                    break;
                case 3:
                    System.out.println(cds.returnCustomerReceipt( "01CstM2023")+"\n");
                    break;
