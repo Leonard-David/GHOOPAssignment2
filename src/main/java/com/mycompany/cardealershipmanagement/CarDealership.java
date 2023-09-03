@@ -89,35 +89,34 @@ public class CarDealership {
     }
     
     //This method returns a given customers receipt.
-    public Receipt returnCustomerReceipt(String receiptId){
+    public Receipt returnCustomerReceipt(String receiptId) throws Exception  {
         Receipt toString = null;
-        for(int i = 0; i < receipt.size(); i++){
-            if(receiptId.equals(receipt.get(i).getReceiptId())){
-                toString =  receipt.get(i);
+        
+            for(int i = 0; i < receipt.size(); i++){
+                if(!receiptId.equals(receipt.get(i).getReceiptId())){
+                    throw new Exception("Receipt not found or incorrect input! Please try again!\nIf problem persist please call your system adminstrator.");
+                
+                }
+                else{
+                     toString =  receipt.get(i);
+                }
             }
-        }
-        return toString;
+            return toString;
     }
     //This methos removes a car given the vehicle identification number (VIN)/car code.
-    // here we as well called the method indexOf to be able to get the value.
-    public void removeCar(String carCode){                                 
-        int index = indexOf(carCode);
-        for( int i = 0; i < car.size(); i++){
-            if(index == i){
-                car.remove(car.get(i));
+    public void removeCar(String carCode) throws Exception {                                 
+        boolean found = false;
+        for (int i = car.size() - 1; i >= 0; i--) {
+            if (carCode.equals(car.get(i).getCarCode())) {
+                car.remove(i);
+                found = true;
             }
         }
+        if (!found) {
+            throw new Exception("Vehicle verification number not found or incorrect ID! Please try again!\nIf the problem persists, please call your system administrator.");
+        }
     }
-    //This method get the index of a car given its car code.
-     public int indexOf(String value){
-       int index = 0;
-       for(int i = 0; i < car.size(); i++){
-           if (value.equals(car.get(i).getCarCode())){
-               index = i;
-           }
-       }
-       return index;
-   } 
+    
      // This method returns the number of cars in Stock.
     public int carsInStockNo(){
         return car.size();
