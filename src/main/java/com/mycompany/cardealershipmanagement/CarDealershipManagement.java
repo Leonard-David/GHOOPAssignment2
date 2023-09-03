@@ -239,6 +239,20 @@ public class CarDealershipManagement {
                         System.out.println("An unexpected error has occured! Please contact your system adminstrator.");
                     }
                    break;
+                //This case allows for getting a customers name with two letter As in their last name.
+                case 17:
+                    String  nameWith2As; 
+                    try{
+                        nameWith2As = cds.CustWithOnly2AsInSurname();
+                        System.out.println(nameWith2As+"has two letter a's in their name.");
+                    }
+                    catch(IndexOutOfBoundsException e){
+                        System.out.println("\nName not found or empty! Please try again. \nIf problem persist please call your system adminstrator.");
+                    }
+                    catch(Exception e){
+                        System.out.println("An unexpected error has occured! Please contact your system adminstrator.");
+                    }
+                    break;
                default: System.exit(0);
                }
         }
