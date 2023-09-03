@@ -1,6 +1,9 @@
 package com.mycompany.cardealershipmanagement;
 
 import java.text.NumberFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -13,9 +16,17 @@ public class GasPoweredCarTest {
      Date date = new Date();
      NumberFormat toCurrency = NumberFormat.getCurrencyInstance();
      GasPoweredCar gasPoweredCarInstance = null;
+     
+      LocalTime cTime = LocalTime.now();
+      LocalDate cDate = LocalDate.now();
+      DateTimeFormatter toTime = DateTimeFormatter.ofPattern("HH:mm:ss");
+      DateTimeFormatter toDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+      String currentTime = toTime.format(cTime);
+      String currentDate = toDate.format(cDate);
+      
     public GasPoweredCarTest() {
         gasPoweredCarInstance = new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,
-                "Petrol","Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date);
+                "Petrol","Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,currentDate,currentTime);
     }
     
      /**
@@ -37,7 +48,7 @@ public class GasPoweredCarTest {
     public void testGetfuelType() {
         System.out.println("getfuelType");
         String expResult = "Petrol";
-        String result = gasPoweredCarInstance.getfuelType();
+        String result = gasPoweredCarInstance.getFuelType();
         assertEquals(expResult, result);
    }
     
