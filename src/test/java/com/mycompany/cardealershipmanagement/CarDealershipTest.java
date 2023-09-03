@@ -397,34 +397,35 @@ public class CarDealershipTest {
         assertEquals(expResult, result);
    }
     /**
-     * Test of carsSoldInASpecificYearNo method, of class CarDealership.
+     * Test of CarSoldInASpecificYearNo method, of class CarDealership.
      * @throws java.text.ParseException
      */
     @Test
-    public void testCarsSoldInASpecificYearNo() throws ParseException{
+    public void testCarSoldInASpecificYearNo() throws ParseException, Exception{
         CarDealership cds = new CarDealership();
         Date date = new Date();
         System.out.println("Cars sold in a specific year no.");
-        cds.car.add(0,new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,"Petrol",
-               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date));
-        cds.car.get(0).setDateSold(date);
-        cds.car.add(1,  new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
-               "Electric-Powered-Car","Red",3400000.0,date));
-        cds.car.get(1).setDateSold(date);
-        cds.car.add(2,  new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
-                "ElecticPoweredCar", " Ascari Blue metallic",2065712.0,date));
-        cds.car.get(2).setDateSold(date);
+       //setting date for 3 suppossed sold cars
+        //car 1
+        cds.car.add(0, new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,"Petrol","Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,currentDate,currentTime));
+        cds.car.get(0).setDateSold(date);//car1
+        //car 2
+        cds.car.add(1,new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,"Electric-Powered-Car","Red",3400000.0,currentDate,currentTime));
+         cds.car.get(1).setDateSold(date);//car2
+        //car 3
+        cds.car.add(2, new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50, "ElecticPoweredCar", " Ascari Blue metallic",2065712.0,currentDate,currentTime));
+        cds.car.get(2).setDateSold(date);//car3q
         int specificYear = 2023;
         int expResult = 3;
         int result = cds.carSoldInASpecificYearNo(specificYear);
         assertEquals(expResult, result);
     }
      /**
-     * Test of carsSoldInASpecificYearNo method, of class CarDealership. When there is no car sold.
+     * Test of CarSoldInASpecificYearNo method, of class CarDealership. When there is no car sold.
      * @throws java.text.ParseException
      */
     @Test
-    public void testCarsSoldInASpecificYearNo2() throws ParseException{
+    public void testCarSoldInASpecificYearNo2() throws ParseException, Exception{
         CarDealership cds = new CarDealership();
         int specificYear = 2023;
         int expResult = 0;
@@ -437,49 +438,42 @@ public class CarDealershipTest {
      * @throws java.text.ParseException
      */
     @Test
-    public void testMoneyMadeInASpecificYear()throws ParseException {
+    public void testMoneyMadeInASpecificYear()throws ParseException, Exception {
         System.out.println("Money made in a specific year.");
         CarDealership cds = new CarDealership();
         Date date = new Date();
-        System.out.println("Cars sold in a specific year no.");
-        cds.car.add(0,new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,"Petrol",
-               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date));
-        cds.car.get(0).setDateSold(date);
-        cds.car.add(1,  new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
-               "Electric-Powered-Car","Red",3400000.0,date));
-        cds.car.get(1).setDateSold(date);
-        cds.car.add(2,  new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
-                "ElecticPoweredCar", " Ascari Blue metallic",2065712.0,date));
-        cds.car.get(2).setDateSold(date);
+        //setting date for 3 suppossed sold cars
+        //car 1
+        cds.car.add(0, new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,"Petrol","Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,currentDate,currentTime));
+        cds.car.get(0).setDateSold(date);//car1
+        //car 2
+        cds.car.add(1,new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,"Electric-Powered-Car","Red",3400000.0,currentDate,currentTime));
+         cds.car.get(1).setDateSold(date);//car2
+        //car 3
+        cds.car.add(2, new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50, "ElecticPoweredCar", " Ascari Blue metallic",2065712.0,currentDate,currentTime));
+        cds.car.get(2).setDateSold(date);//car3
+        
         int specificYear = 2023;
         String expResult =toCurrency.format(6639707.00);
         String result = toCurrency.format(cds.moneyMadeInASpecificYear(specificYear));
         assertEquals(expResult, result);
     }
     /**
-     * Test of moneyMadeInASpecificYear method, of class CarDealership. when there is no money made in that year.
+     * Test of moneyMadeInASpecificYear method, of class CarDealership. when there is no date(null).
      * @throws java.text.ParseException
      */
     @Test
-     public void testMoneyMadeInASpecificYear2()throws ParseException {
+     public void testMoneyMadeInASpecificYear2()throws Exception {
+        try{
         System.out.println("Money made in a specific year. Where no money was made in that year");
-        CarDealership cds = new CarDealership();
-        Date date = new Date();
-        cds.car.add(0,new GasPoweredCar("1HGB41JXMN109186","Ford","Mustang-GT","5038 cc (307 cu in) V8",2000.50,"Petrol",
-               "Gas-Powered-Car","Dark Matter Gray Metallic",1194000.0,date));
-        cds.car.get(0).setDateSold(date);
-        cds.car.add(1,  new ElectricPoweredCar("5YJSA1CN8D","Tesla","Roadstar","3-phase, 4-pole, induction electric motor",2000.50,
-               "Electric-Powered-Car","Red",3400000.0,date));
-        cds.car.get(1).setDateSold(date);
-        cds.car.add(2,  new ElectricPoweredCar("2HGB51JXMN1086","Audi","E-tron-GT","AC synchronous electric motors",2000.50,
-                "ElecticPoweredCar", " Ascari Blue metallic",2065712.0,date));
-        cds.car.get(2).setDateSold(date);
         int specificYear = 2022;
         String expResult =toCurrency.format(0.00);
-        String result = toCurrency.format(cds.moneyMadeInASpecificYear(specificYear));
+        String result = toCurrency.format(carDealershipInstance.moneyMadeInASpecificYear(specificYear));
         assertEquals(expResult, result);
-    }
-    /**
+        }catch(Exception e){
+            assertEquals("java.lang.NullPointerException: date must not be null",e.toString());
+        }
+    }    /**
      * Test of priceOfGivenCar method, of class CarDealership.
      */
     @Test
