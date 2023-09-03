@@ -321,4 +321,29 @@ public class CarDealership {
             buffer.close();
         }
     }
+     //This method returns the customers name with the only 2As in their surname
+    public String CustWithOnly2AsInSurname() throws Exception{
+        Customer result = customer.get(0);
+        int count = 0;
+        try{
+            for (int i = 0; i < customer.size(); i++) {
+                String lastName = customer.get(i).getLastName().toLowerCase(); 
+                for (int x = 0; x < lastName.length(); x++) {
+                    if (lastName.charAt(x) == 'a') {
+                        count++;
+                        result = customer.get(i);
+                    }
+                }
+
+                if (count == 2) {
+                    return result.getLastName();
+                     
+                }
+            }
+            return null;
+        }
+        catch(Exception e){
+            throw e;
+        }
+    }
 }
