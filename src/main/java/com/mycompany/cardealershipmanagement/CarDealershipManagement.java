@@ -28,13 +28,22 @@ public class CarDealershipManagement {
            try{
                int x = scan.nextInt();
            switch(x){
-               case 1:
-                   cds.addNewCar("1HGB41JXMN109186", "Ford", "Mustang-GT", "5038 cc (307 cu in) V8", 2000.50,"Petrol","GasPoweredCar", "Dark Matter Gray Metallic", 1194000.0);
-                   cds.addNewCar("5YJSA1CN8D", "Tesla", "Roadstar", "-phase, 4-pole, induction electric motor", 958.50,"","ElecticPoweredCar", "Red", 3400000.0);
-                   cds.addNewCar("2FUB51PKMN157", "Audi", "E-tron-GT", "AC synchronous electric motors", 400.86,"","ElecticPoweredCar", "Ascari Blue metallic", 2065712.0);
-                   cds.addNewCar("4KJDSN786DS512", "Toyota", "Supra-MK4", "2JZ-GTE 3.0-litre", 2436.0,"Petrol","GasPoweredCar", "Stratosphere", 418377);
-                   System.out.println("Car added successfully.");
-                   break;
+               //adding cars to the dealrship
+                case 1: 
+                    try{
+                        cds.addNewCar("1HGB41JXMN109186", "Ford", "Mustang-GT", "5038-cc-V8", 2050,"Petrol","GasPoweredCar", "Gray-Metallic", 1194000.0);
+                        cds.addNewCar("5YJSA1CN8D", "Tesla", "Roadstar", "4-pole-induction-electric-motor", 958.50,"","ElectricPoweredCar", "Red", 3400000.0);
+                        cds.addNewCar("2FUB51PKMN157", "Audi", "E-tron-GT", "AC-synchronous-electric-motors", 400.86,"","ElectricPoweredCar", "Blue-metallic", 2065712.0);
+                        cds.addNewCar("4KJDSN786DS512", "Toyota", "Supra-MK4", "2JZ-GTE-3.0-litre", 2436.0,"Petrol","GasPoweredCar", "Stratosphere", 418377);
+                        System.out.println("Car added successfully.\n");
+                    }
+                    catch(ParseException e){
+                        System.out.println("Date or Time formating has failed. Please try again. \nIf problem persist please call your system adminstrato.");
+                    }
+                    catch(Exception e){
+                        System.out.println(e+" Please ener valid car type.");
+                    }
+                    break;
                case 2:
                    cds.sellACar("01CstM2023","01010700607", "Leonard", "David", 'M', "0812883053", "1HGB41JXMN109186", "999999ABC", "C1E", "01/02/2022", "01/02/2026", "Ford", "Mustang-GT");
                     System.out.println(cds.returnCustomerReceipt( "01CstM2023"));
