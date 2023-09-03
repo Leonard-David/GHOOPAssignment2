@@ -117,29 +117,33 @@ public class CarDealership {
         }
     }
     
-     // This method returns the number of cars in Stock.
+      // This method returns the number of cars in Stock.
     public int carsInStockNo(){
         return car.size();
     }
     //This method returns a car with a specific color
-    public Car carWithSpecificColor(String color){
+    public Car carWithSpecificColor(String color) throws Exception {
         Car carName = null;
-        
+        boolean found = false;
         for( int i = 0; i < car.size() ; i++){
             if(color.equalsIgnoreCase(car.get(i).getColor())){
                 carName = car.get(i);
+                found = true;
             }
+        }
+        if(!found){
+            throw new Exception("Car with "+color+" color not found.");
         }
         return carName;
     }
     //This method returns if a give car is in stock or not (true/false).
-    public boolean isCarInStock(String brand, String model){
+    public boolean isCarInStock(String brand, String model) {
         boolean carIsInStock = false;
         for ( int i = 0; i < car.size(); i++ ){
             if(brand.equals(car.get(i).getBrand()) && model.equals(car.get(i).getModel())){
                 carIsInStock = true;
             }
-        }
+        }         
         return carIsInStock;
     }
     //This method Returns the Cheapest Electric Car of all electric cars.
