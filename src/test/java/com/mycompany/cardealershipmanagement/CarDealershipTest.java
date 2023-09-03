@@ -498,4 +498,63 @@ public class CarDealershipTest {
         String result = toCurrency.format(cds.priceOfGivenCar(brand, model));
         assertEquals(expResult, result);
     }
+    /**
+     * Test of priceOfGivenCar method, of class CarDealership.
+     * @throws java.lang.Exception
+     */
+    @Test
+    public void testPriceOfGivenCar() throws Exception {
+        System.out.println("Price of a given car.");
+        String brand = "Ford";
+        String model = "Mustang-GT";
+        String expResult = toCurrency.format(1189999.00);
+        String result = toCurrency.format(carDealershipInstance.priceOfGivenCar(brand, model));
+        assertEquals(expResult, result);
+    }
+     /**
+     * Test of priceOfGivenCar method, of class CarDealership.
+     * @throws java.lang.Exception
+     */
+    @Test
+    public void testPriceOfGivenCar2() throws Exception {
+        try{
+        System.out.println("Price of a given car. Where no car is in the dealership");
+        CarDealership cds = new CarDealership();
+        String brand = "Ford";
+        String model = "Mustang-GT";
+        String expResult = toCurrency.format(0.00);
+        String result = toCurrency.format(cds.priceOfGivenCar(brand, model));
+        assertEquals(expResult, result);
+        }
+        catch(IndexOutOfBoundsException e){
+            assertEquals("java.lang.IndexOutOfBoundsException: Index 0 out of bounds for length 0", e.toString());
+        }
+    }
+
+    /**
+     * Test of createGPCFile method, of class CarDealership.
+     * @throws java.lang.Exception
+     */
+    @Test
+    public void testCreateGPCFile() throws Exception {
+        try{
+        String filePath = "GasPoweredCarInventory.txt";
+        carDealershipInstance.createGPCFile(filePath);
+        assertTrue(Files.exists(Path.of(filePath))); 
+        }
+        catch(Exception e){
+          assertEquals("java.lang.Exception: The file already exist!", e.toString());
+        }
+   }
+
+    /**
+     * Test of saveGasPoweredCarDataToFile method, of class CarDealership.
+     * @throws java.lang.Exception
+     */
+    @Test
+    public void testSaveGasPoweredCarDataToFile() throws Exception {
+        String filePath = "GasPoweredCarInventory.txt";
+        carDealershipInstance.saveGasPoweredCarDataToFile(filePath);
+        assertTrue(Files.exists(Path.of(filePath)));
+   }
 }
