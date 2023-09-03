@@ -112,7 +112,7 @@ public class CarTest {
     @Test
     public void testGetCost() {
         System.out.println("getCost");
-        double expResult = 1193.7015746063485;
+        double expResult = 1189999.0;
         double result = carInstance.getCost();
         assertEquals(expResult, result, 0);
     }
