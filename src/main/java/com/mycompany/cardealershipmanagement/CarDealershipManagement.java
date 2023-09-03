@@ -162,14 +162,37 @@ public class CarDealershipManagement {
                         System.out.println("An unexpected error has occured! Please contact your system adminstrator.");
                     }
                     break;
-               case 12:
-                   int number = cds.carSoldInASpecificYearNo(2023);
-                   System.out.println(number +" car sold in the given year where" + number+"\n");
-                   break;
-               case 13:
-                   String amount = toCurrency.format(cds.moneyMadeInASpecificYear(2023));
-                   System.out.println("Money made in that year was/is N$ "+ amount+"\n");
-                   break;  
+              //This case allows for checking the number of cars sold in a given year
+                case 12:
+                    int amount;
+                    try{
+                        amount = cds.carSoldInASpecificYearNo(2023);
+                        System.out.println(amount +" cars were sold in the given year.\n");
+                    }
+                    catch(ParseException e){
+                        System.out.println("Convertion error! failed to convert given value! Please try again!\nIf problem persist please call your system adminstrator.");
+                    }
+                    catch(Exception e){
+                        System.out.println("An unexpected error has occured! Please contact your system adminstrator."+e.getMessage());
+                    }
+                    break;
+                //This case allows for checking the amount of money nmade in a given year
+                case 13:
+                    String money;
+                    try{
+                        money = toCurrency.format(cds.moneyMadeInASpecificYear(2023));
+                        System.out.println("Money made in that year was/is N$ "+ money+"\n");
+                    }
+                    catch(NullPointerException e){
+                        System.out.println("Ellements not found! Please try again!\nIf problem persist please call your system adminstrator.");
+                    }
+                    catch(ParseException e){
+                        System.out.println("Date convertion error! Failed to convert given value to date! Please try again!\nIf problem persist please call your system adminstrator.");
+                    }
+                    catch(Exception e){
+                        System.out.println("An unexpected error has occured! Please contact your system adminstrator.");
+                   }
+                    break;
                case 14:
                     String price = toCurrency.format(cds.priceOfGivenCar("Toyota", "Supra-MK4"));
                     System.out.println("The price of the car is N$ " +price+"\n");
