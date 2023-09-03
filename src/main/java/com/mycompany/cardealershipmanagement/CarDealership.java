@@ -31,19 +31,12 @@ public class CarDealership {
     //This method adds a new car to the carDealership depending on the type of car as per requirement from the Dealership.
     public void addNewCar(String carCode, String brand, String model, String engineType, double mileage, String fuelType,
         String carType, String color, double cost) throws Exception{
-        
-       //local date and time instances
         LocalTime cTime = LocalTime.now();
         LocalDate cDate = LocalDate.now();
-      
-        //using the  date formatter for to get the time and date only
         DateTimeFormatter toTime = DateTimeFormatter.ofPattern("HH:mm:ss");
         DateTimeFormatter toDate = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-     
-        //fornating the date to suit the below time and date attributes
-        String currentTime = toTime.format(cTime);
+        String currenntTime = toTime.format(cTime);
         String currentDate = toDate.format(cDate);
-        
         Car newCar = null;
         for(int i = 0; i < car.size(); i++){
             if(carCode.equals(car.get(i).getCarCode())){
@@ -87,7 +80,7 @@ public class CarDealership {
             }
         }
     }
-    
+
     //This method returns a given customers receipt.
     public Receipt returnCustomerReceipt(String receiptId) throws Exception  {
         Receipt toString = null;
@@ -117,7 +110,7 @@ public class CarDealership {
         }
     }
     
-      // This method returns the number of cars in Stock.
+     // This method returns the number of cars in Stock.
     public int carsInStockNo(){
         return car.size();
     }
@@ -153,7 +146,7 @@ public class CarDealership {
         try{
             for ( int i = 0; i < car.size(); i++ ){
                 if(car.get(i) instanceof ElectricPoweredCar && ((ElectricPoweredCar)car.get(i)).getCost() < cheapestAmount){
-                     cheapestAmount = car.get(i).getCost();
+                    cheapestAmount = car.get(i).getCost();
                     cheapElectricCar = (ElectricPoweredCar) car.get(i);
                 }
             }
@@ -179,8 +172,8 @@ public class CarDealership {
         catch(Exception e){
            throw e;
         }
-    }   
-   //This method returns the cheapest car of all car types.
+    }
+    //This method returns the cheapest car of all car types.
     public Car cheapestCar()throws Exception {
         Car cheapCar = null;
         try{
@@ -279,6 +272,7 @@ public class CarDealership {
             throw e;
          }
     }
+    //Newly Added Methods Assignment 2 on Files and Strings 
     //Wiht this method we are creating a text file for the Electric-powered car
     public void createGPCFile(String filePath) throws Exception{
         File txtGas = new File(filePath);
@@ -289,6 +283,7 @@ public class CarDealership {
             throw new Exception("The file already exist!");
         }
     }
+   
     //this method saved the information of the electric powered car to a  text file.
     public void saveGasPoweredCarDataToFile(String filePath) throws Exception {
         FileWriter buffer = null;
@@ -299,17 +294,17 @@ public class CarDealership {
             
             for(int i = 0; i < car.size(); i++){
                 if(car.get(i) instanceof GasPoweredCar ){
-                    toGasPoweredCarFile.write(car.get(i).getCarCode()+"\n"+
+                    toGasPoweredCarFile.write(car.get(i).getCarCode()+
                                               "\n"+car.get(i).getBrand()+
                                               "\n"+car.get(i).getModel()+
                                               "\n"+car.get(i).getEngineType()+
                                               "\n"+car.get(i).getMileage()+
-                                              ((GasPoweredCar)car.get(i)).getFuelType()+"\n"+
-                                              car.get(i).getCarType()+"\n"+
-                                              car.get(i).getColor()+"\n"+
-                                              car.get(i).getCost()+"\n"+
-                                              car.get(i).getDateBroughtIn()+"\n"+
-                                              car.get(i).getTimeBroughtIn()+"\n");
+                                              "\n"+((GasPoweredCar)car.get(i)).getFuelType()+
+                                              "\n"+car.get(i).getCarType()+
+                                              "\n"+car.get(i).getColor()+
+                                              "\n"+car.get(i).getCost()+
+                                              "\n"+car.get(i).getDateBroughtIn()+
+                                              "\n"+car.get(i).getTimeBroughtIn());
                 }
             }
         }
@@ -321,7 +316,7 @@ public class CarDealership {
             buffer.close();
         }
     }
-     //This method returns the customers name with the only 2As in their surname
+   //This method returns the customers name with the only 2As in their surname
     public String CustWithOnly2AsInSurname() throws Exception{
         Customer result = customer.get(0);
         int count = 0;
@@ -337,7 +332,6 @@ public class CarDealership {
 
                 if (count == 2) {
                     return result.getLastName();
-                     
                 }
             }
             return null;
@@ -381,6 +375,7 @@ public class CarDealership {
             }
         }
     }
+
     // This method sorts cars alphabetically by brand and returns the sorted cars array list.
     public ArrayList<Car> sortCarsAlphabeticallyByBrand(ArrayList<Car> vehicles) {
         ArrayList<Car> sortCars = new ArrayList<>(vehicles);
