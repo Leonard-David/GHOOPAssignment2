@@ -311,7 +311,7 @@ public class CarDealership {
                                               "\n"+car.get(i).getColor()+
                                               "\n"+car.get(i).getCost()+
                                               "\n"+car.get(i).getDateBroughtIn()+
-                                              "\n"+car.get(i).getTimeBroughtIn());
+                                              "\n"+car.get(i).getTimeBroughtIn()+"\n");
                 }
             }
         }
