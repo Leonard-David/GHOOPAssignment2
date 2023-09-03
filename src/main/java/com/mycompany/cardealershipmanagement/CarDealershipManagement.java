@@ -132,14 +132,36 @@ public class CarDealershipManagement {
                         System.out.println("\nAn unexpected error has occured! Please contact your system adminstrator.");
                     }
                     break;
-               case 10:
-                   String cheapetCar =cds.cheapestCar().getBrand() +" "+cds.cheapestCar().getModel();
-                   System.out.println("The cheapest car is a " + cheapetCar+"\n");
-                   break;
-               case 11:
-                   String costAverage = toCurrency.format( cds.gasPoweredCarCostAverage());
-                   System.out.println("The cost average of gas-powered cars is " + costAverage+"\n");
-                   break;
+              //Similarly his cade does the oposite of case 9, basically alowing for checkinfg the cheapest car
+                case 10:
+                    String cheapetCar;
+                    try{
+                        cheapetCar =cds.cheapestCar().getBrand() +" "+cds.cheapestCar().getModel();
+                        System.out.println("The cheapest car is a " + cheapetCar+"\n");
+                    }
+                    catch(NullPointerException e){
+                        System.out.println("\nCar not found or does not exist! Please try again.\nIf problem persist please call your system adminstrator.");
+                    }catch(Exception e){
+                        System.out.println("\nAn unexpected error has occured! Please contact your system adminstrator.");
+                    }
+                    break;
+                //Case 11 allows for checking the cost average of the gass powered cars
+                case 11:
+                    String costAverage;
+                    try{
+                        costAverage = toCurrency.format( cds.gasPoweredCarCostAverage());
+                        System.out.println("The cost average of gas-powered cars is " + costAverage+"\n");
+                    }
+                    catch(IndexOutOfBoundsException e){
+                        System.out.println("Cost Average not found! Please try again!\nIf problem persist please call your system adminstrator.");
+                    }
+                    catch(ArithmeticException e){
+                        System.out.println("Price not found. Please try again! \nIf problem persist please call your system adminstrator.");
+                    }
+                    catch(Exception e){
+                        System.out.println("An unexpected error has occured! Please contact your system adminstrator.");
+                    }
+                    break;
                case 12:
                    int number = cds.carSoldInASpecificYearNo(2023);
                    System.out.println(number +" car sold in the given year where" + number+"\n");
