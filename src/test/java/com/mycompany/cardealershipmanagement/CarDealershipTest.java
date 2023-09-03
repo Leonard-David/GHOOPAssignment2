@@ -298,7 +298,7 @@ public class CarDealershipTest {
         String expResult = "Audi E-tron-GT";
         Car result = carDealershipInstance.cheapestElectricCar();
         String results = result.getBrand()+" "+result.getModel();
-        assertEquals(expResult, result);
+        assertEquals(expResult, results);
     }
     /**
      * Test of cheapestElectricCar method, of class CarDealership.
@@ -349,11 +349,12 @@ public class CarDealershipTest {
         }
     }
     
-    /**
+   /**
      * Test of cheapestCar method, of class CarDealership.
+     * @throws java.lang.Exception
      */
     @Test
-    public void testCheapestCar() {
+    public void testCheapestCar() throws Exception {
         System.out.println("Cheapest Car");
         String expResult = "Toyota Supra-MK4";
         String result = carDealershipInstance.cheapestCar().getBrand()+" "+carDealershipInstance.cheapestCar().getModel();
@@ -361,9 +362,10 @@ public class CarDealershipTest {
     }
     /**
      * Test of cheapestCar method, of class CarDealership When there is no car in stock
+     * @throws java.lang.Exception
      */
     @Test
-    public void testCheapestCar2() {
+    public void testCheapestCar2() throws Exception {
         System.out.println("cheapestCar");
         CarDealership cds = new CarDealership();
         Car expResult = null;
@@ -373,26 +375,27 @@ public class CarDealershipTest {
 
     /**
      * Test of gasPoweredCarCostAverage method, of class CarDealership.
+     * @throws java.lang.Exception
      */
     @Test
-    public void testGasPoweredCarCostAverage() {
+    public void testGasPoweredCarCostAverage() throws Exception {
         System.out.println("gasPoweredCarCostAverage");
         String expResult = toCurrency.format(803987.50);
         String result = toCurrency.format(carDealershipInstance.gasPoweredCarCostAverage());
         assertEquals(expResult, result);
    }
     /**
-     * Test of gasPoweredCarCostAverage method, of class CarDealership. When there is no car
+     * Test of gasPoweredCarCostAverage method, of class CarDealership.When there is no car
+     * @throws java.lang.Exception
      */
     @Test
-    public void testGasPoweredCarCostAverage2() {
+    public void testGasPoweredCarCostAverage2() throws Exception {
         System.out.println("gasPoweredCarCostAverage");
         CarDealership cds = new CarDealership();
         String expResult = "NaN";
         String result = toCurrency.format(cds.gasPoweredCarCostAverage());
         assertEquals(expResult, result);
    }
-
     /**
      * Test of carsSoldInASpecificYearNo method, of class CarDealership.
      * @throws java.text.ParseException
