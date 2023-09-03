@@ -1,10 +1,15 @@
 package com.mycompany.cardealershipmanagement;
 
-
-import java.text.ParseException;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.Scanner;
 /**
  *
  * @author Group H
@@ -54,19 +59,31 @@ public class CarDealership {
         }
         car.add(newCar);
     }
-    // This methos record customer details, receipt details and sets date sold as the Dealership sells a car.
-    public void sellACar(String receiptId, String customerIdNumber, String firstName, String lastName, char gender, String cellphoneNo, 
-            String carIdNumber, String lIdNumber, String lCode, String lIssueDate, String lExpiryDate, String brand, String model){
+    // This method record customer details, receipt details and sets date sold as the Dealership sells a car.
+    public void sellACar(String receiptId, String customerIdNumber, String firstName, String lastName, char gender, String cellphoneNo,
+                     String carIdNumber, String lIdNumber, String lCode, String lIssueDate,
+                     String lExpiryDate, String brand, String model) throws Exception {
         
-        License license;
-        Date de = new Date();
-        String fName = firstName +" "+ lastName;
-        for (int i = 0; i < car.size(); i++){
-            if (carIdNumber.equals(car.get(i).getCarCode())){
-                car.get(i).setDateSold(de);
-                license = new License(lIdNumber,lCode,lIssueDate,lExpiryDate);
+        Car currentCar =null;
+        Date dateSold = new Date();
+        License license = new License(lIdNumber, lCode, lIssueDate, lExpiryDate);
+        String fullName = firstName + " " + lastName;
+        for (int i = 0; i < car.size(); i++) {
+            currentCar = car.get(i);
+            if (carIdNumber.equals(currentCar.getCarCode())) {
+            currentCar.setDateSold(dateSold);
+                double carCost = 0.00;
+                if (currentCar instanceof GasPoweredCar) {
+                    carCost = ((GasPoweredCar) currentCar).getCost();
+                } else if (currentCar instanceof ElectricPoweredCar) {
+                    carCost = ((ElectricPoweredCar) currentCar).getCost();
+                }
                 customer.add(new Customer(customerIdNumber, firstName, lastName, gender, cellphoneNo, license));
-                receipt.add(new Receipt( receiptId, customerIdNumber, fName, brand, carIdNumber, de, car.get(i).getCost(), model)) ;
+                receipt.add(new Receipt(receiptId, customerIdNumber, fullName, brand, carIdNumber, dateSold, carCost, model));
+                break; 
+            }
+             else{
+                throw new Exception("Car not found or incorrect input! Please try again!\nIf problem persist please call your system adminstrator.");
             }
         }
     }
