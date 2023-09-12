@@ -268,10 +268,10 @@ public class CarDealership {
                 }
             }
             if(carPrice instanceof GasPoweredCar){
-                return carPrice.getCost();
+                return ((GasPoweredCar) carPrice).getCost();
             }
             else if(carPrice instanceof ElectricPoweredCar){
-                return carPrice.getCost();
+                return ((ElectricPoweredCar)carPrice).getCost();
             }
             return 0;
         }

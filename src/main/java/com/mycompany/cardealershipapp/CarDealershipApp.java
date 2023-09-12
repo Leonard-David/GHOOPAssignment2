@@ -213,6 +213,12 @@ public class CarDealershipApp {
                     catch(IndexOutOfBoundsException e){
                         System.out.println("\nPrice not found or emoty! Please try again!\nIf problem persist please call your system adminstrator.");
                     }
+                    catch(NullPointerException e){
+                        System.out.println("\nPrice not found or does not exixt!\nIf problem persist please call your system adminstrator.");
+                    }
+                    catch(ClassCastException e){
+                                System.out.println("\nFailed to convert vehicle price! Please check and try again. \nIf problem persist please call your system adminstrator.");
+                    }
                     catch(Exception e){
                         System.out.println("\nAn unexpected error has occured! Please contact your system adminstrator.");
                     }
@@ -322,7 +328,7 @@ public class CarDealershipApp {
                     catch(FileNotFoundException e){
                                 System.out.println("\nFile not found! Please check and try again. \nIf problem persist please call your system adminstrator.");
                     }
-                     catch(ClassCastException e){
+                    catch(ClassCastException e){
                                 System.out.println("\nFailed to convert information! Please check and try again. \nIf problem persist please call your system adminstrator.");
                     }
                     catch(IOException e){
